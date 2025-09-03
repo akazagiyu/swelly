@@ -41,8 +41,9 @@ export default function Footer() {
           <Link href="/premium" className="hover:text-white">Premium</Link>
           <Link href="/support" className="hover:text-white">Support</Link>
           <Link href="/status" className="hover:text-white">Status</Link>
-          <Link href="#" className="hover:text-white">Privacy</Link>
-          <Link href="#" className="hover:text-white">Terms</Link>
+          <Link href="/privacy" className="hover:text-white">Privacy</Link>
+          <Link href="/terms" className="hover:text-white">Terms</Link>
+          <Link href="/refund" className="hover:text-white">Refund</Link>
           <span className="ml-auto text-xs text-white/50 flex items-center gap-1">
             Made with <FaHeart className="text-rose-400" /> for music lovers
           </span>
