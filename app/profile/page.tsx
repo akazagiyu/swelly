@@ -21,7 +21,7 @@ export default function ProfilePage() {
         {user.image && <Image src={user.image} width={64} height={64} alt={user.name ?? "User"} className="rounded-full" />}
         <div>
           <div className="font-semibold">{user.name}</div>
-          <div className="text-white/60 text-sm">ID: {(user as any).id ?? "N/A"}</div>
+          <div className="text-white/60 text-sm">ID: {user.id ?? "N/A"}</div>
         </div>
       </div>
     </div>

@@ -59,8 +59,8 @@ export default function CommandSearch({ commands }: { commands: Command[] }) {
           <section key={cat} className="mb-8">
             <h2 className="text-xl font-semibold mb-3">{cat}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {groups.map[cat].map((cmd) => (
-                <div key={cmd.name} className="card">
+              {groups.map[cat].map((cmd, i) => (
+                <ScrollCard key={cmd.name} index={i} href={`/commands/${cmd.name}`}>
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="font-semibold">/{cmd.name}</h3>
                     <span className="text-xs text-white/50">{cmd.category}</span>
@@ -69,12 +69,30 @@ export default function CommandSearch({ commands }: { commands: Command[] }) {
                   {cmd.usage && (
                     <p className="text-xs text-white/50 mt-2">Usage: {cmd.usage}</p>
                   )}
-                </div>
+                </ScrollCard>
               ))}
             </div>
           </section>
         )
       ))}
     </div>
+  );
+}
+
+function ScrollCard({ href, children, index }: { href: string; children: React.ReactNode; index: number }) {
+  // Lazy import to avoid top-level client boundary if this file is server by default
+  // This component is client-only by nature due to use of motion wrapper below.
+  // eslint-disable-next-line @next/next/no-html-link-for-pages
+  return (
+    <a href={href} className="block">
+      {/* Using data attribute + CSS transitions; simple reveal */}
+      <div
+        className="card hover:-translate-y-0.5 transition-transform opacity-0 translate-y-2"
+        style={{ transitionDelay: `${index * 30}ms` }}
+        data-reveal-card
+      >
+        {children}
+      </div>
+    </a>
   );
 }

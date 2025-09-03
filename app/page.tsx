@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import LoginInline from "@/components/auth/LoginInline";
 import FadeIn from "@/components/motion/FadeIn";
 import ParallaxOrbs from "@/components/motion/ParallaxOrbs";
+import ScrollReveal from "@/components/motion/ScrollReveal";
 import CountUp from "@/components/CountUp";
 
 export default function Home() {
@@ -16,7 +18,10 @@ export default function Home() {
             <span className="inline-block mx-auto mb-6 rounded-full border border-white/10 px-3 py-1 text-xs text-white/70 bg-white/5 backdrop-blur-sm">
               New • Premium sound, zero lag
             </span>
-            <div className="mx-auto mb-8 h-16 w-16 rounded-2xl bg-gradient-to-br from-primary to-primary-light shadow-glow neon-border" />
+            <div className="mx-auto mb-8 flex items-center justify-center gap-4">
+              <Image src="/mascot.png" alt="Swelly mascot" width={96} height={96} className="drop-shadow-[0_0_22px_rgba(239,68,68,0.35)]" priority />
+              <Image src="/swellyG2.png" alt="Swelly hero" width={520} height={520} className="w-[240px] md:w-[400px] h-auto drop-shadow-2xl" priority />
+            </div>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
               The <span className="text-gradient">ultimate</span> Discord music bot
             </h1>
@@ -35,54 +40,70 @@ export default function Home() {
 
       {/* Features */}
       <section className="container py-12">
-        <h2 className="text-2xl font-semibold mb-6 text-center">Features</h2>
+        <ScrollReveal>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Features</h2>
+        </ScrollReveal>
         <div className="grid md:grid-cols-4 gap-4">
           {[
             { t: "🎵 High-Quality Music", d: "Crystal-clear audio powered by robust infrastructure." },
             { t: "📀 Playlist Support", d: "Load full playlists from your favorite services." },
             { t: "🎚️ Filters & Effects", d: "Bass boost, nightcore, vaporwave, and more." },
             { t: "🌐 Multi-Source Streaming", d: "Spotify, YouTube, Apple Music, SoundCloud." },
-          ].map((f) => (
-            <div key={f.t} className="card hover:shadow-glow transition-all hover:-translate-y-0.5">
+          ].map((f, i) => (
+            <ScrollReveal key={f.t} delay={i * 0.05}>
+              <div className="card hover:shadow-glow transition-all hover:-translate-y-0.5">
               <h3 className="text-lg font-semibold">{f.t}</h3>
               <p className="text-white/70 mt-1">{f.d}</p>
-            </div>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
       {/* Stats */}
-    <section className="container py-12">
-        <h2 className="text-2xl font-semibold mb-6 text-center">Trusted by communities</h2>
+      <section className="container py-12">
+        <ScrollReveal>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Trusted by communities</h2>
+        </ScrollReveal>
         <div className="grid gap-4 sm:grid-cols-3">
-      <div className="card text-center">
+          <ScrollReveal>
+            <div className="card text-center">
             <div className="text-3xl font-bold text-primary"><CountUp to={12340} /></div>
             <div className="text-white/70 mt-1">Servers</div>
-          </div>
-      <div className="card text-center">
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.05}>
+            <div className="card text-center">
             <div className="text-3xl font-bold text-primary"><CountUp to={1005221} /></div>
             <div className="text-white/70 mt-1">Users</div>
-          </div>
-          <div className="card text-center">
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <div className="card text-center">
             <div className="text-3xl font-bold text-primary">120+</div>
             <div className="text-white/70 mt-1">Commands</div>
-          </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Testimonials */}
-  <section className="container py-12">
-        <h2 className="text-2xl font-semibold mb-6 text-center">What users are saying</h2>
+      <section className="container py-12">
+        <ScrollReveal>
+          <h2 className="text-2xl font-semibold mb-6 text-center">What users are saying</h2>
+        </ScrollReveal>
         <div className="grid md:grid-cols-3 gap-4">
           {[
             { u: "Alex", q: "Swelly made our community nights so much better!" },
             { u: "Rin", q: "The filters are insane. Nightcore all day!" },
             { u: "Mia", q: "Reliable, fast, and sounds amazing." },
-          ].map((t) => (
-    <div key={t.u} className="card">
+          ].map((t, i) => (
+            <ScrollReveal key={t.u} delay={i * 0.06}>
+              <div className="card">
               <p className="text-white/80">“{t.q}”</p>
               <div className="text-white/60 text-sm mt-3">— {t.u}</div>
-            </div>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </section>

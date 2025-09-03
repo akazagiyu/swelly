@@ -7,6 +7,8 @@ import Providers from "@/components/providers/Providers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
   title: {
     default: "Swelly — Free High-Quality Discord Music Bot",
@@ -15,7 +17,25 @@ export const metadata: Metadata = {
   description:
     "Swelly is a free, high-quality Discord music bot with Spotify, Apple Music, SoundCloud support, filters, and more.",
   icons: { icon: "/favicon.ico" },
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL(siteUrl),
+  openGraph: {
+    title: "Swelly — Free High-Quality Discord Music Bot",
+    description:
+      "Crystal-clear audio, powerful queues and filters, buttery-smooth playback.",
+    url: siteUrl,
+    siteName: "Swelly",
+    images: [
+      { url: "/swellyMascot.png", width: 1200, height: 630, alt: "Swelly" },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly — Free High-Quality Discord Music Bot",
+    description:
+      "Crystal-clear audio, powerful queues and filters, buttery-smooth playback.",
+    images: ["/swellyMascot.png"],
+  },
 };
 
 export default function RootLayout({

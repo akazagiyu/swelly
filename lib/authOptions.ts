@@ -1,4 +1,5 @@
 import type { NextAuthOptions } from "next-auth";
+import type { JWT } from "next-auth/jwt";
 import DiscordProvider from "next-auth/providers/discord";
 
 export const authOptions: NextAuthOptions = {
@@ -11,17 +12,19 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, account }) {
+      const t = token as JWT & { accessToken?: string; tokenType?: string };
       if (account) {
-        (token as any).accessToken = account.access_token;
-        (token as any).tokenType = account.token_type;
+        t.accessToken = account.access_token as string | undefined;
+        t.tokenType = account.token_type as string | undefined;
       }
-      return token;
+      return t;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user = { ...session.user, id: token.sub } as typeof session.user & { id?: string };
+      const t = token as JWT & { accessToken?: string };
+      if (session.user && token.sub) {
+        session.user.id = token.sub;
       }
-      (session as any).accessToken = (token as any).accessToken;
+      (session as typeof session & { accessToken?: string }).accessToken = t.accessToken;
       return session;
     },
   },

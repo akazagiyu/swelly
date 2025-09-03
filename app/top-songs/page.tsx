@@ -3,9 +3,9 @@ import Image from "next/image";
 export const metadata = { title: "Top Songs" };
 
 const songs = [
-  { id: 1, title: "Echoes of Night", artist: "Lunaria", plays: 125432, thumb: "https://picsum.photos/seed/s1/96" },
-  { id: 2, title: "Neon Drift", artist: "VaporVox", plays: 110221, thumb: "https://picsum.photos/seed/s2/96" },
-  { id: 3, title: "Crystal Waves", artist: "Auralux", plays: 102334, thumb: "https://picsum.photos/seed/s3/96" },
+  { id: 1, title: "Echoes of Night", artist: "Lunaria", plays: 125432, thumb: "/swelly1.png" },
+  { id: 2, title: "Neon Drift", artist: "VaporVox", plays: 110221, thumb: "/swelly3.png" },
+  { id: 3, title: "Crystal Waves", artist: "Auralux", plays: 102334, thumb: "/prime.png" },
 ];
 
 export default function TopSongsPage() {

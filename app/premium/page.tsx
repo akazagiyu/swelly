@@ -1,5 +1,8 @@
 export const metadata = { title: "Premium" };
 
+import Image from "next/image";
+import PageHeader from "@/components/layout/PageHeader";
+
 export default function PremiumPage() {
   const tiers = [
     {
@@ -38,11 +41,9 @@ export default function PremiumPage() {
   ];
 
   return (
-    <div className="container py-12">
-      <div className="text-center mb-10">
-        <h1 className="text-3xl md:text-5xl font-extrabold">Unlock Premium Features</h1>
-        <p className="text-white/70 mt-3">24/7 Music, Higher Queue Limits, Exclusive Filters, Priority Support.</p>
-      </div>
+    <>
+      <PageHeader title="Unlock Premium Features" subtitle="24/7 Music, Higher Queue Limits, Exclusive Filters, Priority Support." right={<Image src="/prime.png" alt="Swelly Premium" width={96} height={96} className="drop-shadow-[0_0_20px_rgba(239,68,68,0.35)]" />} />
+      <div className="container py-10">
       <div className="grid md:grid-cols-3 gap-6">
         {tiers.map((t) => (
           <div key={t.name} className={`card relative ${t.highlight ? "border-primary/40" : ""}`}>
@@ -60,9 +61,10 @@ export default function PremiumPage() {
           </div>
         ))}
       </div>
-      <div className="text-center mt-10">
-        <button className="btn btn-primary">Get Premium</button>
+        <div className="text-center mt-10">
+          <button className="btn btn-primary">Get Premium</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

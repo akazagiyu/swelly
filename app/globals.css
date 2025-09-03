@@ -20,6 +20,9 @@ body {
 
 @layer utilities {
   .text-balance {
+/* Simple reveal utility powered by IntersectionObserver in layout */
+[data-reveal-card] { will-change: transform, opacity; }
+[data-reveal-card].is-visible { opacity: 1 !important; transform: translateY(0) !important; }
     text-wrap: balance;
   }
 }

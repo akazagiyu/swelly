@@ -1,5 +1,7 @@
 export const metadata = { title: "Invite" };
 
+import Image from "next/image";
+
 export default function InvitePage() {
   const inviteUrl = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL || "#";
   const steps = [
@@ -9,6 +11,7 @@ export default function InvitePage() {
   ];
   return (
     <div className="container py-12 text-center">
+      <Image src="/swelly3.png" alt="Swelly invite" width={160} height={160} className="mx-auto mb-4 drop-shadow-[0_0_20px_rgba(239,68,68,0.35)]" />
       <h1 className="text-3xl md:text-5xl font-extrabold mb-4">Add Swelly to Your Server</h1>
       <p className="text-white/70 mb-8">Bring premium music features to your community.</p>
       <a href={inviteUrl} target="_blank" rel="noreferrer" className="btn btn-primary text-lg px-6 py-3">

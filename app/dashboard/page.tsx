@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import LoginInline from "@/components/auth/LoginInline";
 
 export default function DashboardPage() {
-  const { status, data } = useSession();
+  const { status } = useSession();
   if (status === "loading") return <div className="container py-12">Loading…</div>;
   if (status !== "authenticated")
     return (
