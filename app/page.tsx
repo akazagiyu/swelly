@@ -15,10 +15,21 @@ export default async function Home() {
   let totals: { guilds: number; users: number } | null = null;
   try {
     const url = new URL('/api/status', siteOrigin).toString();
-    const res = await fetch(url, { next: { revalidate: 10 } });
-    if (!res.ok) {
-      // Surface helpful log server-side so devs can inspect terminal output
-      // (Next.js server logs will show this when rendering the page)
+    // Add a short timeout so build/prerender phases don't hang or fail loudly
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2000);
+    let res: Response | null = null;
+    try {
+      res = await fetch(url, { signal: controller.signal, next: { revalidate: 10 } });
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    if (!res) {
+      // fetch was aborted or failed to return a response
+      // eslint-disable-next-line no-console
+      console.warn('[home] /api/status fetch returned no response (timed out or aborted)');
+    } else if (!res.ok) {
       // eslint-disable-next-line no-console
       console.error(`[home] /api/status returned ${res.status}`);
     } else {
