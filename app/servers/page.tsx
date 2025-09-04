@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import SkeletonCard from "@/components/SkeletonCard";
+import SkeletonGuildCard from "@/components/SkeletonGuildCard";
 import LoginInline from "@/components/auth/LoginInline";
 
 type Guild = {
@@ -75,7 +77,11 @@ export default function ServersPage() {
       </div>
       {error && <div className="card border-red-600/40 text-red-300 mb-4">{error}</div>}
       {!guilds ? (
-  <div className="flex justify-center"><LoadingSpinner /></div>
+  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {Array.from({ length: 6 }).map((_, i) => (
+      <SkeletonGuildCard key={i} />
+    ))}
+  </div>
       ) : guilds.length === 0 ? (
         <div className="text-white/70">No servers found.</div>
       ) : (

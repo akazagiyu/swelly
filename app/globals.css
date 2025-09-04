@@ -55,7 +55,8 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
   background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
   border-color: rgba(255,255,255,0.12);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 10px 40px rgba(0,0,0,0.35);
-  z-index: 0;
+  z-index: 1;
+  transition: background .28s ease, box-shadow .28s ease, transform .18s ease, backdrop-filter .28s ease;
 }
 /* Blurple aurora overlay behind content */
 .card::before {
@@ -69,8 +70,27 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
   pointer-events: none;
   z-index: -1;
 }
+.card::after {
+  /* glossy sheen that animates on hover */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  transform: translateY(8px) scale(1.02);
+  opacity: 0;
+  transition: transform .45s cubic-bezier(.2,.9,.2,1), opacity .25s ease;
+  pointer-events: none;
+  z-index: 0;
+}
 .card:hover {
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 14px 56px rgba(0,0,0,0.45);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 18px 68px rgba(0,0,0,0.5);
+  transform: translateY(-4px);
+  backdrop-filter: blur(14px) saturate(120%);
+}
+
+.card:hover::after {
+  transform: translateY(0) scale(1);
+  opacity: 1;
 }
 .card-glass {
   /* Optional variant that reuses card styles but with a slightly stronger tint */
@@ -126,3 +146,15 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 .btn:focus { outline: none; box-shadow: 0 0 0 4px rgba(88,101,242,0.12); }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.03) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+.skeleton-soft { background-color: rgba(255,255,255,0.04); }
