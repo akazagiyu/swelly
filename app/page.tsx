@@ -105,25 +105,48 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Integrations */}
+      {/* Features */}
       <section className="container py-12">
         <ScrollReveal>
-          <h2 className="text-2xl font-semibold mb-6 text-center">Integrations</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Features</h2>
         </ScrollReveal>
-        <div className="grid md:grid-cols-4 gap-4">
-          {[
-            { t: 'Spotify', d: 'Seamless playback from playlists and tracks.' },
-            { t: 'YouTube', d: 'Search and queue videos with ease.' },
-            { t: 'Apple Music', d: 'High quality streaming support.' },
-            { t: 'SoundCloud', d: 'Community uploads and more.' },
-          ].map((i) => (
-            <ScrollReveal key={i.t}>
-              <div className="card text-center">
-                <div className="text-xl font-bold mb-2">{i.t}</div>
-                <div className="text-white/70 text-sm">{i.d}</div>
+        <div className="grid md:grid-cols-4 gap-6 items-stretch">
+          <ScrollReveal>
+            <div className="card rounded-2xl p-6 flex flex-col justify-center">
+              <div className="flex items-center gap-3">
+                <div className="text-2xl">🎵</div>
+                <h3 className="font-semibold text-lg">High-Quality Music</h3>
               </div>
-            </ScrollReveal>
-          ))}
+              <p className="text-white/70 mt-3">Crystal-clear audio powered by robust infrastructure.</p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal>
+            <div className="card rounded-2xl p-6 flex flex-col justify-center shadow-glow">
+              <div className="flex items-center gap-3">
+                <div className="text-2xl">🟡</div>
+                <h3 className="font-semibold text-lg">Playlist Support</h3>
+              </div>
+              <p className="text-white/70 mt-3">Load full playlists from your favorite services.</p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal>
+            <div className="card rounded-2xl p-6 flex flex-col justify-center">
+              <div className="flex items-center gap-3">
+                <div className="text-2xl">🎛️</div>
+                <h3 className="font-semibold text-lg">Filters & Effects</h3>
+              </div>
+              <p className="text-white/70 mt-3">Bass boost, nightcore, vaporwave, and more.</p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal>
+            <div className="card rounded-2xl p-6 flex flex-col justify-center">
+              <div className="flex items-center gap-3">
+                <div className="text-2xl">🌐</div>
+                <h3 className="font-semibold text-lg">Multi-Source Streaming</h3>
+              </div>
+              <p className="text-white/70 mt-3">Spotify, YouTube, Apple Music, SoundCloud.</p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -184,20 +207,9 @@ export default async function Home() {
         <ScrollReveal>
           <h2 className="text-2xl font-semibold mb-6 text-center">Trusted by communities</h2>
         </ScrollReveal>
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="flex justify-start">
           <ScrollReveal>
-            <div className="sm:col-span-1">
-              <HomeStats />
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.05}>
-            <div className="hidden sm:block" />
-          </ScrollReveal>
-          <ScrollReveal delay={0.1}>
-            <div className="card text-center">
-              <div className="text-3xl font-bold text-primary">120+</div>
-              <div className="text-white/70 mt-1">Commands</div>
-            </div>
+            <HomeStats />
           </ScrollReveal>
         </div>
       </section>
