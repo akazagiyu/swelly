@@ -192,9 +192,9 @@ export default function Home() {
             { u: "Mia", q: "Reliable, fast, and sounds amazing." },
           ].map((t, i) => (
             <ScrollReveal key={t.u} delay={i * 0.06}>
-              <div className="card">
-              <p className="text-white/80">“{t.q}”</p>
-              <div className="text-white/60 text-sm mt-3">— {t.u}</div>
+              <div className="card h-full flex flex-col">
+                <p className="text-white/80 flex-1">“{t.q}”</p>
+                <div className="text-white/60 text-sm mt-4">— {t.u}</div>
               </div>
             </ScrollReveal>
           ))}
