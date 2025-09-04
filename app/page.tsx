@@ -5,7 +5,6 @@ import FadeIn from "@/components/motion/FadeIn";
 import ParallaxOrbs from "@/components/motion/ParallaxOrbs";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 // ...existing imports...
-import CountUp from "@/components/CountUp";
 import HomeStats from "@/components/HomeStats";
 import NewsletterForm from "@/components/NewsletterForm";
 
@@ -209,7 +208,7 @@ export default async function Home() {
         </ScrollReveal>
         <div className="flex justify-start">
           <ScrollReveal>
-            <HomeStats />
+            <HomeStats initial={totals ?? null} />
           </ScrollReveal>
         </div>
       </section>

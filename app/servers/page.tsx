@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import LoadingSpinner from "@/components/LoadingSpinner";
-import SkeletonCard from "@/components/SkeletonCard";
 import SkeletonGuildCard from "@/components/SkeletonGuildCard";
 import LoginInline from "@/components/auth/LoginInline";
 
