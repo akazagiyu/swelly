@@ -1,15 +1,30 @@
 import Image from "next/image";
+import Link from "next/link";
 import PageHeader from "@/components/layout/PageHeader";
 import ScrollReveal from "@/components/motion/ScrollReveal";
+import { TEAM, slugify } from "./data";
 
-type Member = { name: string; role: string; bio: string; image: string };
+function modFromString(numStr: string, m: number) {
+  let r = 0;
+  for (let i = 0; i < numStr.length; i++) {
+    const c = numStr.charCodeAt(i) - 48; // '0' => 48
+    if (c >= 0 && c <= 9) r = (r * 10 + c) % m;
+  }
+  return r;
+}
 
-const TEAM: Member[] = [
-  { name: "Ayush Edith", role: "Founder & Lead", bio: "Building fast, reliable music experiences for communities.", image: "/swelly1.png" },
-  { name: "Rin Park", role: "Frontend Engineer", bio: "Designing beautiful UIs and delightful interactions.", image: "/swellyG1.png" },
-  { name: "Mia Santos", role: "Backend Engineer", bio: "Scaling the bot and keeping playback rock-solid.", image: "/swellyG2.png" },
-  { name: "Alex Chen", role: "Community Manager", bio: "Helping communities get the most out of Swelly.", image: "/mascot.png" },
-];
+function getAvatarUrl(m: any) {
+  if (m.discordId) {
+    if (m.discordAvatar) {
+      const fmt = String(m.discordAvatar).startsWith('a_') ? 'gif' : 'png';
+      return `https://cdn.discordapp.com/avatars/${m.discordId}/${m.discordAvatar}.${fmt}?size=256`;
+    }
+    // Default avatar index = user identifier modulo 5
+    const idx = modFromString(String(m.discordId), 5);
+    return `https://cdn.discordapp.com/embed/avatars/${idx}.png`;
+  }
+  return m.image;
+}
 
 export const metadata = {
   title: "Team — Swelly",
@@ -31,16 +46,18 @@ export default function TeamPage() {
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
           {TEAM.map((m) => (
             <ScrollReveal key={m.name}>
-              <div className="card flex flex-col items-center text-center p-6">
+              <Link href={`/team/${m.slug}`} className="block">
+                <div className="card flex flex-col items-center text-center p-6">
                 <div className="w-28 h-28 rounded-full overflow-hidden mb-4">
-                  <Image src={m.image} alt={m.name} width={112} height={112} className="object-cover" />
+                  <Image src={getAvatarUrl(m)} alt={m.name} width={112} height={112} className="object-cover" />
                 </div>
                 <h3 className="font-semibold text-lg">{m.name}</h3>
                 <div className="flex items-center gap-2 text-sm mb-3">
                   <span className={badgeClasses(m.role)}>{m.role}</span>
                 </div>
                 <p className="text-white/70 text-sm">{m.bio}</p>
-              </div>
+                </div>
+              </Link>
             </ScrollReveal>
           ))}
         </div>
