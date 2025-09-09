@@ -41,33 +41,33 @@ export default function HomeStats({ initial }: { initial?: Totals }) {
 
   if (loading && !totals) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <SkeletonCard />
-        <SkeletonCard />
-        <SkeletonCard />
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
+        <SkeletonCard className="h-28" />
+        <SkeletonCard className="h-28" />
+        <SkeletonCard className="h-28" />
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-  <div className="card text-center w-40 md:w-56 rounded-xl">
-        <div className="text-3xl font-bold text-primary">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
+      <div className="card rounded-2xl p-6 w-full h-28 flex flex-col items-center justify-center text-center">
+        <div className="text-3xl font-bold text-primary leading-none">
           <CountUp to={guilds} />
         </div>
-        <div className="text-white/70 mt-1">Servers</div>
+        <div className="text-white/70 mt-2">Servers</div>
       </div>
-  <div className="card text-center w-40 md:w-56 rounded-xl">
-        <div className="text-3xl font-bold text-primary">
+      <div className="card rounded-2xl p-6 w-full h-28 flex flex-col items-center justify-center text-center">
+        <div className="text-3xl font-bold text-primary leading-none">
           <CountUp to={users} />
         </div>
-        <div className="text-white/70 mt-1">Users</div>
+        <div className="text-white/70 mt-2">Users</div>
       </div>
-  <div className="card text-center w-40 md:w-56 rounded-xl">
-        <div className="text-3xl font-bold text-primary">
+      <div className="card rounded-2xl p-6 w-full h-28 flex flex-col items-center justify-center text-center">
+        <div className="text-3xl font-bold text-primary leading-none">
           <CountUp to={commands} />
         </div>
-        <div className="text-white/70 mt-1">Commands</div>
+        <div className="text-white/70 mt-2">Commands</div>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+// Static JSON-backed commands list
 import { getAllCommands } from "@/lib/commands";
 import type { Metadata } from "next";
 import Link from "next/link";

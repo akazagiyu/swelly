@@ -1,21 +1,24 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { Command } from "@/components/CommandSearch";
 
-const commands: Command[] = [
+const fallback: Command[] = [
   { name: "play", description: "Play a song or playlist by URL or query.", category: "Music", usage: "/play <query>" },
-  { name: "pause", description: "Pause the current track.", category: "Music" },
-  { name: "resume", description: "Resume playback.", category: "Music" },
-  { name: "skip", description: "Skip the current track.", category: "Music" },
-  { name: "queue", description: "Show the current queue.", category: "Music" },
-  { name: "shuffle", description: "Shuffle the queue.", category: "Music" },
-  { name: "loop", description: "Loop the current song or queue.", category: "Music" },
-  { name: "bassboost", description: "Enable bass boost filter.", category: "Filters" },
-  { name: "nightcore", description: "Enable nightcore filter.", category: "Filters" },
-  { name: "vaporwave", description: "Enable vaporwave filter.", category: "Filters" },
-  { name: "ping", description: "Check bot latency.", category: "Utility" },
-  { name: "help", description: "Show help information.", category: "Utility" },
-  { name: "premium", description: "Show premium info.", category: "Premium" },
 ];
 
 export function getAllCommands(): Command[] {
-  return commands;
+  try {
+    const p = path.join(process.cwd(), "public", "commands.json");
+    const raw = fs.readFileSync(p, "utf-8");
+    const data = JSON.parse(raw) as Command[];
+    // basic shape validation
+    if (Array.isArray(data)) {
+      return data.filter(
+        (c) => c && typeof c.name === "string" && typeof c.description === "string" && typeof c.category === "string"
+      ) as Command[];
+    }
+  } catch {
+    // ignore and use fallback
+  }
+  return fallback;
 }

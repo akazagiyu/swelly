@@ -2,30 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/layout/PageHeader";
 import ScrollReveal from "@/components/motion/ScrollReveal";
-import { TEAM, slugify } from "./data";
+import { TEAM } from "./data";
 import DiscordAvatar from "@/components/DiscordAvatar";
-
-function modFromString(numStr: string, m: number) {
-  let r = 0;
-  for (let i = 0; i < numStr.length; i++) {
-    const c = numStr.charCodeAt(i) - 48; // '0' => 48
-    if (c >= 0 && c <= 9) r = (r * 10 + c) % m;
-  }
-  return r;
-}
-
-function getAvatarUrl(m: any) {
-  if (m.discordId) {
-    if (m.discordAvatar) {
-      const fmt = String(m.discordAvatar).startsWith('a_') ? 'gif' : 'png';
-      return `https://cdn.discordapp.com/avatars/${m.discordId}/${m.discordAvatar}.${fmt}?size=256`;
-    }
-    // Default avatar index = user identifier modulo 5
-    const idx = modFromString(String(m.discordId), 5);
-    return `https://cdn.discordapp.com/embed/avatars/${idx}.png`;
-  }
-  return m.image;
-}
 
 export const metadata = {
   title: "Team — Swelly",

@@ -11,6 +11,8 @@ export type Member = {
   slug: string;
   discordId?: string;
   discordAvatar?: string | null;
+  // Optional banner image (e.g., "/banners/ayush.jpg" in public/ or a remote URL allowed by next.config)
+  bannerImage?: string;
 };
 
 export const TEAM: Member[] = [
@@ -27,7 +29,8 @@ export const TEAM: Member[] = [
     ],
     image: "/swelly1.png",
     slug: "ayush-edith",
-  // Discord identity (static avatar hash; replace with real if needed)
+    bannerImage: "/banners/ayush.jpg",
+  
   discordId: "581525444424368131",
   discordAvatar: "b5b9c5ff013d0247144930cfac1297b9",
   },
@@ -43,7 +46,7 @@ export const TEAM: Member[] = [
     ],
     image: "/swellyG1.png",
     slug: "rin-park",
-    // example Discord id (dummy)
+    
     discordId: "641258822714785822",
     discordAvatar: null,
   },
