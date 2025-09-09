@@ -1,5 +1,9 @@
 export const dynamic = 'force-static';
 
+export const metadata = {
+  title: "Refund Policy | Swelly",
+};
+
 export default function RefundPage() {
   return (
     <div className="container py-12">

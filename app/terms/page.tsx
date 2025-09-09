@@ -1,5 +1,10 @@
 export const dynamic = 'force-static';
 
+export const metadata = {
+  title: "Terms of Service | Swelly",
+};
+
+
 export default function TermsPage() {
   return (
     <div className="container py-12">

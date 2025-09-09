@@ -114,7 +114,7 @@ export default function ServersPage() {
                     </div>
                   </div>
                 </div>
-                <a href={`/dashboard/${g.id}`} className="btn btn-primary whitespace-nowrap">Configure</a>
+                <a href="/dashboard" className="btn btn-primary whitespace-nowrap">Configure</a>
               </div>
             );
           })}

@@ -4,6 +4,8 @@ import Image from "next/image";
 import PremiumTiers from '@/components/PremiumTiers';
 import PageHeader from "@/components/layout/PageHeader";
 
+
+
 export default function PremiumPage() {
   const tiers = [
     {

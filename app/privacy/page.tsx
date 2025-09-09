@@ -1,5 +1,9 @@
 export const dynamic = 'force-static';
 
+export const metadata = {
+  title: "Privacy Policy | Swelly",
+};
+
 export default function PrivacyPage() {
   return (
     <div className="container py-12">

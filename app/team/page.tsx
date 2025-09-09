@@ -6,7 +6,7 @@ import { TEAM } from "./data";
 import DiscordAvatar from "@/components/DiscordAvatar";
 
 export const metadata = {
-  title: "Team — Swelly",
+  title: "Team | Swelly",
 };
 
 function badgeClasses(role: string) {
