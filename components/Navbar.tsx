@@ -10,6 +10,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/commands", label: "Commands" },
   { href: "/premium", label: "Premium" },
+  { href: "/team", label: "Team" },
   { href: "/status", label: "Status" },
   { href: "/invite", label: "Invite" },
   { href: "/dashboard", label: "Dashboard" },
