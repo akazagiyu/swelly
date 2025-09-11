@@ -10,12 +10,13 @@ export const metadata = {
   title: "Team",
 };
 
-function badgeClasses(role: string) {
-  if (/(Founder|Lead|Owner|Co-Owner)/i.test(role))
+function badgeClasses(defaultRole: string, custom?: string) {
+  if (custom) return custom;
+  if (/(Founder|Lead|Owner|Co-Owner)/i.test(defaultRole))
     return "px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-500/20 text-rose-300";
-  if (/(Frontend|Backend|Engineer|Developer)/i.test(role))
+  if (/(Frontend|Backend|Engineer|Developer)/i.test(defaultRole))
     return "px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/20 text-indigo-300";
-  if (/(Community|Manager|Moderator)/i.test(role))
+  if (/(Community|Manager|Moderator)/i.test(defaultRole))
     return "px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-300";
   return "px-2.5 py-0.5 rounded-full bg-white/6 text-xs text-white/80";
 }
@@ -41,7 +42,7 @@ export default function TeamPage() {
                     </div>
                     <h3 className="font-semibold text-lg">{m.name}</h3>
                     <div className="flex items-center gap-2 text-sm mb-3">
-                      <span className={badgeClasses(m.role)}>{m.role}</span>
+                      <span className={badgeClasses(m.role, m.badgeClass)}>{m.role}</span>
                     </div>
                     <p className="text-white/70 text-sm min-h-[40px]">{m.bio}</p>
                   </div>

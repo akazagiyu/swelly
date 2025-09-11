@@ -11,6 +11,7 @@ export type Member = {
   slug: string;
   discordId?: string;
   discordAvatar?: string | null;
+  badgeClass?: string;
   // Optional banner image (e.g., "/banners/ayush.jpg" in public/ or a remote URL allowed by next.config)
   bannerImage?: string;
 };
@@ -28,9 +29,11 @@ export const TEAM: Member[] = [
       { label: "Portfolio", url: "https://ashis.dev" },
     ],
     image: "/swellyG1.png",
+    bannerImage: "/banners/ashis.jpg",
     slug: "ashis",
     discordId: "742984554729570415",
     discordAvatar: null,
+  badgeClass: "px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-500/20 text-indigo-300",
   },
   {
     name: "Ayush Edith",
@@ -45,9 +48,10 @@ export const TEAM: Member[] = [
     ],
     image: "/swelly1.png",
     slug: "ayush-edith",
-    bannerImage: "/banners/ayush.jpg",
+    bannerImage: "/banners/edith.jpg",
     discordId: "581525444424368131",
-    discordAvatar: "b5b9c5ff013d0247144930cfac1297b9",
+    discordAvatar: null,
+  badgeClass: "px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-500/20 text-rose-300",
   },
   {
     name: "Ros",
@@ -62,9 +66,9 @@ export const TEAM: Member[] = [
     ],
     image: "/swellyG2.png",
     slug: "ros",
-
     discordId: "641258822714785822",
     discordAvatar: null,
+  badgeClass: "px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/20 text-amber-300",
   },
   {
     name: "Aron",
@@ -78,12 +82,11 @@ export const TEAM: Member[] = [
     ],
     image: "/mascot.png",
     slug: "aron",
-
     discordId: "1074336035783331841",
     discordAvatar: null,
+  badgeClass: "px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-300",
   },
 ];
-
 export function findMemberBySlug(slug?: string) {
   if (!slug) return null;
   return TEAM.find((m) => m.slug === slug) ?? null;
