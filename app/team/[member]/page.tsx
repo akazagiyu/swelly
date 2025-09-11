@@ -71,7 +71,7 @@ export default function MemberPage({ params }: Props) {
               <div>
                 <h2 className="text-xl font-semibold">{member.name}</h2>
                 <div className="mt-2">
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/6 text-white/80">{member.role}</span>
+                  <span className={member.badgeClass || "px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/6 text-white/80"}>{member.role}</span>
                 </div>
               </div>
               {member.socials && member.socials.length > 0 && (
