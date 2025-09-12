@@ -91,7 +91,7 @@ export default function MemberPage({ params }: Props) {
             </div>
 
             <div className="mt-6">
-              <Link href="/team" className="btn btn-outline">Back to team</Link>
+              <Link href="/team" className="btn btn-outline">Go back</Link>
             </div>
           </div>
         </div>
