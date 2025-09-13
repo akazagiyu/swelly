@@ -1,12 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import LoginInline from "@/components/auth/LoginInline";
-import FadeIn from "@/components/motion/FadeIn";
 import ParallaxOrbs from "@/components/motion/ParallaxOrbs";
 import ScrollReveal from "@/components/motion/ScrollReveal";
-// ...existing imports...
 import HomeStats from "@/components/HomeStats";
-import NewsletterForm from "@/components/NewsletterForm";
+import { getAllCommands } from "@/lib/commands";
 
 export default async function Home() {
   // Fetch bot status (shard/totals) from our internal API route.
@@ -45,175 +42,125 @@ export default async function Home() {
     console.error('[home] Failed to fetch /api/status', err);
   }
 
+  const commands = getAllCommands().slice(0, 6);
+
   return (
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-[0.15]" />
+        <div className="absolute inset-0 bg-grid opacity-[0.12]" />
         <ParallaxOrbs />
-        <div className="container py-20 md:py-28 text-center aurora relative">
-          <FadeIn>
-            <span className="inline-block mx-auto mb-6 rounded-full border border-white/10 px-3 py-1 text-xs text-white/70 bg-white/5 backdrop-blur-sm">
-              New • Premium sound, zero lag
-            </span>
-            <div className="mx-auto mb-8 flex items-center justify-center gap-4">
-              <Image src="/mascot.png" alt="Swelly mascot" width={96} height={96} className="drop-shadow-[0_0_22px_rgba(239,68,68,0.35)]" priority />
-              <Image src="/swellyG2.png" alt="Swelly hero" width={520} height={520} className="w-[240px] md:w-[400px] h-auto drop-shadow-2xl" priority />
+        <div className="container py-20 md:py-28 relative">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <ScrollReveal>
+                <span className="inline-block mb-4 rounded-full border border-white/10 px-3 py-1 text-xs text-white/70 bg-white/5 backdrop-blur-sm">
+                  New • Premium sound, zero lag
+                </span>
+                <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+                  The <span className="text-gradient">ultimate</span> Discord music bot
+                </h1>
+                <p className="mt-4 text-white/70 max-w-xl">
+                  Crystal-clear audio, powerful queues and filters, and buttery-smooth playback from Spotify, YouTube, Apple Music, and more.
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row flex-wrap items-center gap-3">
+                  <Link href="/invite" className="btn btn-primary w-full sm:w-auto">Invite Swelly</Link>
+                  <Link href="/servers" className="btn btn-outline w-full sm:w-auto">Configure servers</Link>
+                  <a href={process.env.NEXT_PUBLIC_DISCORD_SUPPORT_URL || "#"} className="btn btn-outline w-full sm:w-auto" target="_blank" rel="noreferrer">Join Support</a>
+                </div>
+              </ScrollReveal>
+
+              <div className="mt-10">
+                <ScrollReveal>
+                  <HomeStats initial={totals ?? null} />
+                </ScrollReveal>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
-              The <span className="text-gradient">ultimate</span> Discord music bot
-            </h1>
-            <p className="mt-4 text-white/70 max-w-2xl mx-auto">
-              Crystal-clear audio, powerful queues and filters, and buttery-smooth playback from Spotify, YouTube, Apple Music, and more.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3">
-              <Link href="/invite" className="btn btn-primary w-full sm:w-auto">Invite Swelly</Link>
-              <a href={process.env.NEXT_PUBLIC_DISCORD_SUPPORT_URL || "#"} className="btn btn-outline w-full sm:w-auto" target="_blank" rel="noreferrer">Join Support Server</a>
-              <a href={process.env.NEXT_PUBLIC_TOPGG_URL || "#"} className="btn btn-outline w-full sm:w-auto" target="_blank" rel="noreferrer">Vote on Top.gg</a>
-              <LoginInline />
+            <div className="relative hidden md:block">
+              <ScrollReveal>
+                <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-6 backdrop-blur-md">
+                  <div className="flex items-center justify-center gap-4">
+                    <Image src="/mascot.png" alt="Swelly mascot" width={120} height={120} className="drop-shadow-[0_0_22px_rgba(239,68,68,0.35)]" priority />
+                    <Image src="/swellyG2.png" alt="Swelly hero" width={520} height={520} className="w-[360px] h-auto drop-shadow-2xl" priority />
+                  </div>
+                </div>
+              </ScrollReveal>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="container py-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <h3 className="text-xl font-semibold">Stay in the loop</h3>
-          <p className="text-white/70 mt-2">Get product updates, new filters, and special offers — once a month.</p>
-          <NewsletterForm />
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="container py-12">
+      {/* Feature highlights */}
+      <section className="container py-14">
         <ScrollReveal>
-          <h2 className="text-2xl font-semibold mb-6 text-center">How it works</h2>
-        </ScrollReveal>
-        <div className="grid md:grid-cols-3 gap-4">
-          <ScrollReveal delay={0.02}>
-            <div className="card text-center">
-              <div className="text-3xl">🔌</div>
-              <h4 className="font-semibold mt-3">Invite the bot</h4>
-              <p className="text-white/70 mt-2">Add Swelly to your server with a single click and grant required permissions.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.04}>
-            <div className="card text-center">
-              <div className="text-3xl">🎶</div>
-              <h4 className="font-semibold mt-3">Play music</h4>
-              <p className="text-white/70 mt-2">Use simple commands or the dashboard to queue tracks from Spotify, YouTube and more.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.06}>
-            <div className="card text-center">
-              <div className="text-3xl">⚙️</div>
-              <h4 className="font-semibold mt-3">Customize</h4>
-              <p className="text-white/70 mt-2">Enable filters, set defaults, and personalize playback for your community.</p>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="container py-12">
-        <ScrollReveal>
-          <h2 className="text-2xl font-semibold mb-6 text-center">Features</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-center">Why Swelly</h2>
         </ScrollReveal>
         <div className="grid md:grid-cols-4 gap-6 items-stretch">
-          <ScrollReveal>
-            <div className="card rounded-2xl p-6 flex flex-col justify-center">
-              <div className="flex items-center gap-3">
-                <div className="text-2xl">🎵</div>
-                <h3 className="font-semibold text-lg">High-Quality Music</h3>
-              </div>
-              <p className="text-white/70 mt-3">Crystal-clear audio powered by robust infrastructure.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal>
-            <div className="card rounded-2xl p-6 flex flex-col justify-center shadow-glow">
-              <div className="flex items-center gap-3">
-                <div className="text-2xl">🟡</div>
-                <h3 className="font-semibold text-lg">Playlist Support</h3>
-              </div>
-              <p className="text-white/70 mt-3">Load full playlists from your favorite services.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal>
-            <div className="card rounded-2xl p-6 flex flex-col justify-center">
-              <div className="flex items-center gap-3">
-                <div className="text-2xl">🎛️</div>
-                <h3 className="font-semibold text-lg">Filters & Effects</h3>
-              </div>
-              <p className="text-white/70 mt-3">Bass boost, nightcore, vaporwave, and more.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal>
-            <div className="card rounded-2xl p-6 flex flex-col justify-center">
-              <div className="flex items-center gap-3">
-                <div className="text-2xl">🌐</div>
-                <h3 className="font-semibold text-lg">Multi-Source Streaming</h3>
-              </div>
-              <p className="text-white/70 mt-3">Spotify, YouTube, Apple Music, SoundCloud.</p>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Getting started */}
-      <section className="container py-12">
-        <ScrollReveal>
-          <h2 className="text-2xl font-semibold mb-6 text-center">Getting started</h2>
-        </ScrollReveal>
-        <div className="grid md:grid-cols-3 gap-4">
-          <ScrollReveal>
-            <div className="card text-center">
-              <div className="text-3xl">1</div>
-              <h4 className="font-semibold mt-3">Invite Swelly</h4>
-              <p className="text-white/70 mt-2">Add the bot to your server via the invite link and grant recommended permissions.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.04}>
-            <div className="card text-center">
-              <div className="text-3xl">2</div>
-              <h4 className="font-semibold mt-3">Configure</h4>
-              <p className="text-white/70 mt-2">Use the dashboard to set defaults, enable filters, and customize the bot.</p>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal delay={0.08}>
-            <div className="card text-center">
-              <div className="text-3xl">3</div>
-              <h4 className="font-semibold mt-3">Play music</h4>
-              <p className="text-white/70 mt-2">Use simple commands or the UI to queue songs and enjoy high-quality playback.</p>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section className="container py-12">
-        <ScrollReveal>
-          <h2 className="text-2xl font-semibold mb-6 text-center">Features</h2>
-        </ScrollReveal>
-        <div className="grid md:grid-cols-4 gap-4">
           {[
-            { t: "🎵 High-Quality Music", d: "Crystal-clear audio powered by robust infrastructure." },
-            { t: "📀 Playlist Support", d: "Load full playlists from your favorite services." },
-            { t: "🎚️ Filters & Effects", d: "Bass boost, nightcore, vaporwave, and more." },
-            { t: "🌐 Multi-Source Streaming", d: "Spotify, YouTube, Apple Music, SoundCloud." },
+            { i: "🎵", t: "High-Quality Music", d: "Crystal-clear audio powered by robust infrastructure." },
+            { i: "�", t: "Playlist Support", d: "Load full playlists from your favorite services." },
+            { i: "�️", t: "Filters & Effects", d: "Bass boost, nightcore, vaporwave, and more." },
+            { i: "🌐", t: "Multi-Source", d: "Spotify, YouTube, Apple Music, SoundCloud." },
           ].map((f, i) => (
-            <ScrollReveal key={f.t} delay={i * 0.05}>
-              <div className="card hover:shadow-glow transition-all hover:-translate-y-0.5">
-              <h3 className="text-lg font-semibold">{f.t}</h3>
-              <p className="text-white/70 mt-1">{f.d}</p>
+            <ScrollReveal key={f.t} delay={i * 0.04}>
+              <div className="card rounded-2xl p-6 flex flex-col justify-center hover:shadow-glow transition-all hover:-translate-y-0.5">
+                <div className="flex items-center gap-3">
+                  <div className="text-2xl">{f.i}</div>
+                  <h3 className="font-semibold text-lg">{f.t}</h3>
+                </div>
+                <p className="text-white/70 mt-3">{f.d}</p>
               </div>
             </ScrollReveal>
           ))}
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Commands preview */}
       <section className="container py-12">
+        <ScrollReveal>
+          <div className="flex items-end justify-between gap-3 mb-4">
+            <h2 className="text-2xl font-semibold">Popular commands</h2>
+            <Link href="/commands" className="text-sm text-white/70 hover:text-white">View all →</Link>
+          </div>
+        </ScrollReveal>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {commands.map((cmd, i) => (
+            <ScrollReveal key={cmd.name} delay={i * 0.03}>
+              {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+              <a href={`/commands/${cmd.name}`} className="block">
+                <div className="card hover:-translate-y-0.5 transition-transform">
+                  <div className="flex items-center justify-between mb-1">
+                    <h3 className="font-semibold">/{cmd.name}</h3>
+                    <span className="text-xs text-white/50">{cmd.category}</span>
+                  </div>
+                  <p className="text-white/80 text-sm">{cmd.description}</p>
+                  {cmd.usage && (
+                    <p className="text-xs text-white/50 mt-2">Usage: {cmd.usage}</p>
+                  )}
+                </div>
+              </a>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Premium teaser */}
+      <section className="container py-12">
+        <div className="rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md p-6 md:p-8 text-center">
+          <ScrollReveal>
+            <h2 className="text-2xl md:text-3xl font-extrabold mb-2">Go Premium for more power</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">Unlock higher quality, priority queueing, more filters, and early access features.
+            </p>
+            <div className="mt-5 flex items-center justify-center gap-3">
+              <Link href="/premium" className="btn btn-primary">Compare plans</Link>
+              <Link href="/premium/compare" className="btn btn-outline">See details</Link>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Stats */}
+      {/* <section className="container py-12">
         <ScrollReveal>
           <h2 className="text-2xl font-semibold mb-6 text-center">Trusted by communities</h2>
         </ScrollReveal>
@@ -222,26 +169,19 @@ export default async function Home() {
             <HomeStats initial={totals ?? null} />
           </ScrollReveal>
         </div>
-      </section>
+      </section> */}
 
-      {/* Testimonials */}
-      <section className="container py-12">
-        <ScrollReveal>
-          <h2 className="text-2xl font-semibold mb-6 text-center">What users are saying</h2>
-        </ScrollReveal>
-        <div className="grid md:grid-cols-3 gap-4">
-          {[
-            { u: "Alex", q: "Swelly made our community nights so much better!" },
-            { u: "Rin", q: "The filters are insane. Nightcore all day!" },
-            { u: "Mia", q: "Reliable, fast, and sounds amazing." },
-          ].map((t, i) => (
-            <ScrollReveal key={t.u} delay={i * 0.06}>
-              <div className="card h-full flex flex-col">
-                <p className="text-white/80 flex-1">“{t.q}”</p>
-                <div className="text-white/60 text-sm mt-4">— {t.u}</div>
-              </div>
-            </ScrollReveal>
-          ))}
+      {/* Final CTA */}
+      <section className="container py-16">
+        <div className="rounded-2xl bg-gradient-to-r from-primary/20 via-accent-violet/20 to-rose-500/20 border border-white/10 p-8 text-center">
+          <ScrollReveal>
+            <h2 className="text-3xl font-extrabold">Bring better music to your server</h2>
+            <p className="text-white/70 mt-2">Invite Swelly now and start listening in seconds.</p>
+            <div className="mt-6 flex items-center justify-center gap-3">
+              <Link href="/invite" className="btn btn-primary">Invite Swelly</Link>
+              <Link href="/support" className="btn btn-outline">Get help</Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>

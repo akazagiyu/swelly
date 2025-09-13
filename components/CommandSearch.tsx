@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useRef, useState } from "react";
+import ScrollReveal from "@/components/motion/ScrollReveal";
 import { FaSearch, FaTimes } from 'react-icons/fa';
 
 export type Command = {
@@ -106,15 +107,12 @@ function ScrollCard({ href, children, index }: { href: string; children: React.R
   // This component is client-only by nature due to use of motion wrapper below.
   // eslint-disable-next-line @next/next/no-html-link-for-pages
   return (
-    <a href={href} className="block">
-      {/* Using data attribute + CSS transitions; simple reveal */}
-      <div
-        className="card hover:-translate-y-0.5 transition-transform"
-        style={{ transitionDelay: `${index * 30}ms` }}
-        data-reveal-card
-      >
-        {children}
-      </div>
-    </a>
+    <ScrollReveal delay={index * 0.03}>
+      <a href={href} className="block" aria-label={`Open command ${href.split('/').pop()}`}>
+        <div className="card hover:-translate-y-0.5 transition-transform" data-reveal-card>
+          {children}
+        </div>
+      </a>
+    </ScrollReveal>
   );
 }
