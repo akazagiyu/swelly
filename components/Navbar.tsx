@@ -67,8 +67,8 @@ export default function Navbar() {
           <Image
             src="/text.png"
             alt="Swelly"
-            width={scrolled ? 50 : 70}
-            height={scrolled ? 20 : 25}
+            width={scrolled ? 53 : 55}
+            height={scrolled ? 23 : 25}
             priority
           />
           {/* <Image
@@ -131,7 +131,7 @@ export default function Navbar() {
           <div className="container py-4 text-white">
             <div className="flex items-center justify-between">
               <Link href="/" className="flex items-center gap-2 font-semibold">
-                <Image src="/text.png" alt="Swelly" width={100} height={28} />
+                <Image src="/swelly1.png" alt="Swelly" width={28} height={28} className="rounded-md" />
               </Link>
               <button aria-label="Close menu" onClick={() => setMobileOpen(false)} className="p-2 rounded-md text-white/70 hover:bg-white/5">
                 ✕
