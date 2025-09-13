@@ -7,6 +7,10 @@ import Providers from "@/components/providers/Providers";
 import dynamic from "next/dynamic";
 const CookieConsent = dynamic(() => import("@/components/CookieConsent"), { ssr: false });
 import MobileCta from "@/components/MobileCta";
+import { NextIntlClientProvider } from "next-intl";
+import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
+import { getMessages, getLocale } from "next-intl/server";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const rubik = Rubik({ subsets: ["latin"], variable: "--font-display" });
@@ -42,23 +46,33 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
+  let locale = await getLocale();
+  if (!locale) locale = 'en';
+  let messages;
+  try {
+    messages = await getMessages();
+  } catch {
+    notFound();
+  }
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${inter.variable} ${rubik.variable} antialiased bg-[var(--background)] text-[var(--foreground)]`}
       >
-        <Providers>
-          <Navbar />
-          <main className="min-h-[calc(100vh-160px)]">{children}</main>
-          <MobileCta />
-          <Footer />
-          <CookieConsent />
-        </Providers>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers>
+            <Navbar />
+            <main className="min-h-[calc(100vh-160px)]">{children}</main>
+            <MobileCta />
+            <Footer />
+            <CookieConsent />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

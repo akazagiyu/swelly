@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "commands": "Befehle",
+    "premium": "Premium",
+    "team": "Team",
+    "status": "Status",
+    "invite": "Einladen",
+    "dashboard": "Dashboard"
+  },
+  "footer": {
+    "explore": "Entdecken",
+    "legal": "Rechtliches",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen",
+    "refund": "Rückerstattung",
+    "faq": "FAQ",
+    "support": "Support",
+    "status": "Status"
+  },
+  "switcher": {
+    "label": "Sprache",
+    "en": "Englisch",
+    "en-GB": "Englisch (UK)",
+    "de": "Deutsch",
+    "ru": "Russisch"
+  }
+}
