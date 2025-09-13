@@ -1,12 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { FaDiscord, FaGithub, FaHeart } from "react-icons/fa";
 import MobileCtaRestore from './MobileCtaRestore';
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const t = useTranslations('footer');
   return (
     <footer className="mt-20 border-t border-white/6 bg-gradient-to-t from-black/40 via-white/3 to-black/10 backdrop-blur-sm text-white/90 relative overflow-hidden">
       {/* decorative gradient line */}
@@ -39,26 +37,26 @@ export default function Footer() {
           <div className="md:col-span-3">
             <details className="md:hidden [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex items-center justify-between cursor-pointer py-2">
-                <span className="text-sm font-semibold text-white/90">{t('explore')}</span>
+                <span className="text-sm font-semibold text-white/90">Explore</span>
                 <span className="text-white/60">▾</span>
               </summary>
               <ul className="mt-2 space-y-2 text-sm text-white/70">
-                <li><Link href="/commands" className="hover:text-white">{t('commands', { default: 'Commands' })}</Link></li>
-                <li><Link href="/premium" className="hover:text-white">{t('premium', { default: 'Premium' })}</Link></li>
-                <li><Link href="/faq" className="hover:text-white">{t('faq')}</Link></li>
-                <li><Link href="/support" className="hover:text-white">{t('support')}</Link></li>
-                <li><Link href="/status" className="hover:text-white">{t('status')}</Link></li>
+                <li><Link href="/commands" className="hover:text-white">Commands</Link></li>
+                <li><Link href="/premium" className="hover:text-white">Premium</Link></li>
+                <li><Link href="/faq" className="hover:text-white">FAQ</Link></li>
+                <li><Link href="/support" className="hover:text-white">Support</Link></li>
+                <li><Link href="/status" className="hover:text-white">Status</Link></li>
               </ul>
             </details>
 
             <div className="hidden md:block">
               <h4 className="text-sm font-semibold text-white/90 mb-3">Explore</h4>
               <ul className="space-y-2 text-sm text-white/70">
-                <li><Link href="/commands" className="hover:text-white">{t('commands', { default: 'Commands' })}</Link></li>
-                <li><Link href="/premium" className="hover:text-white">{t('premium', { default: 'Premium' })}</Link></li>
-                <li><Link href="/faq" className="hover:text-white">{t('faq')}</Link></li>
-                <li><Link href="/support" className="hover:text-white">{t('support')}</Link></li>
-                <li><Link href="/status" className="hover:text-white">{t('status')}</Link></li>
+                <li><Link href="/commands" className="hover:text-white">Commands</Link></li>
+                <li><Link href="/premium" className="hover:text-white">Premium</Link></li>
+                <li><Link href="/faq" className="hover:text-white">FAQ</Link></li>
+                <li><Link href="/support" className="hover:text-white">Support</Link></li>
+                <li><Link href="/status" className="hover:text-white">Status</Link></li>
               </ul>
             </div>
           </div>
@@ -67,22 +65,22 @@ export default function Footer() {
           <div className="md:col-span-2">
             <details className="md:hidden [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex items-center justify-between cursor-pointer py-2">
-                <span className="text-sm font-semibold text-white/90">{t('legal')}</span>
+                <span className="text-sm font-semibold text-white/90">Legal</span>
                 <span className="text-white/60">▾</span>
               </summary>
               <ul className="mt-2 space-y-2 text-sm text-white/70">
-                <li><Link href="/privacy" className="hover:text-white">{t('privacy')}</Link></li>
-                <li><Link href="/terms" className="hover:text-white">{t('terms')}</Link></li>
-                <li><Link href="/refund" className="hover:text-white">{t('refund')}</Link></li>
+                <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
+                <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
+                <li><Link href="/refund" className="hover:text-white">Refund</Link></li>
               </ul>
             </details>
 
             <div className="hidden md:block">
               <h4 className="text-sm font-semibold text-white/90 mb-3">Legal</h4>
               <ul className="space-y-2 text-sm text-white/70">
-                <li><Link href="/privacy" className="hover:text-white">{t('privacy')}</Link></li>
-                <li><Link href="/terms" className="hover:text-white">{t('terms')}</Link></li>
-                <li><Link href="/refund" className="hover:text-white">{t('refund')}</Link></li>
+                <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
+                <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
+                <li><Link href="/refund" className="hover:text-white">Refund</Link></li>
               </ul>
             </div>
           </div>
