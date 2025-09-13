@@ -5,22 +5,20 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import AuthButton from "./auth/AuthButton";
 import Sparkles from './Sparkles';
-import { useTranslations, useLocale } from "next-intl";
-import LocaleSwitcher from "./LocaleSwitcher";
+// i18n removed
 
 const baseLinks = [
-  { href: "/", key: "home" },
-  { href: "/commands", key: "commands" },
-  { href: "/premium", key: "premium" },
-  { href: "/team", key: "team" },
-  { href: "/status", key: "status" },
-  { href: "/invite", key: "invite" },
-  { href: "/dashboard", key: "dashboard" },
+  { href: "/", label: "Home" },
+  { href: "/commands", label: "Commands" },
+  { href: "/premium", label: "Premium" },
+  { href: "/team", label: "Team" },
+  { href: "/status", label: "Status" },
+  { href: "/invite", label: "Invite" },
+  { href: "/dashboard", label: "Dashboard" },
 ] as const;
 
 export default function Navbar() {
-  const t = useTranslations('nav');
-  const locale = useLocale();
+  // static labels
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -94,18 +92,16 @@ export default function Navbar() {
             >
               {l.href === '/premium' ? (
                 <span className="relative inline-flex items-center">
-                  <span className="text-yellow-300 font-medium">{t(l.key)}</span>
+                  <span className="text-yellow-300 font-medium">{l.label}</span>
                   <span className="absolute -top-1 -right-4 pointer-events-none">
                     {/* <Sparkles size={12} color="#F5D06E" /> */}
                   </span>
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-2">{t(l.key)}</span>
+                <span className="inline-flex items-center gap-2">{l.label}</span>
               )}
             </Link>
           ))}
-          {/* Language switcher */}
-          <LocaleSwitcher current={locale} />
         </nav>
         <div className={`flex items-center transition-all duration-300 ${scrolled ? "gap-2" : "gap-3"}`}>
           <div className="md:hidden">
@@ -147,19 +143,16 @@ export default function Navbar() {
                 <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block px-3 py-3 rounded-md text-white/90 bg-transparent hover:bg-white/5">
                   {l.href === '/premium' ? (
                     <span className="relative inline-flex items-center">
-                      <span className="text-yellow-300 font-medium">{t(l.key)}</span>
+                      <span className="text-yellow-300 font-medium">{l.label}</span>
                       <span className="absolute -top-1 -right-3 pointer-events-none">
                         <Sparkles size={12} color="#F5D06E" />
                       </span>
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-2">{t(l.key)}</span>
+                    <span className="inline-flex items-center gap-2">{l.label}</span>
                   )}
                 </Link>
               ))}
-              <div className="px-3">
-                <LocaleSwitcher current={locale} compact />
-              </div>
               <div className="pt-2">
                 <AuthButton onNavigate={() => setMobileOpen(false)} />
               </div>
