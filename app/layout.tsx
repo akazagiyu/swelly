@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Providers from "@/components/providers/Providers";
+import dynamic from "next/dynamic";
+const CookieConsent = dynamic(() => import("@/components/CookieConsent"), { ssr: false });
 import MobileCta from "@/components/MobileCta";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -55,6 +57,7 @@ export default function RootLayout({
           <main className="min-h-[calc(100vh-160px)]">{children}</main>
           <MobileCta />
           <Footer />
+          <CookieConsent />
         </Providers>
       </body>
     </html>

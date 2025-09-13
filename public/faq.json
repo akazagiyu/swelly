@@ -1,0 +1,8 @@
+[
+  { "q": "How do I invite Swelly?", "a": "Go to the Invite page and click 'Invite'. Grant the recommended permissions when prompted." },
+  { "q": "What music sources are supported?", "a": "Spotify, YouTube, Apple Music, and SoundCloud are supported out of the box." },
+  { "q": "Is Swelly free?", "a": "Yes, Swelly is free to use. Premium unlocks higher quality, more filters, and priority features." },
+  { "q": "How do I get Premium?", "a": "Visit the Premium page to compare plans and subscribe. Billing is handled securely by our payment processor." },
+  { "q": "Why is playback laggy?", "a": "Network conditions can vary by region. Try switching voice regions, lowering filters, or checking server latency. If it persists, contact support." },
+  { "q": "Does Swelly store my data?", "a": "We store minimal configuration needed to run your server preferences. See the Privacy page for full details." }
+]

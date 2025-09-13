@@ -43,6 +43,7 @@ export default function Footer() {
               <ul className="mt-2 space-y-2 text-sm text-white/70">
                 <li><Link href="/commands" className="hover:text-white">Commands</Link></li>
                 <li><Link href="/premium" className="hover:text-white">Premium</Link></li>
+                <li><Link href="/faq" className="hover:text-white">FAQ</Link></li>
                 <li><Link href="/support" className="hover:text-white">Support</Link></li>
                 <li><Link href="/status" className="hover:text-white">Status</Link></li>
               </ul>
@@ -53,6 +54,7 @@ export default function Footer() {
               <ul className="space-y-2 text-sm text-white/70">
                 <li><Link href="/commands" className="hover:text-white">Commands</Link></li>
                 <li><Link href="/premium" className="hover:text-white">Premium</Link></li>
+                <li><Link href="/faq" className="hover:text-white">FAQ</Link></li>
                 <li><Link href="/support" className="hover:text-white">Support</Link></li>
                 <li><Link href="/status" className="hover:text-white">Status</Link></li>
               </ul>
