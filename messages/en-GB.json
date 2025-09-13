@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Home",
+    "commands": "Commands",
+    "premium": "Premium",
+    "team": "Team",
+    "status": "Status",
+    "invite": "Invite",
+    "dashboard": "Dashboard"
+  },
+  "footer": {
+    "explore": "Explore",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "refund": "Refund",
+    "faq": "FAQ",
+    "support": "Support",
+    "status": "Status"
+  },
+  "switcher": {
+    "label": "Language",
+    "en": "English",
+    "en-GB": "English (UK)",
+    "de": "Deutsch",
+    "ru": "Русский"
+  }
+}
