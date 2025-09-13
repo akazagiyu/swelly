@@ -62,11 +62,11 @@ export default function Navbar() {
       }`}
     >
       <div className={`container flex items-center justify-between transition-all duration-300 ${scrolled ? "h-12 px-2" : "h-16 px-4"}`}>
-        <Link href="/" className="flex items-center gap-2 font-semibold">
+  <Link href="/" className="flex items-center gap-2 font-semibold" aria-label="Swelly home">
           {/* text logo on md+ screens, compact mascot on small screens */}
           <Image
             src="/text.png"
-            alt="Swelly"
+            alt="Swelly wordmark"
             width={scrolled ? 53 : 55}
             height={scrolled ? 23 : 25}
             priority
@@ -81,11 +81,12 @@ export default function Navbar() {
           /> */}
           {/* <span className={`transition-all duration-300 ${scrolled ? "text-sm" : "text-lg"} hidden sm:inline`}>Swelly</span> */}
         </Link>
-        <nav className={`hidden md:flex items-center transition-all duration-300 ${scrolled ? "gap-4 text-[13px]" : "gap-6 text-sm"}`}>
+  <nav aria-label="Primary" className={`hidden md:flex items-center transition-all duration-300 ${scrolled ? "gap-4 text-[13px]" : "gap-6 text-sm"}`}>
           {baseLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
+              aria-current={pathname === l.href ? 'page' : undefined}
               className={`relative hover:text-white ${
                 pathname === l.href ? "text-white" : "text-white/70"
               } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full`}

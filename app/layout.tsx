@@ -53,9 +53,18 @@ export default async function RootLayout({
       <body
         className={`${inter.variable} ${rubik.variable} antialiased bg-[var(--background)] text-[var(--foreground)]`}
       >
+          {/* Skip link for keyboard users */}
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-white focus:text-black"
+          >
+            Skip to content
+          </a>
           <Providers>
             <Navbar />
-            <main className="min-h-[calc(100vh-160px)]">{children}</main>
+            <main id="main-content" className="min-h-[calc(100vh-160px)]" role="main">
+              {children}
+            </main>
             <MobileCta />
             <Footer />
             <CookieConsent />

@@ -6,7 +6,7 @@ import MobileCtaRestore from './MobileCtaRestore';
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="mt-20 border-t border-white/6 bg-gradient-to-t from-black/40 via-white/3 to-black/10 backdrop-blur-sm text-white/90 relative overflow-hidden">
+  <footer aria-label="Site footer" className="mt-20 border-t border-white/6 bg-gradient-to-t from-black/40 via-white/3 to-black/10 backdrop-blur-sm text-white/90 relative overflow-hidden">
       {/* decorative gradient line */}
       <div className="absolute inset-x-0 -top-px h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
 
