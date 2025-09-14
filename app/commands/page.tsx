@@ -1,4 +1,5 @@
 import CommandSearch, { Command } from "@/components/CommandSearch";
+import { Suspense } from "react";
 import PageHeader from "@/components/layout/PageHeader";
 import { getAllCommands } from "@/lib/commands";
 
@@ -10,7 +11,9 @@ export default async function CommandsPage() {
     <>
       <PageHeader title="Commands" subtitle="Search and filter Swelly commands. Click a command to see example usage." />
       <div className="container py-8">
-        <CommandSearch commands={commands} />
+        <Suspense fallback={<div className="text-white/70">Loading commands…</div>}>
+          <CommandSearch commands={commands} />
+        </Suspense>
       </div>
     </>
   );

@@ -1,22 +1,15 @@
 import { ImageResponse } from 'next/og';
-import type { NextRequest } from 'next/server';
+// no request context needed
+import { getAllCommands } from '@/lib/commands';
 
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 export const alt = 'Swelly Commands';
 
-export default async function GET(req: NextRequest) {
+export default async function GET() {
   const { width, height } = size;
-  // Try to count commands from the rendered page (optional fallback)
-  let count = undefined as number | undefined;
-  try {
-    const url = new URL(req.url);
-    const res = await fetch(`${url.origin}/commands`, { cache: 'no-store' });
-    const html = await res.text();
-    const matches = html.match(/data-command-name=/g);
-    if (matches) count = matches.length;
-  } catch {}
+  const count = getAllCommands().length;
 
   return new ImageResponse(
     (
