@@ -1,5 +1,6 @@
 // Static JSON-backed commands list
 import { getAllCommands } from "@/lib/commands";
+import CopyButton from "@/components/CopyButton";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/layout/PageHeader";
@@ -32,7 +33,10 @@ export default function CommandDetailPage({ params }: Props) {
   <PageHeader title={cmd.name} subtitle={cmd.description} backHref="/commands" />
       <div className="container py-10 grid gap-6 md:grid-cols-[1fr_320px]">
         <div className="card">
-          <h2 className="font-semibold mb-2">Usage</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="font-semibold">Usage</h2>
+            <CopyButton text={cmd.usage ?? `/${cmd.name}`} className="btn btn-outline btn-sm" />
+          </div>
           <pre className="bg-[#0f0f0f] rounded p-3 text-sm overflow-auto">{cmd.usage ?? `/${cmd.name}`}</pre>
           <h2 className="font-semibold mt-6 mb-2">Examples</h2>
           <ul className="text-sm text-white/80 space-y-2">

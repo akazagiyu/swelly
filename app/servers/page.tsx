@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import SkeletonGuildCard from "@/components/SkeletonGuildCard";
 import LoginInline from "@/components/auth/LoginInline";
@@ -27,7 +28,7 @@ export default function ServersPage() {
         return r.json();
       })
       .then((g) => setGuilds(g))
-      .catch((e) => setError(e.message));
+      .catch(() => setError("fetch_failed"));
   }, [status]);
 
   if (status === "loading") {
@@ -74,7 +75,14 @@ export default function ServersPage() {
 
         <Image src="/swellyG1.png" alt="decor" width={220} height={120} className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 opacity-10 fill-none hidden md:block" />
       </div>
-      {error && <div className="card border-red-600/40 text-red-300 mb-4">{error}</div>}
+      {error && (
+        <div className="card border-red-600/40 text-red-300 mb-4" role="alert" aria-live="polite">
+          <div className="font-semibold text-red-200">We couldn&apos;t load your servers</div>
+          <p className="text-sm text-red-200/80 mt-1">
+            Please relogin again or contact in our <Link href="/support" className="underline decoration-red-300/40 hover:decoration-red-300">support server</Link>.
+          </p>
+        </div>
+      )}
       {!guilds ? (
   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
     {Array.from({ length: 6 }).map((_, i) => (
