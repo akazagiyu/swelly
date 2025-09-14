@@ -55,7 +55,7 @@ export default function CommandSearch({ commands }: { commands: Command[] }) {
           const key = mt.key as 'name' | 'description' | 'usage';
           const ranges = (mt.indices as [number, number][]) ?? [];
           if (ranges.length) {
-            (store as any)[key] = ranges;
+            (store as Record<'name' | 'description' | 'usage', [number, number][] | undefined>)[key] = ranges;
           }
         }
         if (Object.keys(store).length) m.set(name, store);
@@ -65,8 +65,8 @@ export default function CommandSearch({ commands }: { commands: Command[] }) {
     return { filtered: items, matchMap: m };
   }, [commands, debouncedQuery, category]);
 
-  const desiredOrder = ["General", "Configuration", "Music", "Playlist", "Audio Effects", "Spotify", "Utility", "Premium"];
   const allCats = useMemo(() => {
+    const desiredOrder = ["General", "Configuration", "Music", "Playlist", "Audio Effects", "Spotify", "Utility", "Premium"];
     const uniq = Array.from(new Set(commands.map((c) => c.category)));
     const rank = (x: string) => {
       const i = desiredOrder.indexOf(x);
@@ -121,7 +121,7 @@ export default function CommandSearch({ commands }: { commands: Command[] }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const t = e.target as HTMLElement | null;
-      const isTyping = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || (t as any).isContentEditable);
+  const isTyping = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || (typeof (t as HTMLElement).isContentEditable === 'boolean' && (t as HTMLElement).isContentEditable));
       if (!isTyping && e.key === '/') {
         e.preventDefault();
         inputRef.current?.focus();
@@ -149,8 +149,8 @@ export default function CommandSearch({ commands }: { commands: Command[] }) {
         out.push(<mark key={`${start}-${end}`} className="bg-yellow-500/30 text-white rounded px-0.5">{text.slice(start, end + 1)}</mark>);
         last = end + 1;
       }
-      if (last < text.length) out.push(text.slice(last));
-      return <>{out}</>;
+  if (last < text.length) out.push(text.slice(last));
+  return <>{out}</>;
     }
     const q = debouncedQuery.trim();
     if (!q) return text;
