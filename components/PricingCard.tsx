@@ -28,9 +28,10 @@ type Props = {
   period?: 'monthly' | 'yearly';
   href?: string;
   badge?: string;
+  subtitle?: string;
 };
 
-export default function PricingCard({ name, price, features, highlight, cta = "Buy", href, period = 'monthly', badge }: Props) {
+export default function PricingCard({ name, subtitle, price, features, highlight, cta = "Buy", href, period = 'monthly', badge }: Props) {
   const isTieredPrice = typeof price !== 'string';
   const displayPrice = typeof price === 'string' ? price : price[period];
   // If the price object exists, and both monthly and yearly are strings like "$4.99", we can hint savings visually.
@@ -61,25 +62,11 @@ export default function PricingCard({ name, price, features, highlight, cta = "B
               <h3 className="text-lg md:text-xl font-extrabold tracking-tight uppercase text-white/90">{name}</h3>
               {highlight && <Sparkles className="-translate-y-1" size={14} />}
             </div>
+            {subtitle && <div className="mt-1 text-white/70 text-sm">{subtitle}</div>}
 
-            <div className="mt-3 flex items-baseline gap-3">
-              <div className={`text-2xl md:text-4xl font-extrabold ${
-                highlight ? 'text-white drop-shadow-[0_1px_6px_rgba(255,255,255,0.12)]' : 'text-white/90'
-              }`}>
-                {displayPrice}
-              </div>
-              <div className="text-sm text-white/70">/ {period === 'monthly' ? 'month' : 'year'}</div>
-            </div>
+            <div className="mt-4 border-t border-white/10" />
 
-            {/* Yearly hint */}
-            {isTieredPrice && period === 'yearly' && (
-              <div className="mt-1 inline-flex items-center gap-2 text-[11px] text-white/70">
-                <span className="inline-flex items-center rounded-full px-2 py-0.5 bg-primary/15 text-primary ring-1 ring-white/10">Save with yearly</span>
-                <span>Best value</span>
-              </div>
-            )}
-
-            <ul className="mt-6 space-y-3 text-white/80 text-sm">
+            <ul className="mt-4 space-y-3 text-white/80 text-sm">
               {features.map((f) => (
                 <li key={f} className="flex items-start gap-3">
                   <span className={`mt-0.5 inline-flex items-center justify-center rounded-full ${
@@ -92,7 +79,39 @@ export default function PricingCard({ name, price, features, highlight, cta = "B
               ))}
             </ul>
 
-            <div className="mt-7">
+            <div className="mt-5 border-t border-white/10" />
+
+            {/* Price block */}
+            {isTieredPrice ? (
+              <div className="mt-4 flex items-baseline gap-3">
+                <div className={`text-2xl md:text-4xl font-extrabold ${
+                  highlight ? 'text-white drop-shadow-[0_1px_6px_rgba(255,255,255,0.12)]' : 'text-white/90'
+                }`}>
+                  {displayPrice}
+                </div>
+                <div className="text-sm text-white/70">/ {period === 'monthly' ? 'month' : 'year'}</div>
+              </div>
+            ) : (
+              <div className="mt-4">
+                <div className={`text-2xl md:text-4xl font-extrabold ${
+                  highlight ? 'text-white drop-shadow-[0_1px_6px_rgba(255,255,255,0.12)]' : 'text-white/90'
+                }`}>
+                  {displayPrice}
+                </div>
+                <div className="text-xs text-white/70 mt-1">USD</div>
+                <div className="text-xs text-white/60">Per Month</div>
+              </div>
+            )}
+
+            {/* Yearly hint */}
+            {isTieredPrice && period === 'yearly' && (
+              <div className="mt-2 inline-flex items-center gap-2 text-[11px] text-white/70">
+                <span className="inline-flex items-center rounded-full px-2 py-0.5 bg-primary/15 text-primary ring-1 ring-white/10">Save with yearly</span>
+                <span>Best value</span>
+              </div>
+            )}
+
+            <div className="mt-6">
               {href ? (
                 <Link
                   href={href}

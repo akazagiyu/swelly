@@ -11,45 +11,65 @@ export default function PremiumPage() {
       price: { monthly: "$0", yearly: "$0" },
       features: [
         "Core music commands",
-        "Play from Spotify/YouTube/SoundCloud",
+        "Play from Spotify and SoundCloud",
         "Basic queue",
       ],
       cta: "Current Plan",
       badge: "Start here",
     },
     {
-      name: "Premium",
-      price: { monthly: "$4.99", yearly: "$49.99" },
+      name: "Plan A",
+      subtitle: "Activate premium in 1 server",
+      price: "$3",
       features: [
         "24/7 mode",
         "Autoplay mode",
         "Unique audio effects",
         "No vote requirement",
         "Premium role (community server)",
-        "Create up to 100 playlists",
+        "Create 100 playlists",
         "Access to 3 premium bots",
-        "Up to 10,000 songs per playlist",
+        "Add 10,000+ songs per playlist",
       ],
-      highlight: true,
-      cta: "Buy Premium",
-      badge: "Most Popular",
+      cta: "Buy plan A",
+      badge: "Great start",
+      
     },
     {
-      name: "Guild Pro",
-      price: { monthly: "$9.99", yearly: "$99.99" },
+      name: "Plan B",
+      subtitle: "Activate premium in 3 servers",
+      price: "$5.49",
       features: [
         "24/7 mode",
         "Access to 3 premium bots",
+        "Unlimited tracks in queue",
         "Unlimited queue length",
-        "Create up to 500 playlists",
+        "Create 500 playlists",
         "Amazing audio filters",
         "Volume command",
         "Unlimited Spotify links",
         "Unlimited YouTube links",
         "Priority support (all times)",
       ],
-      cta: "Contact Sales",
-      badge: "For big servers",
+      cta: "Buy plan B",
+      badge: "Most Popular",
+      highlight: true,
+    },
+    {
+      name: "Plan C",
+      subtitle: "Activate premium in 5 servers",
+      price: "$7.59",
+      features: ["Includes all benefits of Plan B"],
+      cta: "Buy plan C",
+      badge: "Multi-server",
+    },
+    {
+      name: "Plan D",
+      subtitle: "Activate premium in 7 servers",
+      price: "$10.99",
+      features: ["Includes all benefits of Plan B"],
+      cta: "Buy plan D",
+      badge: "Best for larger",
     },
   ];
 
@@ -103,11 +123,11 @@ export default function PremiumPage() {
           <div className="card p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
               <h2 className="text-xl font-semibold">Compare plans</h2>
-              <p className="text-white/70 text-sm mt-1">See what you get with Free, Premium, and Guild Pro.</p>
+              <p className="text-white/70 text-sm mt-1">See what you get with Free and Plans A–D.</p>
             </div>
             <div className="flex gap-3">
               <a href="/premium/compare" className="btn btn-outline">View full comparison</a>
-              <a href="#buy" className="btn btn-primary">Buy Premium</a>
+              <a href="#buy" className="btn btn-primary">Buy a plan</a>
             </div>
           </div>
         </ScrollReveal>
@@ -129,7 +149,7 @@ export default function PremiumPage() {
         <div className="mx-auto max-w-md rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md shadow-glow">
           <div className="flex items-center gap-3 p-3">
             <a href="#compare" className="flex-1 text-center rounded-lg py-3 text-sm font-medium text-white bg-white/10 border border-white/15 hover:bg-white/15">Compare</a>
-            <a href="#buy" className="flex-1 text-center rounded-lg py-3 text-sm font-medium text-white bg-gradient-to-r from-primary via-accent-violet to-primary-light shadow-glow">Buy Premium</a>
+            <a href="#buy" className="flex-1 text-center rounded-lg py-3 text-sm font-medium text-white bg-gradient-to-r from-primary via-accent-violet to-primary-light shadow-glow">Buy a plan</a>
           </div>
         </div>
       </div>
