@@ -1,10 +1,19 @@
 export const metadata = { title: "Premium Compare" };
 
 const rows = [
-  { k: "24/7 Music", free: "-", premium: "✓", plus: "✓" },
-  { k: "Queue Boost", free: "-", premium: "✓", plus: "✓" },
-  { k: "Exclusive Filters", free: "-", premium: "✓", plus: "✓" },
-  { k: "Priority Support", free: "-", premium: "✓", plus: "✓" },
+  { k: "24/7 Mode", free: "-", premium: "✓", plus: "✓" },
+  { k: "Autoplay Mode", free: "-", premium: "✓", plus: "✓" },
+  { k: "Unique/Advanced Audio Effects", free: "-", premium: "✓", plus: "✓" },
+  { k: "No Vote Requirement", free: "-", premium: "✓", plus: "✓" },
+  { k: "Premium Role (Community Server)", free: "-", premium: "✓", plus: "✓" },
+  { k: "Premium Bots Access", free: "-", premium: "3 bots", plus: "3 bots" },
+  { k: "Create Playlists", free: "10", premium: "100", plus: "500" },
+  { k: "Songs per Playlist", free: "1,000", premium: "10,000+", plus: "Unlimited" },
+  { k: "Queue Length", free: "5,000", premium: "25,000", plus: "Unlimited" },
+  { k: "Volume Command", free: "-", premium: "-", plus: "✓" },
+  { k: "Spotify Links", free: "Limited", premium: "Unlimited", plus: "Unlimited" },
+  { k: "YouTube Links", free: "Limited", premium: "Unlimited", plus: "Unlimited" },
+  { k: "Priority Support", free: "Community", premium: "Fast lane", plus: "All-times priority" },
 ];
 
 export default function PremiumComparePage() {

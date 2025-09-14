@@ -15,29 +15,41 @@ export default function PremiumPage() {
         "Basic queue",
       ],
       cta: "Current Plan",
+      badge: "Start here",
     },
     {
       name: "Premium",
       price: { monthly: "$4.99", yearly: "$49.99" },
       features: [
-        "High-quality audio",
-        "All audio filters",
         "24/7 mode",
-        "Global volume",
+        "Autoplay mode",
+        "Unique audio effects",
+        "No vote requirement",
+        "Premium role (community server)",
+        "Create up to 100 playlists",
+        "Access to 3 premium bots",
+        "Up to 10,000 songs per playlist",
       ],
       highlight: true,
       cta: "Buy Premium",
+      badge: "Most Popular",
     },
     {
       name: "Guild Pro",
       price: { monthly: "$9.99", yearly: "$99.99" },
       features: [
-        "Priority queue",
-        "Multiple filters combined",
-        "Bigger autoplay list",
-        "Priority support",
+        "24/7 mode",
+        "Access to 3 premium bots",
+        "Unlimited queue length",
+        "Create up to 500 playlists",
+        "Amazing audio filters",
+        "Volume command",
+        "Unlimited Spotify links",
+        "Unlimited YouTube links",
+        "Priority support (all times)",
       ],
       cta: "Contact Sales",
+      badge: "For big servers",
     },
   ];
 
@@ -53,8 +65,8 @@ export default function PremiumPage() {
                 <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">Unlock Premium</h1>
                 <p className="mt-3 text-white/70 max-w-xl">24/7 music, higher queue limits, exclusive filters, priority support — everything you need for the best experience.</p>
                 <div className="mt-6 flex items-center gap-3">
-                  <a href="#pricing" className="btn btn-primary">Get Premium</a>
-                  <a href="/premium/compare" className="btn btn-outline">Compare plans</a>
+                  <a href="#buy" className="btn btn-primary">Buy Premium</a>
+                  <a href="#compare" className="btn btn-outline">Compare plans</a>
                 </div>
               </ScrollReveal>
             </div>
@@ -69,10 +81,10 @@ export default function PremiumPage() {
       <section className="container py-12">
         <div className="grid md:grid-cols-4 gap-4">
           {[
-            { i: "⏱️", t: "24/7 Uptime", d: "Keep music running around the clock." },
-            { i: "🎚️", t: "All Filters", d: "Bass boost, nightcore, vaporwave, and more." },
-            { i: "🚀", t: "Priority Queue", d: "Skip the line with premium queue access." },
-            { i: "🧰", t: "Advanced Controls", d: "Global volume, autoplay tuning, and more." },
+            { i: "⏱️", t: "24/7 Mode", d: "Keep music running around the clock." },
+            { i: "▶️", t: "Autoplay Mode", d: "Smart autoplay when the queue ends." },
+            { i: "✨", t: "Unique Effects", d: "Signature filters to shape your sound." },
+            { i: "🏷️", t: "Premium Role", d: "Get a shiny role in our community server." },
           ].map((b, i) => (
             <ScrollReveal key={b.t} delay={i * 0.04}>
               <div className="card p-5">
@@ -85,16 +97,43 @@ export default function PremiumPage() {
         </div>
       </section>
 
+      {/* Compare (anchor) */}
+      <section id="compare" className="container pt-4 pb-6">
+        <ScrollReveal>
+          <div className="card p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-semibold">Compare plans</h2>
+              <p className="text-white/70 text-sm mt-1">See what you get with Free, Premium, and Guild Pro.</p>
+            </div>
+            <div className="flex gap-3">
+              <a href="/premium/compare" className="btn btn-outline">View full comparison</a>
+              <a href="#buy" className="btn btn-primary">Buy Premium</a>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
       {/* Pricing */}
-      <section id="pricing" className="container py-12">
+      <section id="buy" className="container py-12">
         <ScrollReveal>
           <h2 className="text-2xl font-semibold text-center mb-6">Choose your plan</h2>
         </ScrollReveal>
         <PremiumTiers tiers={tiers} />
         <div className="text-center mt-10">
-          <a href="/premium/compare" className="text-sm text-white/60 hover:text-white">Compare plans →</a>
+          <a href="#compare" className="text-sm text-white/60 hover:text-white">Compare plans →</a>
         </div>
       </section>
+
+      {/* Sticky mobile CTA bar */}
+      <div className="fixed bottom-4 left-0 right-0 z-30 px-4 md:hidden">
+        <div className="mx-auto max-w-md rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md shadow-glow">
+          <div className="flex items-center gap-3 p-3">
+            <a href="#compare" className="flex-1 text-center rounded-lg py-3 text-sm font-medium text-white bg-white/10 border border-white/15 hover:bg-white/15">Compare</a>
+            <a href="#buy" className="flex-1 text-center rounded-lg py-3 text-sm font-medium text-white bg-gradient-to-r from-primary via-accent-violet to-primary-light shadow-glow">Buy Premium</a>
+          </div>
+        </div>
+      </div>
+      <div className="h-20 md:h-0" aria-hidden="true" />
     </div>
   );
 }
