@@ -10,7 +10,7 @@ export async function GET() {
     let status: ShardStatus = "operational";
     if (i % 29 === 0) status = "outage";
     else if (i % 17 === 0) status = "partial";
-    const guilds = 1200 + (i * 23) % 700;
+    const guilds = 300 + (i * 23) % 700;
     const ping = 35 + (i * 7) % 40;
     return { id: i, status, guilds, ping };
   });

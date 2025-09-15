@@ -35,7 +35,7 @@ export default function HomeStats({ initial }: { initial?: Totals }) {
     };
   }, []);
 
-  const guilds = totals?.guilds ?? 12340;
+  const guilds = totals?.guilds ?? 310000;
   const users = totals?.users ?? 1005221;
   const commands = 120;
 
