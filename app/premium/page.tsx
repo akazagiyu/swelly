@@ -6,17 +6,17 @@ import ScrollReveal from "@/components/motion/ScrollReveal";
 
 export default function PremiumPage() {
   const tiers = [
-    {
-      name: "Free",
-      price: { monthly: "$0", yearly: "$0" },
-      features: [
-        "Core music commands",
-        "Play from Spotify and SoundCloud",
-        "Basic queue",
-      ],
-      cta: "Current Plan",
-      badge: "Start here",
-    },
+    // {
+    //   name: "Free",
+    //   price: { monthly: "$0", yearly: "$0" },
+    //   features: [
+    //     "Core music commands",
+    //     "Play from Spotify and SoundCloud",
+    //     "Basic queue",
+    //   ],
+    //   cta: "Current Plan",
+    //   badge: "Start here",
+    // },
     {
       name: "Plan A",
       subtitle: "Activate premium in 1 server",
@@ -66,7 +66,7 @@ export default function PremiumPage() {
     {
       name: "Plan D",
       subtitle: "Activate premium in 7 servers",
-      price: "$10.99",
+      price: "$15.99",
       features: ["Includes all benefits of Plan B"],
       cta: "Buy plan D",
       badge: "Best for larger",
