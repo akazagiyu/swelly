@@ -33,7 +33,7 @@ export default function RefundPage() {
             <section>
               <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-wide mt-8 mb-3">How to Request</h2>
               <p>
-                Contact <a href="mailto:support@swelly.example">support@swelly.example</a> with your order ID,
+                Contact <a href="mailto:support@swellybot.xyz">support@swellybot.xyz</a> with your order ID,
                 purchase receipt, and a description of the issue. Include screenshots if helpful.
               </p>
             </section>

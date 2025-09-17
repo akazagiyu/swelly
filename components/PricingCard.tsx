@@ -103,11 +103,11 @@ export default function PricingCard({ name, subtitle, price, features, highlight
               </div>
             )}
 
-            {/* Yearly hint */}
+            {/* Yearly perks */}
             {isTieredPrice && period === 'yearly' && (
-              <div className="mt-2 inline-flex items-center gap-2 text-[11px] text-white/70">
-                <span className="inline-flex items-center rounded-full px-2 py-0.5 bg-primary/15 text-primary ring-1 ring-white/10">Save with yearly</span>
-                <span>Best value</span>
+              <div className="mt-2 flex flex-wrap items-center gap-2 text-[11px]">
+                <span className="inline-flex items-center rounded-full px-2 py-0.5 bg-primary/20 text-primary ring-1 ring-white/10">10% OFF</span>
+                <span className="text-white/60">Best value</span>
               </div>
             )}
 

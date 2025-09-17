@@ -112,7 +112,7 @@ export default function PrivacyPage() {
 
             <section>
               <h2>Contact</h2>
-              <p>Questions? Email <a href="mailto:support@swelly.example">support@swelly.example</a>.</p>
+              <p>Questions? Email <a href="mailto:support@swellybot.xyz">support@swellybot.xyz</a>.</p>
             </section>
           </div>
         </article>

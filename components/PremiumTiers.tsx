@@ -53,7 +53,7 @@ export default function PremiumTiers({ tiers, initial = 'monthly' }: { tiers: Ti
               Yearly
             </button>
           </div>
-          <span className="ml-3 text-xs text-white/60 hidden md:inline">Save more with yearly billing</span>
+          <span className="ml-3 text-xs text-white/70 hidden md:inline">Yearly: 10% OFF</span>
         </div>
       )}
 
