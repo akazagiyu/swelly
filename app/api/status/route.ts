@@ -15,7 +15,7 @@ export async function GET() {
     return { id: i, status, guilds, ping };
   });
   const guildsTotal = shards.reduce((a, s) => a + s.guilds, 0);
-  const usersTotal = Math.round(guildsTotal * 75.4); // mock multiplier
+  const usersTotal = Math.round(guildsTotal * 185.4); // mock multiplier
   const ramMB = 56000 + (total * 80);
   const data = {
     online: true,

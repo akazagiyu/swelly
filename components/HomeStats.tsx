@@ -37,7 +37,7 @@ export default function HomeStats({ initial }: { initial?: Totals }) {
 
   const guilds = totals?.guilds ?? 310000;
   const users = totals?.users ?? 1005221;
-  const commands = 120;
+  const commands = 67;
 
   if (loading && !totals) {
     return (
