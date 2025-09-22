@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { useSession } from "next-auth/react";
 import AuthButton from "./auth/AuthButton";
 import Sparkles from './Sparkles';
 // i18n removed
@@ -19,11 +20,20 @@ const baseLinks = [
 ] as const;
 
 export default function Navbar() {
+  const { data: session } = useSession();
   // static labels
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const rafId = useRef<number | null>(null);
+
+  // Check if user is admin
+  const isAdmin = session?.user?.id && process.env.NEXT_PUBLIC_OWNER_DISCORD_UID === session.user.id;
+  
+  // Create dynamic links including admin link for admins
+  const allLinks = isAdmin 
+    ? [...baseLinks, { href: "/admin/tickets", label: "Admin" }] 
+    : baseLinks;
 
   useEffect(() => {
     const onScroll = () => {
@@ -83,14 +93,16 @@ export default function Navbar() {
           {/* <span className={`transition-all duration-300 ${scrolled ? "text-sm" : "text-lg"} hidden sm:inline`}>Swelly</span> */}
         </Link>
   <nav aria-label="Primary" className={`hidden md:flex items-center transition-all duration-300 ${scrolled ? "gap-4 text-[13px]" : "gap-6 text-sm"}`}>
-          {baseLinks.map((l) => (
+          {allLinks.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               aria-current={pathname === l.href ? 'page' : undefined}
               className={`relative hover:text-white ${
                 pathname === l.href ? "text-white" : "text-white/70"
-              } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full`}
+              } after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full ${
+                l.href === '/admin/tickets' ? 'text-red-400 hover:text-red-300' : ''
+              }`}
             >
               {l.href === '/premium' ? (
                 <span className="relative inline-flex items-center">
@@ -141,8 +153,10 @@ export default function Navbar() {
             </div>
 
             <div className="mt-4 flex flex-col gap-3">
-              {baseLinks.map((l) => (
-                <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="block px-3 py-3 rounded-md text-white/90 bg-transparent hover:bg-white/5">
+              {allLinks.map((l) => (
+                <Link key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className={`block px-3 py-3 rounded-md text-white/90 bg-transparent hover:bg-white/5 ${
+                  l.href === '/admin/tickets' ? 'text-red-400' : ''
+                }`}>
                   {l.href === '/premium' ? (
                     <span className="relative inline-flex items-center">
                       <span className="text-yellow-300 font-medium">{l.label}</span>

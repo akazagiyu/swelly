@@ -80,6 +80,10 @@ export default function TicketSystem({ onSubmit, className = "" }: TicketSystemP
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submissionResult, setSubmissionResult] = useState<{
+    ticketId?: string;
+    message?: string;
+  } | null>(null);
   const [errors, setErrors] = useState<Partial<TicketFormData>>({});
 
   const validateForm = (): boolean => {
@@ -121,6 +125,12 @@ export default function TicketSystem({ onSubmit, className = "" }: TicketSystemP
       const result = await response.json();
       console.log('Ticket submitted successfully:', result);
       
+      // Store the submission result including ticket ID
+      setSubmissionResult({
+        ticketId: result.ticketId,
+        message: result.message
+      });
+      
       if (onSubmit) {
         onSubmit(formData);
       }
@@ -158,32 +168,67 @@ export default function TicketSystem({ onSubmit, className = "" }: TicketSystemP
             <FaCheck className="w-8 h-8" />
           </div>
           <h2 className="text-2xl font-bold mb-4">Ticket Submitted Successfully!</h2>
+          
+          {submissionResult?.ticketId && (
+            <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 mb-6">
+              <h3 className="text-lg font-semibold text-blue-400 mb-2">Your Ticket ID</h3>
+              <code className="text-xl font-mono bg-blue-500/20 px-4 py-2 rounded border border-blue-500/30 text-blue-300">
+                {submissionResult.ticketId}
+              </code>
+              <p className="text-sm text-blue-300/70 mt-2">
+                Save this ID to track your ticket status
+              </p>
+            </div>
+          )}
+          
           <p className="text-white/70 mb-6">
-            We&apos;ve received your ticket and our support team will get back to you within 24 hours.
+            {submissionResult?.message || 
+              "We've received your ticket and our support team will get back to you within 24 hours."
+            }
+            <br />
             You&apos;ll receive updates at <span className="text-primary">{formData.contactEmail}</span>.
           </p>
-          <div className="space-y-2 text-sm text-white/60">
-            <p><strong>Subject:</strong> {formData.subject}</p>
-            <p><strong>Category:</strong> {ticketCategories.find(c => c.id === formData.category)?.label}</p>
-            <p><strong>Priority:</strong> {priorityLevels.find(p => p.id === formData.priority)?.label}</p>
+          
+          <div className="bg-white/5 rounded-lg p-4 mb-6 text-left">
+            <h4 className="font-semibold mb-3 text-white">Ticket Details:</h4>
+            <div className="space-y-2 text-sm text-white/70">
+              <p><strong className="text-white">Subject:</strong> {formData.subject}</p>
+              <p><strong className="text-white">Category:</strong> {ticketCategories.find(c => c.id === formData.category)?.label}</p>
+              <p><strong className="text-white">Priority:</strong> {priorityLevels.find(p => p.id === formData.priority)?.label}</p>
+              {submissionResult?.ticketId && (
+                <p><strong className="text-white">Ticket ID:</strong> {submissionResult.ticketId}</p>
+              )}
+            </div>
           </div>
-          <button 
-            onClick={() => {
-              setIsSubmitted(false);
-              setFormData({
-                subject: "",
-                category: "",
-                priority: "medium",
-                description: "",
-                serverInfo: { serverId: "", serverName: "", userCount: "" },
-                contactEmail: "",
-                discordUsername: ""
-              });
-            }}
-            className="btn btn-outline mt-6"
-          >
-            Submit Another Ticket
-          </button>
+          
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button 
+              onClick={() => {
+                setIsSubmitted(false);
+                setSubmissionResult(null);
+                setFormData({
+                  subject: "",
+                  category: "",
+                  priority: "medium",
+                  description: "",
+                  serverInfo: { serverId: "", serverName: "", userCount: "" },
+                  contactEmail: "",
+                  discordUsername: ""
+                });
+              }}
+              className="btn btn-outline"
+            >
+              Submit Another Ticket
+            </button>
+            {submissionResult?.ticketId && (
+              <a 
+                href={`/ticket-status?id=${submissionResult.ticketId}`}
+                className="btn btn-primary"
+              >
+                Track This Ticket
+              </a>
+            )}
+          </div>
         </div>
       </div>
     );
