@@ -1,7 +1,28 @@
 export const dynamic = 'force-static';
 
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Refund Policy",
+  description: "Swelly premium refund policy and procedures. Learn about our refund terms, cancellation process, and how to request refunds for premium Discord bot subscriptions.",
+  openGraph: {
+    title: "Swelly Refund Policy - Premium Subscription Terms",
+    description: "Review our refund policy and procedures for Swelly premium subscriptions.",
+    images: [
+      {
+        url: "/text.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Refund Policy"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly Refund Policy - Premium Subscription Terms",
+    description: "Review our refund policy and procedures for Swelly premium subscriptions.",
+    images: ["/text.png"]
+  }
 };
 
 export default function RefundPage() {

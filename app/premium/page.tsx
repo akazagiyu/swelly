@@ -1,4 +1,27 @@
-export const metadata = { title: "Premium" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Premium",
+  description: "Unlock premium Swelly features with exclusive perks, advanced filters, priority support, and enhanced music quality. Choose from flexible premium tiers that fit your community's needs.",
+  openGraph: {
+    title: "Swelly Premium - Unlock Advanced Music Features",
+    description: "Get exclusive premium features, advanced filters, and priority support for your Discord server.",
+    images: [
+      {
+        url: "/prime.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Premium Features"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly Premium - Unlock Advanced Music Features",
+    description: "Get exclusive premium features, advanced filters, and priority support for your Discord server.",
+    images: ["/prime.png"]
+  }
+};
 
 import Image from "next/image";
 import PremiumTiers from '@/components/PremiumTiers';

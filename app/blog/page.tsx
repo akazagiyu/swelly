@@ -1,4 +1,27 @@
-export const metadata = { title: "Blog" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Stay updated with the latest Swelly features, updates, and announcements. Read about new filters, maintenance schedules, and exciting improvements to your Discord music experience.",
+  openGraph: {
+    title: "Swelly Blog - Latest Updates & Features",
+    description: "Stay updated with the latest Swelly features, updates, and announcements.",
+    images: [
+      {
+        url: "/swellyG2.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Blog Updates"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly Blog - Latest Updates & Features",
+    description: "Stay updated with the latest Swelly features, updates, and announcements.",
+    images: ["/swellyG2.png"]
+  }
+};
 
 const posts = [
   { id: 1, title: "Swelly v2.1: New Filters", date: "2025-08-10", excerpt: "We added chorus and phaser filters…" },

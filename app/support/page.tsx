@@ -1,4 +1,27 @@
-export const metadata = { title: "Support" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Support",
+  description: "Get help with Swelly Discord music bot. Submit tickets, join our Discord community, browse FAQ, or read documentation. Our support team is here to help with setup and troubleshooting.",
+  openGraph: {
+    title: "Swelly Support - Get Help & Submit Tickets",
+    description: "Get help with Swelly Discord music bot. Submit tickets, join Discord, or browse our FAQ.",
+    images: [
+      {
+        url: "/mascot.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Support"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly Support - Get Help & Submit Tickets",
+    description: "Get help with Swelly Discord music bot. Submit tickets, join Discord, or browse our FAQ.",
+    images: ["/mascot.png"]
+  }
+};
 
 import TicketSystem from "@/components/TicketSystem";
 import { FaDiscord, FaQuestionCircle, FaBook, FaTicketAlt } from "react-icons/fa";

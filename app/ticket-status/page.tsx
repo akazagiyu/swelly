@@ -1,4 +1,27 @@
-export const metadata = { title: "Ticket Status" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ticket Status",
+  description: "Track your Swelly support ticket status. Enter your ticket ID to view current status, responses, and updates from our support team. Get real-time information about your request.",
+  openGraph: {
+    title: "Track Your Swelly Support Ticket",
+    description: "Check the status of your support ticket and view responses from our team.",
+    images: [
+      {
+        url: "/mascot.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Ticket Tracking"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Track Your Swelly Support Ticket",
+    description: "Check the status of your support ticket and view responses from our team.",
+    images: ["/mascot.png"]
+  }
+};
 
 import TicketLookup from "@/components/TicketLookup";
 import ScrollReveal from "@/components/motion/ScrollReveal";

@@ -105,6 +105,18 @@ export default function AdminDashboard() {
     loadData();
   }, [session, status, isAdmin, fetchTickets, fetchStats]);
 
+  // Auto-refresh for real-time updates
+  useEffect(() => {
+    if (!session || !isAdmin) return;
+    
+    const interval = setInterval(() => {
+      fetchTickets();
+      fetchStats();
+    }, 30000); // Refresh every 30 seconds
+    
+    return () => clearInterval(interval);
+  }, [session, isAdmin, fetchTickets, fetchStats]);
+
   const updateTicketStatus = async (ticketId: string, status: string) => {
     try {
       const response = await fetch('/api/tickets', {

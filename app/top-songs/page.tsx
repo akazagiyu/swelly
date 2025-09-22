@@ -1,6 +1,28 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 
-export const metadata = { title: "Top Songs" };
+export const metadata: Metadata = {
+  title: "Top Songs",
+  description: "Discover the most popular music tracks played on Swelly Discord bot. See trending songs, top artists, and what the community is listening to across thousands of servers.",
+  openGraph: {
+    title: "Top Songs on Swelly - Trending Music",
+    description: "Discover the most popular tracks and trending music played across Swelly Discord servers.",
+    images: [
+      {
+        url: "/swelly1.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Top Songs"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Top Songs on Swelly - Trending Music",
+    description: "Discover the most popular tracks and trending music played across Swelly Discord servers.",
+    images: ["/swelly1.png"]
+  }
+};
 
 const songs = [
   { id: 1, title: "Echoes of Night", artist: "Lunaria", plays: 125432, thumb: "/swelly1.png" },

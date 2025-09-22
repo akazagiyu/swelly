@@ -5,6 +5,30 @@ import ScrollReveal from "@/components/motion/ScrollReveal";
 import HomeStats from "@/components/HomeStats";
 import { getAllCommands } from "@/lib/commands";
 import { FaLifeRing, FaHeadset, FaTicketAlt, FaDiscord } from "react-icons/fa";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Swelly is the ultimate free Discord music bot with crystal-clear audio, Spotify & Apple Music support, powerful queues, advanced filters, and seamless playback. Join thousands of servers enjoying premium music quality.",
+  openGraph: {
+    title: "Swelly - Free Premium Discord Music Bot",
+    description: "Crystal-clear audio, powerful queues and filters, buttery-smooth playback. The ultimate Discord music experience.",
+    images: [
+      {
+        url: "/swelly1.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Discord Music Bot"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly - Free Premium Discord Music Bot",
+    description: "Crystal-clear audio, powerful queues and filters, buttery-smooth playback.",
+    images: ["/swelly1.png"]
+  }
+};
 
 export default async function Home() {
   // Fetch bot status (shard/totals) from our internal API route.

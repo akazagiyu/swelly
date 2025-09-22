@@ -1,7 +1,29 @@
 import { getFAQ } from "@/lib/faq";
 import ScrollReveal from "@/components/motion/ScrollReveal";
+import type { Metadata } from "next";
 
-export const metadata = { title: "FAQ" };
+export const metadata: Metadata = {
+  title: "FAQ",
+  description: "Frequently asked questions about Swelly Discord music bot. Get answers about inviting the bot, premium features, privacy settings, command usage, and troubleshooting common issues.",
+  openGraph: {
+    title: "Swelly FAQ - Frequently Asked Questions",
+    description: "Get answers about Swelly Discord music bot features, premium options, and common questions.",
+    images: [
+      {
+        url: "/swelly3.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly FAQ"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly FAQ - Frequently Asked Questions",
+    description: "Get answers about Swelly Discord music bot features, premium options, and common questions.",
+    images: ["/swelly3.png"]
+  }
+};
 
 export default function FAQPage() {
   const items = getFAQ();

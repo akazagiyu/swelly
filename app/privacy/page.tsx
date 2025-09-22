@@ -1,7 +1,28 @@
 export const dynamic = 'force-static';
 
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Privacy Policy",
+  description: "Swelly Discord bot Privacy Policy. Learn how we protect your data, what information we collect, and how we use it to provide the best music bot experience.",
+  openGraph: {
+    title: "Swelly Privacy Policy - Data Protection & Security",
+    description: "Learn about our data protection practices and privacy commitments for Swelly Discord bot users.",
+    images: [
+      {
+        url: "/text.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Privacy Policy"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly Privacy Policy - Data Protection & Security",
+    description: "Learn about our data protection practices and privacy commitments for Swelly Discord bot users.",
+    images: ["/text.png"]
+  }
 };
 
 export default function PrivacyPage() {

@@ -5,9 +5,29 @@ import ScrollReveal from "@/components/motion/ScrollReveal";
 import { TEAM } from "./data";
 import DiscordAvatar from "@/components/DiscordAvatar";
 import DiscordUserButton from "@/components/DiscordUserButton";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Team",
+  description: "Meet the Swelly team behind the ultimate Discord music bot. Learn about our developers, designers, and community managers who make the best music experience possible.",
+  openGraph: {
+    title: "Meet the Swelly Team - Bot Developers & Community",
+    description: "Meet the talented team behind Swelly Discord music bot and our growing community.",
+    images: [
+      {
+        url: "/mascot.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Team"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Meet the Swelly Team - Bot Developers & Community",
+    description: "Meet the talented team behind Swelly Discord music bot and our growing community.",
+    images: ["/mascot.png"]
+  }
 };
 
 function badgeClasses(defaultRole: string, custom?: string) {

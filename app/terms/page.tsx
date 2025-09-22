@@ -1,7 +1,28 @@
 export const dynamic = 'force-static';
 
-export const metadata = {
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
   title: "Terms of Service",
+  description: "Read Swelly Discord bot's Terms of Service. Understand our policies, user responsibilities, premium features, and service guidelines for using our music bot.",
+  openGraph: {
+    title: "Swelly Terms of Service - Bot Usage Policies",
+    description: "Review the terms and conditions for using Swelly Discord music bot and our services.",
+    images: [
+      {
+        url: "/text.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Terms of Service"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly Terms of Service - Bot Usage Policies",
+    description: "Review the terms and conditions for using Swelly Discord music bot and our services.",
+    images: ["/text.png"]
+  }
 };
 
 

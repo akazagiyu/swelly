@@ -1,4 +1,27 @@
-export const metadata = { title: "Invite" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Invite",
+  description: "Add Swelly to your Discord server for free! Get premium music features, crystal-clear audio, and powerful queue management. Simple 3-step setup process.",
+  openGraph: {
+    title: "Invite Swelly to Your Discord Server",
+    description: "Add the ultimate Discord music bot to your server. Free premium features and crystal-clear audio.",
+    images: [
+      {
+        url: "/swelly3.png",
+        width: 1200,
+        height: 630,
+        alt: "Invite Swelly Bot"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Invite Swelly to Your Discord Server",
+    description: "Add the ultimate Discord music bot to your server. Free premium features and crystal-clear audio.",
+    images: ["/swelly3.png"]
+  }
+};
 
 import Image from "next/image";
 

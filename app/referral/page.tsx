@@ -1,4 +1,27 @@
-export const metadata = { title: "Referral" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Referral",
+  description: "Join the Swelly referral program and earn premium perks by inviting friends. Get rewards for bringing new users to the ultimate Discord music bot community.",
+  openGraph: {
+    title: "Swelly Referral Program - Earn Premium Perks",
+    description: "Invite friends to Swelly and earn premium rewards and perks for growing our music community.",
+    images: [
+      {
+        url: "/prime.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Referral Program"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Swelly Referral Program - Earn Premium Perks",
+    description: "Invite friends to Swelly and earn premium rewards and perks for growing our music community.",
+    images: ["/prime.png"]
+  }
+};
 
 export default function ReferralPage() {
   const invite = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL || "#";

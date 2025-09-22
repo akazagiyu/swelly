@@ -8,7 +8,7 @@ interface TicketStatus {
   subject: string;
   category: string;
   priority: string;
-  status: 'open' | 'in-progress' | 'waiting-response' | 'resolved' | 'closed';
+  status: 'open' | 'in-progress' | 'waiting-for-user' | 'resolved' | 'closed';
   submittedAt: string;
   lastUpdated: string;
   messages?: Array<{
@@ -34,7 +34,7 @@ const statusConfig = {
     bgColor: 'bg-yellow-500/20',
     description: 'Our support team is actively working on your issue.'
   },
-  'waiting-response': {
+  'waiting-for-user': {
     label: 'Waiting for Response',
     icon: <FaExclamationTriangle className="w-4 h-4" />,
     color: 'text-orange-400',
@@ -94,35 +94,29 @@ export default function TicketLookup() {
         return;
       }
 
-      // For demo purposes, we'll simulate a ticket response
-      // In a real app, this would come from your database
-      if (ticketId.toUpperCase().startsWith('SWL-')) {
-        const mockTicket: TicketStatus = {
-          ticketId: ticketId.toUpperCase(),
-          subject: "Bot not responding to commands",
-          category: "bug",
-          priority: "medium",
-          status: Math.random() > 0.5 ? 'in-progress' : 'open',
-          submittedAt: new Date(Date.now() - Math.random() * 86400000 * 3).toISOString(),
-          lastUpdated: new Date(Date.now() - Math.random() * 86400000).toISOString(),
-          messages: [
-            {
-              id: '1',
-              from: 'user',
-              message: 'The bot is not responding to any commands in our server. We tried /play and /help but nothing happens.',
-              timestamp: new Date(Date.now() - Math.random() * 86400000 * 2).toISOString()
-            },
-            {
-              id: '2',
-              from: 'support',
-              message: 'Thank you for your report. We are investigating this issue. Can you please provide your server ID?',
-              timestamp: new Date(Date.now() - Math.random() * 86400000).toISOString()
-            }
-          ]
+      const data = await response.json();
+      
+      if (data.success && data.ticket) {
+        // Map the API response to our ticket format
+        const mappedTicket: TicketStatus = {
+          ticketId: data.ticket.ticketId,
+          subject: data.ticket.subject,
+          category: data.ticket.category,
+          priority: data.ticket.priority,
+          status: data.ticket.status,
+          submittedAt: data.ticket.submittedAt,
+          lastUpdated: data.ticket.updatedAt,
+          messages: data.ticket.responses?.map((response: any) => ({
+            id: response.id,
+            from: response.authorType === 'admin' ? 'support' : 'user',
+            message: response.message,
+            timestamp: response.timestamp
+          })) || []
         };
-        setTicket(mockTicket);
+        
+        setTicket(mappedTicket);
       } else {
-        setError("Invalid ticket ID format. Ticket IDs start with 'SWL-'.");
+        setError("Ticket not found. Please check your ticket ID and try again.");
       }
     } catch (err) {
       console.error("Lookup error:", err);

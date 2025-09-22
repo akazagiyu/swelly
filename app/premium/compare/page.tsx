@@ -1,4 +1,27 @@
-export const metadata = { title: "Premium Compare" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Premium Compare",
+  description: "Compare Swelly premium plans and features. See detailed breakdown of servers included, advanced audio effects, playlist limits, queue sizes, and exclusive premium bot access across all tiers.",
+  openGraph: {
+    title: "Compare Swelly Premium Plans - Features & Pricing",
+    description: "Compare all Swelly premium tiers with detailed feature breakdown and pricing options.",
+    images: [
+      {
+        url: "/prime.png",
+        width: 1200,
+        height: 630,
+        alt: "Swelly Premium Plans Comparison"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Compare Swelly Premium Plans - Features & Pricing",
+    description: "Compare all Swelly premium tiers with detailed feature breakdown and pricing options.",
+    images: ["/prime.png"]
+  }
+};
 
 // Columns: Feature | Free | Plan A | Plan B | Plan C | Plan D
 const rows = [
