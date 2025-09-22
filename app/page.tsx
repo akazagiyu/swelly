@@ -98,8 +98,8 @@ export default async function Home() {
         <div className="grid md:grid-cols-4 gap-6 items-stretch">
           {[
             { i: "🎵", t: "High-Quality Music", d: "Crystal-clear audio powered by robust infrastructure." },
-            { i: "�", t: "Playlist Support", d: "Load full playlists from your favorite services." },
-            { i: "�️", t: "Filters & Effects", d: "Bass boost, nightcore, vaporwave, and more." },
+            { i: "👻", t: "Playlist Support", d: "Load full playlists from your favorite services." },
+            { i: "💖", t: "Filters & Effects", d: "Bass boost, nightcore, vaporwave, and more." },
             { i: "🌐", t: "Multi-Source", d: "Spotify, YouTube, Apple Music, SoundCloud." },
           ].map((f, i) => (
             <ScrollReveal key={f.t} delay={i * 0.04}>
