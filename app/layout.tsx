@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Providers from "@/components/providers/Providers";
 import dynamic from "next/dynamic";
 const CookieConsent = dynamic(() => import("@/components/CookieConsent"), { ssr: false });
+const FloatingSupportButton = dynamic(() => import("@/components/FloatingSupportButton"), { ssr: false });
 import MobileCta from "@/components/MobileCta";
 import type { ReactNode } from "react";
 
@@ -68,6 +69,7 @@ export default async function RootLayout({
             <MobileCta />
             <Footer />
             <CookieConsent />
+            <FloatingSupportButton />
           </Providers>
       </body>
     </html>

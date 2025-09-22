@@ -4,6 +4,7 @@ import ParallaxOrbs from "@/components/motion/ParallaxOrbs";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import HomeStats from "@/components/HomeStats";
 import { getAllCommands } from "@/lib/commands";
+import { FaLifeRing, FaHeadset, FaTicketAlt, FaDiscord } from "react-icons/fa";
 
 export default async function Home() {
   // Fetch bot status (shard/totals) from our internal API route.
@@ -66,7 +67,10 @@ export default async function Home() {
                 <div className="mt-8 flex flex-col sm:flex-row flex-wrap items-center gap-3">
                   <Link href="/invite" className="btn btn-primary w-full sm:w-auto">Invite Swelly</Link>
                   <Link href="/servers" className="btn btn-outline w-full sm:w-auto">Configure servers</Link>
-                  <a href={process.env.NEXT_PUBLIC_DISCORD_SUPPORT_URL || "#"} className="btn btn-outline w-full sm:w-auto" target="_blank" rel="noreferrer">Join Support</a>
+                  <Link href="/support" className="btn btn-ghost w-full sm:w-auto inline-flex items-center gap-2">
+                    <FaLifeRing className="w-4 h-4" />
+                    Get Support
+                  </Link>
                 </div>
               </ScrollReveal>
 
@@ -144,6 +148,76 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Support Section */}
+      <section className="container py-16">
+        <ScrollReveal>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Need Help?</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">
+              Our support team is here to help you get the most out of Swelly. Get assistance quickly through multiple channels.
+            </p>
+          </div>
+        </ScrollReveal>
+        
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <ScrollReveal delay={0.1}>
+            <div className="card p-6 text-center hover:scale-105 transition-transform">
+              <div className="inline-flex p-3 rounded-lg bg-primary/20 text-primary mb-4">
+                <FaTicketAlt className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Create Ticket</h3>
+              <p className="text-white/70 text-sm mb-4">Get personalized help from our support team</p>
+              <Link href="/support" className="btn btn-primary">
+                Open Ticket
+              </Link>
+            </div>
+          </ScrollReveal>
+          
+          <ScrollReveal delay={0.2}>
+            <div className="card p-6 text-center hover:scale-105 transition-transform">
+              <div className="inline-flex p-3 rounded-lg bg-[#5865F2]/20 text-[#5865F2] mb-4">
+                <FaDiscord className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Discord Server</h3>
+              <p className="text-white/70 text-sm mb-4">Join our community for quick help</p>
+              <a 
+                href={process.env.NEXT_PUBLIC_DISCORD_SUPPORT_URL || "#"} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="btn btn-outline"
+              >
+                Join Server
+              </a>
+            </div>
+          </ScrollReveal>
+          
+          <ScrollReveal delay={0.3}>
+            <div className="card p-6 text-center hover:scale-105 transition-transform">
+              <div className="inline-flex p-3 rounded-lg bg-green-500/20 text-green-400 mb-4">
+                <FaHeadset className="w-6 h-6" />
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Check Status</h3>
+              <p className="text-white/70 text-sm mb-4">Look up your existing support tickets</p>
+              <Link href="/ticket-status" className="btn btn-ghost">
+                Check Ticket
+              </Link>
+            </div>
+          </ScrollReveal>
+        </div>
+        
+        <ScrollReveal delay={0.4}>
+          <div className="text-center mt-8">
+            <div className="inline-flex items-center gap-4 text-sm text-white/60">
+              <span>Average response time: &lt; 2 hours</span>
+              <span>•</span>
+              <span>24/7 community support</span>
+              <span>•</span>
+              <span>99% issue resolution</span>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
       {/* Premium teaser */}
       <section className="container py-12">
         <div className="rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md p-6 md:p-8 text-center">
@@ -179,7 +253,10 @@ export default async function Home() {
             <p className="text-white/70 mt-2">Invite Swelly now and start listening in seconds.</p>
             <div className="mt-6 flex items-center justify-center gap-3">
               <Link href="/invite" className="btn btn-primary">Invite Swelly</Link>
-              <Link href="/support" className="btn btn-outline">Get help</Link>
+              <Link href="/support" className="btn btn-outline inline-flex items-center gap-2">
+                <FaLifeRing className="w-4 h-4" />
+                Get Support
+              </Link>
             </div>
           </ScrollReveal>
         </div>
