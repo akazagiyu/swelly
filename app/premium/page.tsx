@@ -197,6 +197,34 @@ export default function PremiumPage() {
         </div>
       </section>
 
+      {/* Advanced Features Showcase */}
+      <section className="container py-12">
+        <ScrollReveal>
+          <h2 className="text-2xl font-semibold text-center mb-2">Premium Features</h2>
+          <p className="text-white/70 text-center mb-8">Advanced capabilities for the ultimate music experience</p>
+        </ScrollReveal>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { i: "🎵", t: "Unlimited Playlists", d: "Create up to 500 custom playlists with 10,000+ songs each" },
+            { i: "🔊", t: "Audio Filters", d: "Bassboost, nightcore, vaporwave, and more amazing effects" },
+            { i: "📊", t: "Queue Management", d: "Unlimited queue length with advanced controls" },
+            { i: "🎯", t: "Priority Support", d: "Get help faster with dedicated premium support" },
+            { i: "🤖", t: "Premium Bots", d: "Access to 3-5 additional premium music bots" },
+            { i: "🌐", t: "Multi-Platform", d: "Play from Spotify, YouTube, SoundCloud seamlessly" },
+            { i: "⚡", t: "No Vote Skip", d: "Skip songs instantly without community votes" },
+            { i: "🎪", t: "Volume Control", d: "Adjust bot volume to your server's preference" },
+          ].map((feature, i) => (
+            <ScrollReveal key={i} delay={i * 0.05}>
+              <div className="card p-4 text-center">
+                <div className="text-3xl mb-3">{feature.i}</div>
+                <div className="font-semibold text-sm mb-2">{feature.t}</div>
+                <div className="text-white/60 text-xs leading-relaxed">{feature.d}</div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
       {/* Compare (anchor) */}
       <section id="compare" className="container pt-4 pb-6">
         <ScrollReveal>
@@ -250,6 +278,68 @@ export default function PremiumPage() {
         </ScrollReveal>
       </section>
 
+      {/* Testimonials */}
+      <section className="container py-12">
+        <ScrollReveal>
+          <h2 className="text-2xl font-semibold text-center mb-2">What our users say</h2>
+          <p className="text-white/70 text-center mb-8">Join thousands of satisfied Discord communities</p>
+        </ScrollReveal>
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {[
+            {
+              name: "Alex M.",
+              role: "Elite Supporter",
+              content: "The 24/7 mode is a game changer! Our community never stops jamming. Worth every penny for the premium experience.",
+              rating: 5
+            },
+            {
+              name: "Sarah K.",
+              role: "Plan B User",
+              content: "Amazing audio filters and unlimited queue length. Swelly Premium transformed our Discord server's music experience completely.",
+              rating: 5
+            },
+            {
+              name: "Discord Server Owner",
+              role: "God Supporter",
+              content: "Divine power commands are incredible! Early access to features and community recognition makes me feel valued as a supporter.",
+              rating: 5
+            }
+          ].map((testimonial, i) => (
+            <ScrollReveal key={i} delay={i * 0.1}>
+              <div className="card p-5">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">⭐</span>
+                  ))}
+                </div>
+                <p className="text-white/80 text-sm mb-4 leading-relaxed">"{testimonial.content}"</p>
+                <div>
+                  <div className="font-semibold text-sm">{testimonial.name}</div>
+                  <div className="text-white/60 text-xs">{testimonial.role}</div>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Money-Back Guarantee */}
+      <section className="container py-8">
+        <ScrollReveal>
+          <div className="card p-8 text-center max-w-2xl mx-auto bg-gradient-to-r from-green-900/20 via-blue-900/20 to-purple-900/20 border-green-500/20">
+            <div className="text-4xl mb-4">💯</div>
+            <h2 className="text-xl font-semibold mb-2">7-Day Money-Back Guarantee</h2>
+            <p className="text-white/70 text-sm leading-relaxed">
+              Try Swelly Premium risk-free! If you're not completely satisfied with the premium features, 
+              we'll refund your money within 7 days of purchase. No questions asked.
+            </p>
+            <div className="mt-4 text-xs text-white/50">
+              *Refunds processed within 2-3 business days
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
       {/* Pricing */}
       <section id="buy" className="container py-12">
         <ScrollReveal>
@@ -259,6 +349,48 @@ export default function PremiumPage() {
         <PremiumTiers tiers={tiers} />
         <div className="text-center mt-10">
           <a href="#compare" className="text-sm text-white/60 hover:text-white">Compare plans →</a>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="container py-12">
+        <ScrollReveal>
+          <h2 className="text-2xl font-semibold text-center mb-2">Frequently Asked Questions</h2>
+          <p className="text-white/70 text-center mb-8">Everything you need to know about Swelly Premium</p>
+        </ScrollReveal>
+        <div className="max-w-3xl mx-auto space-y-4">
+          {[
+            {
+              q: "How does billing work?",
+              a: "You can choose between monthly or yearly billing. Yearly plans offer significant savings compared to monthly payments."
+            },
+            {
+              q: "Can I upgrade or downgrade my plan?",
+              a: "Yes! You can change your plan anytime through your Patreon dashboard. Changes take effect immediately."
+            },
+            {
+              q: "What happens if I cancel my subscription?",
+              a: "Your premium features will remain active until the end of your current billing period. After that, you'll revert to the free plan."
+            },
+            {
+              q: "How many servers can I activate premium on?",
+              a: "It depends on your plan: Plan A (1 server), Plan B (3 servers), Plan C (5 servers), Plan D (7 servers), Elite (30 servers), God (10 servers)."
+            },
+            {
+              q: "Do you offer refunds?",
+              a: "We offer refunds within 7 days of purchase if you're not satisfied with the premium features."
+            }
+          ].map((faq, i) => (
+            <ScrollReveal key={i} delay={i * 0.05}>
+              <details className="card p-5 group">
+                <summary className="font-semibold cursor-pointer flex items-center justify-between">
+                  {faq.q}
+                  <span className="text-white/50 group-open:rotate-180 transition-transform">▼</span>
+                </summary>
+                <p className="text-white/70 mt-3 text-sm leading-relaxed">{faq.a}</p>
+              </details>
+            </ScrollReveal>
+          ))}
         </div>
       </section>
 
