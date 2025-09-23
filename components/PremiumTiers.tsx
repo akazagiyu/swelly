@@ -8,7 +8,7 @@ type Tier = {
   features: string[];
   highlight?: boolean;
   cta?: string;
-  href?: string;
+  href?: string | { monthly: string; yearly: string };
   badge?: string;
   subtitle?: string;
 };
@@ -57,22 +57,29 @@ export default function PremiumTiers({ tiers, initial = 'monthly' }: { tiers: Ti
         </div>
       )}
 
-      <div className="grid md:grid-cols-3 gap-6 items-stretch">
-        {tiers.map((t) => (
-          <div key={t.name} className="transform transition hover:-translate-y-1">
-            <PricingCard
-              name={t.name}
-              subtitle={t.subtitle}
-              price={t.price}
-              features={t.features}
-              highlight={t.highlight}
-              cta={t.cta}
-              href={t.href}
-              badge={t.badge}
-              period={period}
-            />
-          </div>
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-stretch">
+        {tiers.map((t) => {
+          // Handle both string and object href types
+          const currentHref = typeof t.href === 'object' && t.href !== null 
+            ? t.href[period] 
+            : t.href;
+            
+          return (
+            <div key={t.name} className="transform transition hover:-translate-y-1">
+              <PricingCard
+                name={t.name}
+                subtitle={t.subtitle}
+                price={t.price}
+                features={t.features}
+                highlight={t.highlight}
+                cta={t.cta}
+                href={currentHref}
+                badge={t.badge}
+                period={period}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

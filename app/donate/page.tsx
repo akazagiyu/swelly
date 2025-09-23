@@ -1,4 +1,27 @@
-export const metadata = { title: "Donate" };
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Donate",
+  description: "Support Swelly Discord bot development with a donation. Help us maintain servers, develop new features, and keep Swelly free for everyone. Every contribution makes a difference.",
+  openGraph: {
+    title: "Donate to Swelly - Support Discord Music Bot Development",
+    description: "Help us maintain servers, develop new features, and keep Swelly free for everyone.",
+    images: [
+      {
+        url: "/prime.png",
+        width: 1200,
+        height: 630,
+        alt: "Support Swelly"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Donate to Swelly - Support Discord Music Bot Development",
+    description: "Help us maintain servers, develop new features, and keep Swelly free for everyone.",
+    images: ["/prime.png"]
+  }
+};
 
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import { FaHeart, FaCode, FaServer, FaUsers, FaCoffee, FaPizzaSlice } from "react-icons/fa";
@@ -100,15 +123,18 @@ function DonationCard({ tier, index }: { tier: typeof donationTiers[0]; index: n
               ))}
             </div>
             
-            <button 
-              className={`w-full py-3 px-4 rounded-lg font-medium transition-all ${
+            <a 
+              href="https://paypal.me/aj23112001"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`w-full py-3 px-4 rounded-lg font-medium transition-all text-center block ${
                 tier.popular
                   ? "bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/25"
                   : "bg-white/10 hover:bg-white/20 text-white border border-white/20"
               }`}
             >
               Donate {tier.amount !== "Any amount" ? tier.amount : ""}
-            </button>
+            </a>
           </div>
         </div>
       </div>
