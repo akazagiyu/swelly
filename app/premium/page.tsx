@@ -312,7 +312,7 @@ export default function PremiumPage() {
                     <span key={i} className="text-yellow-400">⭐</span>
                   ))}
                 </div>
-                <p className="text-white/80 text-sm mb-4 leading-relaxed">"{testimonial.content}"</p>
+                <p className="text-white/80 text-sm mb-4 leading-relaxed">&ldquo;{testimonial.content}&rdquo;</p>
                 <div>
                   <div className="font-semibold text-sm">{testimonial.name}</div>
                   <div className="text-white/60 text-xs">{testimonial.role}</div>
@@ -330,8 +330,8 @@ export default function PremiumPage() {
             <div className="text-4xl mb-4">💯</div>
             <h2 className="text-xl font-semibold mb-2">7-Day Money-Back Guarantee</h2>
             <p className="text-white/70 text-sm leading-relaxed">
-              Try Swelly Premium risk-free! If you're not completely satisfied with the premium features, 
-              we'll refund your money within 7 days of purchase. No questions asked.
+              Try Swelly Premium risk-free! If you&apos;re not completely satisfied with the premium features, 
+              we&apos;ll refund your money within 7 days of purchase. No questions asked.
             </p>
             <div className="mt-4 text-xs text-white/50">
               *Refunds processed within 2-3 business days
