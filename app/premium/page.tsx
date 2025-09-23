@@ -55,6 +55,7 @@ export default function PremiumPage() {
         "Add 10,000+ songs per playlist",
       ],
       cta: "Buy plan A",
+      href: "https://www.patreon.com/checkout/Swelly?rid=9953630&vanity=Swelly",
       badge: "Great start",
       
     },
@@ -75,6 +76,7 @@ export default function PremiumPage() {
         "Priority support (all times)",
       ],
       cta: "Buy plan B",
+      href: "https://paypal.me/aj23112001",
       badge: "Most Popular",
       highlight: true,
     },
@@ -84,6 +86,7 @@ export default function PremiumPage() {
       price: { monthly: "$7.59", yearly: "$75.90" },
       features: ["Includes all benefits of Plan B"],
       cta: "Buy plan C",
+      href: "https://paypal.me/aj23112001",
       badge: "Multi-server",
     },
     {
@@ -92,6 +95,7 @@ export default function PremiumPage() {
       price: { monthly: "$15.99", yearly: "$159.90" },
       features: ["Includes all benefits of Plan B"],
       cta: "Buy plan D",
+      href: "https://paypal.me/aj23112001",
       badge: "Best for larger",
     },
   ];
@@ -108,7 +112,7 @@ export default function PremiumPage() {
                 <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">Unlock Premium</h1>
                 <p className="mt-3 text-white/70 max-w-xl">24/7 music, higher queue limits, exclusive filters, priority support — everything you need for the best experience.</p>
                 <div className="mt-6 flex items-center gap-3">
-                  <a href="#buy" className="btn btn-primary">Buy Premium</a>
+                  <a href="https://paypal.me/aj23112001" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Buy Premium</a>
                   <a href="#compare" className="btn btn-outline">Compare plans</a>
                 </div>
               </ScrollReveal>
@@ -150,7 +154,7 @@ export default function PremiumPage() {
             </div>
             <div className="flex gap-3">
               <a href="/premium/compare" className="btn btn-outline">View full comparison</a>
-              <a href="#buy" className="btn btn-primary">Buy a plan</a>
+              <a href="https://paypal.me/aj23112001" target="_blank" rel="noopener noreferrer" className="btn btn-primary">Buy a plan</a>
             </div>
           </div>
         </ScrollReveal>
@@ -172,7 +176,7 @@ export default function PremiumPage() {
         <div className="mx-auto max-w-md rounded-2xl border border-white/10 bg-white/10 backdrop-blur-md shadow-glow">
           <div className="flex items-center gap-3 p-3">
             <a href="#compare" className="flex-1 text-center rounded-lg py-3 text-sm font-medium text-white bg-white/10 border border-white/15 hover:bg-white/15">Compare</a>
-            <a href="#buy" className="flex-1 text-center rounded-lg py-3 text-sm font-medium text-white bg-gradient-to-r from-primary via-accent-violet to-primary-light shadow-glow">Buy a plan</a>
+            <a href="https://paypal.me/aj23112001" target="_blank" rel="noopener noreferrer" className="flex-1 text-center rounded-lg py-3 text-sm font-medium text-white bg-gradient-to-r from-primary via-accent-violet to-primary-light shadow-glow">Buy a plan</a>
           </div>
         </div>
       </div>
