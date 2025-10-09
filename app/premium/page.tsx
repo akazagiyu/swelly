@@ -166,7 +166,7 @@ export default function PremiumPage() {
                 <p className="mt-3 text-white/70 max-w-xl">24/7 music, higher queue limits, exclusive filters, priority support — everything you need for the best experience.</p>
                 <div className="mt-6 flex items-center gap-3">
                   <a href="#buy" className="btn btn-primary">Buy Premium</a>
-                  <a href="#compare" className="btn btn-outline">Compare plans</a>
+                  <a href="#features" className="btn btn-outline">See features</a>
                 </div>
               </ScrollReveal>
             </div>
@@ -177,8 +177,135 @@ export default function PremiumPage() {
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* Pricing Cards - FIRST PRIORITY */}
+      <section id="buy" className="container py-12">
+        <ScrollReveal>
+          <h2 className="text-2xl font-semibold text-center mb-2">Choose your plan</h2>
+          <p className="text-white/70 text-center mb-8">From basic premium to divine supporter tiers</p>
+        </ScrollReveal>
+        <PremiumTiers tiers={tiers} />
+        <div className="text-center mt-10">
+          <a href="#features" className="text-sm text-white/60 hover:text-white">See all features →</a>
+        </div>
+      </section>
+
+      {/* Elite Supporter Highlight */}
+      <section className="container py-8">
+        <ScrollReveal>
+          <div className="text-center max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                Elite & God Supporter Tiers
+              </span>
+            </h2>
+            <p className="text-white/80 text-lg mb-6">
+              Unlock the ultimate Swelly experience with our premium supporter tiers. Get exclusive access to advanced features, 
+              priority support, and help shape the future of Swelly with your feedback.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6 text-sm">
+              <div className="card p-4">
+                <h3 className="font-semibold text-yellow-400 mb-2">✨ Elite Supporter Benefits</h3>
+                <ul className="text-white/70 space-y-1">
+                  <li>• 30 server premium activation</li>
+                  <li>• 5 additional premium bots</li>
+                  <li>• Direct input on feature development</li>
+                  <li>• Custom voice & text channels</li>
+                </ul>
+              </div>
+              <div className="card p-4">
+                <h3 className="font-semibold text-red-400 mb-2">🔥 God Supporter Benefits</h3>
+                <ul className="text-white/70 space-y-1">
+                  <li>• Divine power of Swelly x Flute</li>
+                  <li>• Exclusive God-only commands</li>
+                  <li>• Community recognition</li>
+                  <li>• Early access to new features</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* Why Choose Swelly Premium */}
       <section className="container py-12">
+        <ScrollReveal>
+          <h2 className="text-2xl font-semibold text-center mb-2">Why Choose Swelly Premium?</h2>
+          <p className="text-white/70 text-center mb-12">Experience the difference with premium features</p>
+        </ScrollReveal>
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <ScrollReveal delay={0.1}>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30 mb-4">
+                <span className="text-3xl">🎧</span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Superior Audio Quality</h3>
+              <p className="text-white/70 text-sm leading-relaxed">
+                Crystal-clear sound with advanced audio filters and effects. Experience music the way it was meant to be heard.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.2}>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-green-500/20 to-emerald-500/20 border border-green-500/30 mb-4">
+                <span className="text-3xl">⚡</span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Lightning Fast</h3>
+              <p className="text-white/70 text-sm leading-relaxed">
+                Instant song loading, no buffering, and seamless playback across multiple platforms and sources.
+              </p>
+            </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.3}>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-red-500/20 to-pink-500/20 border border-red-500/30 mb-4">
+                <span className="text-3xl">🛡️</span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Reliable & Secure</h3>
+              <p className="text-white/70 text-sm leading-relaxed">
+                99.9% uptime guarantee with dedicated premium servers and priority support whenever you need it.
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="container py-12">
+        <div className="card p-8 bg-gradient-to-br from-primary/10 via-accent-violet/10 to-purple-900/10">
+          <ScrollReveal>
+            <h2 className="text-2xl font-semibold text-center mb-8">Trusted by Thousands</h2>
+          </ScrollReveal>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <ScrollReveal delay={0.1}>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">50K+</div>
+                <div className="text-white/70 text-sm">Active Servers</div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.2}>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-accent-violet mb-2">10M+</div>
+                <div className="text-white/70 text-sm">Songs Played Daily</div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.3}>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-primary-light mb-2">99.9%</div>
+                <div className="text-white/70 text-sm">Uptime</div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={0.4}>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-primary mb-2">24/7</div>
+                <div className="text-white/70 text-sm">Premium Support</div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits */}
+      <section id="features" className="container py-12">
         <div className="grid md:grid-cols-4 gap-4">
           {[
             { i: "⏱️", t: "24/7 Mode", d: "Keep music running around the clock." },
@@ -241,43 +368,6 @@ export default function PremiumPage() {
         </ScrollReveal>
       </section>
 
-      {/* Elite Supporter Highlight */}
-      <section className="container py-8">
-        <ScrollReveal>
-          <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
-                Elite & God Supporter Tiers
-              </span>
-            </h2>
-            <p className="text-white/80 text-lg mb-6">
-              Unlock the ultimate Swelly experience with our premium supporter tiers. Get exclusive access to advanced features, 
-              priority support, and help shape the future of Swelly with your feedback.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6 text-sm">
-              <div className="card p-4">
-                <h3 className="font-semibold text-yellow-400 mb-2">✨ Elite Supporter Benefits</h3>
-                <ul className="text-white/70 space-y-1">
-                  <li>• 30 server premium activation</li>
-                  <li>• 5 additional premium bots</li>
-                  <li>• Direct input on feature development</li>
-                  <li>• Custom voice & text channels</li>
-                </ul>
-              </div>
-              <div className="card p-4">
-                <h3 className="font-semibold text-red-400 mb-2">🔥 God Supporter Benefits</h3>
-                <ul className="text-white/70 space-y-1">
-                  <li>• Divine power of Swelly x Flute</li>
-                  <li>• Exclusive God-only commands</li>
-                  <li>• Community recognition</li>
-                  <li>• Early access to new features</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
       {/* Testimonials */}
       <section className="container py-12">
         <ScrollReveal>
@@ -320,35 +410,6 @@ export default function PremiumPage() {
               </div>
             </ScrollReveal>
           ))}
-        </div>
-      </section>
-
-      {/* Money-Back Guarantee */}
-      <section className="container py-8">
-        <ScrollReveal>
-          <div className="card p-8 text-center max-w-2xl mx-auto bg-gradient-to-r from-green-900/20 via-blue-900/20 to-purple-900/20 border-green-500/20">
-            <div className="text-4xl mb-4">💯</div>
-            <h2 className="text-xl font-semibold mb-2">7-Day Money-Back Guarantee</h2>
-            <p className="text-white/70 text-sm leading-relaxed">
-              Try Swelly Premium risk-free! If you&apos;re not completely satisfied with the premium features, 
-              we&apos;ll refund your money within 7 days of purchase. No questions asked.
-            </p>
-            <div className="mt-4 text-xs text-white/50">
-              *Refunds processed within 2-3 business days
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Pricing */}
-      <section id="buy" className="container py-12">
-        <ScrollReveal>
-          <h2 className="text-2xl font-semibold text-center mb-2">Choose your plan</h2>
-          <p className="text-white/70 text-center mb-8">From basic premium to divine supporter tiers</p>
-        </ScrollReveal>
-        <PremiumTiers tiers={tiers} />
-        <div className="text-center mt-10">
-          <a href="#compare" className="text-sm text-white/60 hover:text-white">Compare plans →</a>
         </div>
       </section>
 
