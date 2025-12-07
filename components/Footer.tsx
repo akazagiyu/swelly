@@ -74,6 +74,8 @@ export default function Footer() {
                 <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
                 <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
                 <li><Link href="/refund" className="hover:text-white">Refund</Link></li>
+                <li><Link href="/shipping" className="hover:text-white">Shipping</Link></li>
+                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
               </ul>
             </details>
 
@@ -83,6 +85,8 @@ export default function Footer() {
                 <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
                 <li><Link href="/terms" className="hover:text-white">Terms</Link></li>
                 <li><Link href="/refund" className="hover:text-white">Refund</Link></li>
+                <li><Link href="/shipping" className="hover:text-white">Shipping</Link></li>
+                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
               </ul>
             </div>
           </div>
