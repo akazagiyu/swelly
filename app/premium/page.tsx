@@ -41,9 +41,9 @@ export default function PremiumPage() {
     //   badge: "Start here",
     // },
     {
-      name: "Plan A",
+      name: "Swelly Bronze",
       subtitle: "Activate premium in 1 server",
-      price: { monthly: "$3", yearly: "$30" },
+      price: { monthly: "$2.19", yearly: "$21.90" },
       features: [
         "24/7 mode",
         "Autoplay mode",
@@ -54,7 +54,7 @@ export default function PremiumPage() {
         "Access to 3 premium bots",
         "Add 10,000+ songs per playlist",
       ],
-      cta: "Buy plan A",
+      cta: "Buy Swelly Bronze",
       href: {
         monthly: "https://www.patreon.com/checkout/Swelly?rid=9953630&vanity=Swelly",
         yearly: "https://www.patreon.com/checkout/Swelly?rid=9953630&vanity=Swelly&cadence=12"
@@ -63,9 +63,9 @@ export default function PremiumPage() {
       
     },
     {
-      name: "Plan B",
+      name: "Swelly Plus",
       subtitle: "Activate premium in 3 servers",
-      price: { monthly: "$5.49", yearly: "$54.90" },
+      price: { monthly: "$3.99", yearly: "$39.90" },
       features: [
         "24/7 mode",
         "Access to 3 premium bots",
@@ -78,7 +78,7 @@ export default function PremiumPage() {
         "Unlimited YouTube links",
         "Priority support (all times)",
       ],
-      cta: "Buy plan B",
+      cta: "Buy Swelly Plus",
       href: {
         monthly: "https://www.patreon.com/checkout/Swelly?rid=9953631&vanity=Swelly",
         yearly: "https://www.patreon.com/checkout/Swelly?rid=9953631&vanity=Swelly&cadence=12"
@@ -87,11 +87,11 @@ export default function PremiumPage() {
       highlight: true,
     },
     {
-      name: "Plan C",
+      name: "Swelly Pro",
       subtitle: "Activate premium in 5 servers",
-      price: { monthly: "$7.59", yearly: "$75.90" },
-      features: ["Includes all benefits of Plan B"],
-      cta: "Buy plan C",
+      price: { monthly: "$5.99", yearly: "$59.90" },
+      features: ["Includes all benefits of Swelly Plus"],
+      cta: "Buy Swelly Pro",
       href: {
         monthly: "https://www.patreon.com/checkout/Swelly?rid=26236976&vanity=Swelly",
         yearly: "https://www.patreon.com/checkout/Swelly?rid=26236976&vanity=Swelly&cadence=12"
@@ -99,57 +99,16 @@ export default function PremiumPage() {
       badge: "Multi-server",
     },
     {
-      name: "Plan D",
+      name: "Swelly Gold",
       subtitle: "Activate premium in 7 servers",
-      price: { monthly: "$15.99", yearly: "$159.90" },
-      features: ["Includes all benefits of Plan B"],
-      cta: "Buy plan D",
+      price: { monthly: "$7.99", yearly: "$79.90" },
+      features: ["Includes all benefits of Swelly Plus"],
+      cta: "Buy Swelly Gold",
       href: {
         monthly: "https://www.patreon.com/checkout/Swelly?rid=21760348&vanity=Swelly",
         yearly: "https://www.patreon.com/checkout/Swelly?rid=21760348&vanity=Swelly&cadence=12"
       },
       badge: "Best for larger",
-    },
-    {
-      name: "Elite Supporter",
-      subtitle: "Activate premium in 30 servers",
-      price: { monthly: "$269.10", yearly: "$3229.20" },
-      features: [
-        "Includes all features of Plan B",
-        "Access to 5 more premium bots with better quality",
-        "Can activate premium in 30 Discord Servers",
-        "Priority Access: Your feedback shapes the bot! Direct input on feature updates and enhancements",
-        "Custom Voice & Text Channels: Tailored to your server needs for optimal bot performance and enjoyment",
-        "Exclusive Elite-Only Commands: Unlock unique, high-power commands only available to Elite Supporters"
-      ],
-      cta: "Join Elite",
-      href: {
-        monthly: "https://www.patreon.com/checkout/Swelly?rid=ELITE_MONTHLY&vanity=Swelly",
-        yearly: "https://www.patreon.com/checkout/Swelly?rid=ELITE_YEARLY&vanity=Swelly&cadence=12"
-      },
-      badge: "Ultimate Experience",
-    },
-    {
-      name: "God Supporters",
-      subtitle: "Swelly x Flute - Divine Power",
-      price: { monthly: "$449.10", yearly: "$5389.20" },
-      features: [
-        "Includes all features of Plan B",
-        "Priority Access: Your feedback shapes the bot! Direct input on feature updates and enhancements",
-        "Access to 3 more premium bots with better quality",
-        "Can activate premium in 10 Discord Servers",
-        "Exclusive God-Only Commands: Unlock unique, high-power commands only available to God Supporters",
-        "Custom Voice & Text Channels: Tailored to your server needs for optimal bot performance and enjoyment",
-        "Recognition in the Community: Special acknowledgment and thanks in our community channels",
-        "Early Access to New Features: Be the first to experience cutting-edge updates and improvements"
-      ],
-      cta: "Join God Tier",
-      href: {
-        monthly: "https://www.patreon.com/checkout/Swelly?cadence=1&is_free_trial=false",
-        yearly: "https://www.patreon.com/checkout/Swelly?cadence=12&is_free_trial=false"
-      },
-      badge: "Divine Power",
-      highlight: true,
     },
   ];
 
@@ -187,43 +146,6 @@ export default function PremiumPage() {
         <div className="text-center mt-10">
           <a href="#features" className="text-sm text-white/60 hover:text-white">See all features →</a>
         </div>
-      </section>
-
-      {/* Elite Supporter Highlight */}
-      <section className="container py-8">
-        <ScrollReveal>
-          <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent">
-                Elite & God Supporter Tiers
-              </span>
-            </h2>
-            <p className="text-white/80 text-lg mb-6">
-              Unlock the ultimate Swelly experience with our premium supporter tiers. Get exclusive access to advanced features, 
-              priority support, and help shape the future of Swelly with your feedback.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6 text-sm">
-              <div className="card p-4">
-                <h3 className="font-semibold text-yellow-400 mb-2">✨ Elite Supporter Benefits</h3>
-                <ul className="text-white/70 space-y-1">
-                  <li>• 30 server premium activation</li>
-                  <li>• 5 additional premium bots</li>
-                  <li>• Direct input on feature development</li>
-                  <li>• Custom voice & text channels</li>
-                </ul>
-              </div>
-              <div className="card p-4">
-                <h3 className="font-semibold text-red-400 mb-2">🔥 God Supporter Benefits</h3>
-                <ul className="text-white/70 space-y-1">
-                  <li>• Divine power of Swelly x Flute</li>
-                  <li>• Exclusive God-only commands</li>
-                  <li>• Community recognition</li>
-                  <li>• Early access to new features</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
       </section>
 
       {/* Why Choose Swelly Premium */}
@@ -378,20 +300,20 @@ export default function PremiumPage() {
           {[
             {
               name: "Alex M.",
-              role: "Elite Supporter",
+              role: "Swelly Gold User",
               content: "The 24/7 mode is a game changer! Our community never stops jamming. Worth every penny for the premium experience.",
               rating: 5
             },
             {
               name: "Sarah K.",
-              role: "Plan B User",
+              role: "Swelly Plus User",
               content: "Amazing audio filters and unlimited queue length. Swelly Premium transformed our Discord server's music experience completely.",
               rating: 5
             },
             {
               name: "Discord Server Owner",
-              role: "God Supporter",
-              content: "Divine power commands are incredible! Early access to features and community recognition makes me feel valued as a supporter.",
+              role: "Swelly Pro User",
+              content: "Incredible features and support! The premium features make it easy to manage music across multiple servers.",
               rating: 5
             }
           ].map((testimonial, i) => (
@@ -435,7 +357,7 @@ export default function PremiumPage() {
             },
             {
               q: "How many servers can I activate premium on?",
-              a: "It depends on your plan: Plan A (1 server), Plan B (3 servers), Plan C (5 servers), Plan D (7 servers), Elite (30 servers), God (10 servers)."
+              a: "It depends on your plan: Swelly Bronze (1 server), Swelly Plus (3 servers), Swelly Pro (5 servers), Swelly Gold (7 servers)."
             },
             {
               q: "Do you offer refunds?",
