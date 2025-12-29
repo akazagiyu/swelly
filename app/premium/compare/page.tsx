@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   }
 };
 
-// Columns: Feature | Free | Plan A | Plan B | Plan C | Plan D
+// Columns: Feature | Free | Swelly Bronze | Swelly Plus | Swelly Pro | Swelly Gold
 const rows = [
   { k: "Servers included", free: "-", a: "1", b: "3", c: "5", d: "7" },
   { k: "24/7 Mode", free: "-", a: "✓", b: "✓", c: "✓", d: "✓" },
@@ -45,17 +45,17 @@ export default function PremiumComparePage() {
   return (
     <div className="container py-12">
       <h1 className="text-3xl font-bold mb-2">Compare plans</h1>
-      <p className="text-white/70 mb-6">Free vs Plans A–D — pick what fits your server.</p>
+      <p className="text-white/70 mb-6">Free vs Swelly tiers — pick what fits your server.</p>
       <div className="card overflow-x-auto">
         <table className="w-full text-sm min-w-[720px]">
           <thead className="text-white/60">
             <tr>
               <th className="text-left py-3 px-2 sticky left-0 bg-transparent backdrop-blur-md">Feature</th>
               <th className="text-left py-3 px-2">Free</th>
-              <th className="text-left py-3 px-2">Plan A</th>
-              <th className="text-left py-3 px-2">Plan B <span className="ml-2 px-2 py-0.5 rounded-full text-[10px] bg-primary/20 text-white/90">Popular</span></th>
-              <th className="text-left py-3 px-2">Plan C</th>
-              <th className="text-left py-3 px-2">Plan D</th>
+              <th className="text-left py-3 px-2">Swelly Bronze</th>
+              <th className="text-left py-3 px-2">Swelly Plus <span className="ml-2 px-2 py-0.5 rounded-full text-[10px] bg-primary/20 text-white/90">Popular</span></th>
+              <th className="text-left py-3 px-2">Swelly Pro</th>
+              <th className="text-left py-3 px-2">Swelly Gold</th>
             </tr>
           </thead>
           <tbody>
