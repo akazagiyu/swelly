@@ -45,19 +45,21 @@ export default function PremiumPage() {
       subtitle: "Activate premium in 1 server",
       price: { monthly: "$2.19", yearly: "$21.90" },
       features: [
-        "24/7 mode",
-        "Autoplay mode",
-        "Unique audio effects",
-        "No vote requirement",
-        "Premium role (community server)",
-        "Create 100 playlists",
-        "Access to 3 premium bots",
-        "Add 10,000+ songs per playlist",
+        "🎁 7 Days Free Trial - No credit card required",
+        "24/7 & Autoplay Mode",
+        "Exclusive Audio Filters & Effects",
+        "Higher song queue limit (ec: 100 → 300)",
+        "Early access to announcements & polls",
+        "Expanded Playlist Limits",
+        "No Voting Required",
+        "Valid for 1 Server (Without Premium Bots)",
+        "General Support",
+        "Discord access",
       ],
-      cta: "Buy Swelly Bronze",
+      cta: "🎁 Start Free Trial",
       href: {
-        monthly: "https://www.patreon.com/checkout/Swelly?rid=9953630&vanity=Swelly",
-        yearly: "https://www.patreon.com/checkout/Swelly?rid=9953630&vanity=Swelly&cadence=12"
+        monthly: "https://www.patreon.com/checkout/Swelly?rid=27583127&is_free_trial=true",
+        yearly: "https://www.patreon.com/checkout/Swelly?rid=27583127&cadence=12"
       },
       badge: "Great start",
       
@@ -67,21 +69,19 @@ export default function PremiumPage() {
       subtitle: "Activate premium in 3 servers",
       price: { monthly: "$3.99", yearly: "$39.90" },
       features: [
-        "24/7 mode",
-        "Access to 3 premium bots",
-        "Unlimited tracks in queue",
-        "Unlimited queue length",
-        "Create 500 playlists",
-        "Amazing audio filters",
-        "Volume command",
-        "Unlimited Spotify links",
-        "Unlimited YouTube links",
-        "Priority support (all times)",
+        "Everything from Bronze",
+        "Higher audio quality",
+        "3 Bonus High-Quality Bots",
+        "Reduced command cooldowns",
+        "Access to basic audio filters (bass boost, nightcore, 8D)",
+        "Valid for 1 Server (With Premium Bots)",
+        "General Support",
+        "Discord access",
       ],
       cta: "Buy Swelly Plus",
       href: {
-        monthly: "https://www.patreon.com/checkout/Swelly?rid=9953631&vanity=Swelly",
-        yearly: "https://www.patreon.com/checkout/Swelly?rid=9953631&vanity=Swelly&cadence=12"
+        monthly: "https://www.patreon.com/checkout/Swelly?rid=9953630",
+        yearly: "https://www.patreon.com/checkout/Swelly?rid=9953630&cadence=12"
       },
       badge: "Most Popular",
       highlight: true,
@@ -90,11 +90,19 @@ export default function PremiumPage() {
       name: "Swelly Pro",
       subtitle: "Activate premium in 5 servers",
       price: { monthly: "$5.99", yearly: "$59.90" },
-      features: ["Includes all benefits of Swelly Plus"],
+      features: [
+        "Everything from Plus",
+        "Faster track load speed",
+        "Unlimited queue size",
+        "Unlimited Links any Platforms",
+        "Valid for 3 Servers",
+        "Early access to new features",
+        "Discord access",
+      ],
       cta: "Buy Swelly Pro",
       href: {
-        monthly: "https://www.patreon.com/checkout/Swelly?rid=26236976&vanity=Swelly",
-        yearly: "https://www.patreon.com/checkout/Swelly?rid=26236976&vanity=Swelly&cadence=12"
+        monthly: "https://www.patreon.com/checkout/Swelly?rid=9953631",
+        yearly: "https://www.patreon.com/checkout/Swelly?rid=9953631&cadence=12"
       },
       badge: "Multi-server",
     },
@@ -102,13 +110,63 @@ export default function PremiumPage() {
       name: "Swelly Gold",
       subtitle: "Activate premium in 7 servers",
       price: { monthly: "$7.99", yearly: "$79.90" },
-      features: ["Includes all benefits of Swelly Plus"],
+      features: [
+        "Includes all features of Pro",
+        "Premium bot instance",
+        "Smart autoplay (AI recommendations)",
+        "Valid for 5 Servers",
+        "General Support",
+        "Early access",
+        "Discord access",
+      ],
       cta: "Buy Swelly Gold",
       href: {
-        monthly: "https://www.patreon.com/checkout/Swelly?rid=21760348&vanity=Swelly",
-        yearly: "https://www.patreon.com/checkout/Swelly?rid=21760348&vanity=Swelly&cadence=12"
+        monthly: "https://www.patreon.com/checkout/Swelly?rid=26236976",
+        yearly: "https://www.patreon.com/checkout/Swelly?rid=26236976&cadence=12"
       },
       badge: "Best for larger",
+    },
+    {
+      name: "Swelly Diamond",
+      subtitle: "Activate premium in 8 servers",
+      price: { monthly: "$11.49", yearly: "$114.90" },
+      features: [
+        "Includes all features of Swelly Gold",
+        "Highest priority nodes (zero lag)",
+        "Unlimited 24/7 servers",
+        "Valid for 8 servers",
+        "General support",
+        "Early access to new features",
+        "Discord access",
+      ],
+      cta: "Buy Swelly Diamond",
+      href: {
+        monthly: "https://www.patreon.com/checkout/Swelly?rid=27429031",
+        yearly: "https://www.patreon.com/checkout/Swelly?rid=27429031&cadence=12"
+      },
+      badge: "Premium Performance",
+    },
+    {
+      name: "Swelly Ultimate",
+      subtitle: "Activate premium in 10 servers",
+      price: { monthly: "$15.99", yearly: "$159.90" },
+      features: [
+        "Everything Unlocked",
+        "Direct dev support (DM / ticket priority)",
+        "Beta & experimental features access",
+        "Custom bot coming soon",
+        "Valid for 10 servers",
+        "General support",
+        "Early access to new features",
+        "Discord access",
+      ],
+      cta: "Buy Swelly Ultimate",
+      href: {
+        monthly: "https://www.patreon.com/checkout/Swelly?rid=21760348",
+        yearly: "https://www.patreon.com/checkout/Swelly?rid=21760348&cadence=12"
+      },
+      badge: "Ultimate Experience",
+      highlight: true,
     },
   ];
 
@@ -357,7 +415,7 @@ export default function PremiumPage() {
             },
             {
               q: "How many servers can I activate premium on?",
-              a: "It depends on your plan: Swelly Bronze (1 server), Swelly Plus (3 servers), Swelly Pro (5 servers), Swelly Gold (7 servers)."
+              a: "It depends on your plan: Swelly Bronze (1 server), Swelly Plus (3 servers), Swelly Pro (5 servers), Swelly Gold (7 servers), Swelly Diamond (8 servers), Swelly Ultimate (10 servers)."
             },
             {
               q: "Do you offer refunds?",
