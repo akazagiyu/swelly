@@ -61,7 +61,6 @@ export const metadata: Metadata = {
   }
 };
 
-import Image from "next/image";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import DiscordAvatar from "@/components/DiscordAvatar";
 import Link from "next/link";
@@ -551,7 +550,7 @@ export default function InviteBotsPage() {
                     </h2>
 
                     <p className="text-white/80 mb-6 leading-relaxed">
-                      Get access to exclusive features, priority support, and premium bots. Enhance your Discord experience with Swelly's premium subscription.
+                      Get access to exclusive features, priority support, and premium bots. Enhance your Discord experience with Swelly&apos;s premium subscription.
                     </p>
 
                     {/* Premium Features List */}
