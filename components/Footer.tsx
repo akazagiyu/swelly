@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaDiscord, FaGithub, FaHeart } from "react-icons/fa";
 import MobileCtaRestore from './MobileCtaRestore';
+import NewsletterForm from './NewsletterForm';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -100,11 +101,7 @@ export default function Footer() {
               </summary>
               <div className="mt-3">
                 <p className="text-sm text-white/70 mb-3">Get product updates, release notes and occasional promotions.</p>
-                <form action="/api/subscribe" method="post" className="flex flex-col sm:flex-row gap-2">
-                  <label className="sr-only" htmlFor="footer-email">Email</label>
-                  <input id="footer-email" name="email" type="email" required placeholder="you@example.com" className="w-full bg-white/5 border border-white/6 placeholder:text-white/40 rounded-md px-3 py-3 text-sm text-white" />
-                  <button type="submit" className="btn btn-primary w-full sm:w-auto px-6 py-3">Subscribe</button>
-                </form>
+                <NewsletterForm isMobile={true} />
                 <div className="text-xs text-white/50 mt-3">No spam. Unsubscribe anytime.</div>
               </div>
             </details>
@@ -112,11 +109,7 @@ export default function Footer() {
             <div className="hidden md:block">
               <h4 className="text-sm font-semibold text-white/90 mb-3">Stay in the loop</h4>
               <p className="text-sm text-white/70 mb-3">Get product updates, release notes and occasional promotions.</p>
-              <form action="/api/subscribe" method="post" className="flex gap-2">
-                <label className="sr-only" htmlFor="footer-email-desktop">Email</label>
-                <input id="footer-email-desktop" name="email" type="email" required placeholder="you@example.com" className="flex-1 bg-white/5 border border-white/6 placeholder:text-white/40 rounded-md px-3 py-2 text-sm text-white" />
-                <button type="submit" className="btn btn-primary px-4">Subscribe</button>
-              </form>
+              <NewsletterForm isMobile={false} />
               <div className="text-xs text-white/50 mt-3">No spam. Unsubscribe anytime.</div>
             </div>
           </div>
