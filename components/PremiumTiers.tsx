@@ -65,7 +65,7 @@ export default function PremiumTiers({ tiers, initial = 'monthly' }: { tiers: Ti
             : t.href;
             
           return (
-            <div key={t.name} className="transform transition hover:-translate-y-1">
+            <div key={t.name} className="transition hover:-translate-y-1 duration-300">
               <PricingCard
                 name={t.name}
                 subtitle={t.subtitle}

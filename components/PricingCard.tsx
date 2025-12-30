@@ -14,28 +14,12 @@ const animationStyles = `
     50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5), 0 0 60px rgba(6, 182, 212, 0.25); }
   }
   
-  @keyframes shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
-  }
-  
   .float-pulse {
     animation: float-pulse 3s ease-in-out infinite;
   }
   
   .glow-pulse {
     animation: glow-pulse 2s ease-in-out infinite;
-  }
-  
-  .shimmer-animation {
-    background: linear-gradient(
-      90deg,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.1) 50%,
-      rgba(255,255,255,0) 100%
-    );
-    background-size: 1000px 100%;
-    animation: shimmer 3s infinite;
   }
 `;
 
@@ -123,25 +107,22 @@ export default function PricingCard({ name, subtitle, price, features, highlight
   return (
     <>
       <style>{animationStyles}</style>
-      <div className={`relative group ${highlight ? 'float-pulse' : ''}`}>
+      <div className={`relative group`}>
         {(highlight || badge) && (
-          <div className={`absolute -top-4 right-4 text-[10px] px-3 py-1 rounded-full shadow-lg z-10 ${colors.badgeBg} ${colors.badgeText} tracking-wide uppercase ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105 ${highlight ? 'animate-pulse' : ''}`}>
+          <div className={`absolute -top-4 right-4 text-[10px] px-3 py-1 rounded-full shadow-lg z-10 ${colors.badgeBg} ${colors.badgeText} tracking-wide uppercase ring-1 ring-white/20 transition-transform duration-300 group-hover:scale-105`}>
             {badge || 'Most Popular'}
           </div>
         )}
 
-        {/* Gradient border wrapper */}
+        {/* Gradient border wrapper - remove heavy animations */}
         <div
           className={`rounded-2xl p-[1.2px] transition-all duration-300 ${
             highlight
-              ? `bg-gradient-to-br ${colors.gradient} group-hover:scale-[1.02] group-hover:shadow-2xl glow-pulse relative`
+              ? `bg-gradient-to-br ${colors.gradient} group-hover:scale-[1.02] group-hover:shadow-2xl relative`
               : `bg-white/10 ${colors.border} group-hover:scale-[1.01] group-hover:shadow-xl`
           }`}
         >
-          {/* Animated shine effect for highlighted card */}
-          {highlight && (
-            <div className="absolute inset-0 rounded-2xl shimmer-animation pointer-events-none" />
-          )}
+          {/* Remove shimmer animation */}
           
           <div className={`rounded-2xl overflow-hidden p-6 md:p-8 relative bg-gradient-to-br ${colors.gradient} backdrop-blur-md transition-all duration-300 ${colors.border} ring-1 ${highlight ? 'shadow-glow' : 'shadow-xl'}`}>
             {/* aurora / subtle gradient overlay */}
@@ -149,8 +130,8 @@ export default function PricingCard({ name, subtitle, price, features, highlight
 
             <div className="relative z-10">
               <div className="flex items-center gap-3">
-                <h3 className={`text-lg md:text-xl font-extrabold tracking-tight uppercase bg-gradient-to-r ${colors.accent} bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-105 origin-left ${highlight ? 'animate-pulse' : ''}`}>{name}</h3>
-                {highlight && <Sparkles className="-translate-y-1 transition-transform duration-300 group-hover:animate-pulse animate-bounce" size={14} />}
+                <h3 className={`text-lg md:text-xl font-extrabold tracking-tight uppercase bg-gradient-to-r ${colors.accent} bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-105 origin-left`}>{name}</h3>
+                {highlight && <Sparkles className="-translate-y-1 transition-transform duration-300 group-hover:scale-110" size={14} />}
               </div>
               {subtitle && <div className="mt-1 text-white/70 text-sm transition-colors duration-300 group-hover:text-white/80">{subtitle}</div>}
 
@@ -172,14 +153,14 @@ export default function PricingCard({ name, subtitle, price, features, highlight
               {/* Price block */}
               {isTieredPrice ? (
                 <div className="mt-4 flex items-baseline gap-3">
-                  <div className={`text-2xl md:text-4xl font-extrabold bg-gradient-to-r ${colors.accent} bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-110 origin-left drop-shadow-[0_1px_6px_rgba(255,255,255,0.12)] ${highlight ? 'animate-pulse' : ''}`}>
+                  <div className={`text-2xl md:text-4xl font-extrabold bg-gradient-to-r ${colors.accent} bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-110 origin-left drop-shadow-[0_1px_6px_rgba(255,255,255,0.12)]`}>
                     {displayPrice}
                   </div>
                   <div className="text-sm text-white/70 transition-colors duration-300 group-hover:text-white/80">/ {period === 'monthly' ? 'month' : 'year'}</div>
                 </div>
               ) : (
                 <div className="mt-4">
-                  <div className={`text-2xl md:text-4xl font-extrabold bg-gradient-to-r ${colors.accent} bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-110 origin-left drop-shadow-[0_1px_6px_rgba(255,255,255,0.12)] ${highlight ? 'animate-pulse' : ''}`}>
+                  <div className={`text-2xl md:text-4xl font-extrabold bg-gradient-to-r ${colors.accent} bg-clip-text text-transparent transition-transform duration-300 group-hover:scale-110 origin-left drop-shadow-[0_1px_6px_rgba(255,255,255,0.12)]`}>
                     {displayPrice}
                   </div>
                   <div className="text-xs text-white/70 mt-1 transition-colors duration-300 group-hover:text-white/80">USD</div>

@@ -1,75 +1,58 @@
-import type { Metadata } from "next";
+'use client';
 
-export const metadata: Metadata = {
-  title: "Invite Discord Bots | Swelly - Premium Music & Utility Bots",
-  description: "Invite Swelly's premium Discord bots to your server. Get access to Flute, Swelly, Swelly 2, Swelly Beats, and Swelly Prime. High-quality music streaming, advanced features, and 24/7 uptime. One-click invite with zero setup required.",
-  keywords: [
-    "Discord bots",
-    "music bots",
-    "Swelly",
-    "Discord music bot",
-    "utility bots",
-    "premium bots",
-    "bot invite"
-  ],
-  authors: [{ name: "Swelly" }],
-  creator: "Swelly",
-  publisher: "Swelly",
-  category: "Technology",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://swelly.com/invite",
-    title: "Invite Swelly's Premium Discord Bots",
-    description: "Add Swelly bots to your Discord server. Premium music streaming (320kbps), utility features, and dedicated support. 5,000+ active servers. Zero setup required.",
-    siteName: "Swelly",
-    images: [
-      {
-        url: "/swelly3.png",
-        width: 1200,
-        height: 630,
-        alt: "Swelly Discord Bots - Invite Now",
-        type: "image/png"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Invite Swelly's Premium Discord Bots",
-    description: "Add our premium Discord bots: Flute, Swelly, Swelly 2, Swelly Beats & Swelly Prime. High-quality music, advanced features, 24/7 support.",
-    images: ["/swelly3.png"],
-    creator: "@SwellyBot",
-    site: "@SwellyBot"
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1
-    }
-  },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png"
-  },
-  alternates: {
-    canonical: "https://swelly.com/invite"
-  }
-};
+import { useState } from "react";
 
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import DiscordAvatar from "@/components/DiscordAvatar";
 import Link from "next/link";
+import BotPersonalityCard from "@/components/BotPersonalityCard";
+import BotComboCard from "@/components/BotComboCard";
+import dynamic from "next/dynamic";
+
+// Lazy load modal component to reduce bundle size
+const PermissionsExplainedModal = dynamic(() => import("@/components/PermissionsExplainedModal"), {
+  loading: () => null,
+  ssr: false
+});
 
 interface BotUpdate {
   date: string;
   version: string;
   changes: string[];
   type: "feature" | "bugfix" | "improvement" | "performance";
+}
+
+interface BotPermission {
+  name: string;
+  description: string;
+  icon: string;
+  category: "audio" | "moderation" | "utility" | "data" | "admin";
+}
+
+interface BotPersonality {
+  emoji: string;
+  vibe: string;
+  tagline: string;
+  personality: string;
+  bestFor: string[];
+  complexity: "simple" | "moderate" | "advanced";
+}
+
+interface BotCombo {
+  id: string;
+  name: string;
+  description: string;
+  emoji: string;
+  bots: string[];
+  combinedFeatures: string[];
+  price: {
+    monthlyUSD: number;
+    yearlyUSD: number;
+  };
+  savings: number;
+  useCase: string;
+  setupTime: string;
+  difficulty: "easy" | "moderate" | "advanced";
 }
 
 interface BotConfig {
@@ -89,7 +72,11 @@ interface BotConfig {
   updates: BotUpdate[];
   isPremium: boolean;
   premiumFeatures?: string[];
+  personality: BotPersonality;
+  permissions: BotPermission[];
 }
+
+export type { BotUpdate, BotPermission, BotPersonality, BotCombo, BotConfig };
 
 const bots: BotConfig[] = [
   {
@@ -107,6 +94,34 @@ const bots: BotConfig[] = [
       button: "from-purple-600 to-purple-500 hover:shadow-purple-500/40",
       glass: "backdrop-blur-xl bg-white/5 hover:bg-white/10",
     },
+    personality: {
+      emoji: "🎺",
+      vibe: "The Minimalist",
+      tagline: "Clean, simple, and essential",
+      personality: "Straightforward and reliable. Does the job without unnecessary bells and whistles.",
+      bestFor: ["Small communities", "Just starting out", "Minimal setup needed"],
+      complexity: "simple"
+    },
+    permissions: [
+      {
+        name: "Send Messages",
+        description: "Allows the bot to send messages in channels where it has access",
+        icon: "💬",
+        category: "utility"
+      },
+      {
+        name: "Connect to Voice",
+        description: "Required to join voice channels and stream audio",
+        icon: "🎧",
+        category: "audio"
+      },
+      {
+        name: "Read Message History",
+        description: "Allows bot to see previous messages for context commands",
+        icon: "📜",
+        category: "data"
+      }
+    ],
     updates: [
       {
         date: "2025-12-28",
@@ -155,6 +170,40 @@ const bots: BotConfig[] = [
       button: "from-pink-600 to-rose-500 hover:shadow-pink-500/40",
       glass: "backdrop-blur-xl bg-white/5 hover:bg-white/10",
     },
+    personality: {
+      emoji: "🎵",
+      vibe: "The Versatile Performer",
+      tagline: "All-around excellence with style",
+      personality: "Balanced and capable. Great at everything, master of audio quality and user experience.",
+      bestFor: ["Growing communities", "Music enthusiasts", "All-purpose use"],
+      complexity: "moderate"
+    },
+    permissions: [
+      {
+        name: "Send Messages",
+        description: "Core messaging functionality for bot responses",
+        icon: "💬",
+        category: "utility"
+      },
+      {
+        name: "Connect to Voice",
+        description: "Joins voice channels and streams audio content",
+        icon: "🎧",
+        category: "audio"
+      },
+      {
+        name: "Embed Links",
+        description: "Creates rich embeds for advanced music information displays",
+        icon: "🎨",
+        category: "utility"
+      },
+      {
+        name: "Read Reactions",
+        description: "Interprets reactions for interactive music controls",
+        icon: "⭐",
+        category: "utility"
+      }
+    ],
     updates: [
       {
         date: "2025-12-25",
@@ -209,6 +258,46 @@ const bots: BotConfig[] = [
       button: "from-green-600 to-emerald-500 hover:shadow-green-500/40",
       glass: "backdrop-blur-xl bg-white/5 hover:bg-white/10",
     },
+    personality: {
+      emoji: "🚀",
+      vibe: "The Power User",
+      tagline: "Advanced power for serious musicians",
+      personality: "Sophisticated and feature-rich. Designed for creators and enthusiasts who demand the best.",
+      bestFor: ["Music servers", "Content creators", "Power users"],
+      complexity: "advanced"
+    },
+    permissions: [
+      {
+        name: "Send Messages",
+        description: "Sends messages and responses in all channels",
+        icon: "💬",
+        category: "utility"
+      },
+      {
+        name: "Connect to Voice",
+        description: "Advanced voice connectivity with priority processing",
+        icon: "🎧",
+        category: "audio"
+      },
+      {
+        name: "Embed Links",
+        description: "Creates rich embeds with advanced music metadata",
+        icon: "🎨",
+        category: "utility"
+      },
+      {
+        name: "Manage Messages",
+        description: "Required for advanced queue management features",
+        icon: "⚙️",
+        category: "admin"
+      },
+      {
+        name: "Administrator",
+        description: "Enables exclusive premium features and server-wide controls",
+        icon: "👑",
+        category: "admin"
+      }
+    ],
     updates: [
       {
         date: "2025-12-27",
@@ -263,6 +352,46 @@ const bots: BotConfig[] = [
       button: "from-yellow-600 to-amber-500 hover:shadow-yellow-500/40",
       glass: "backdrop-blur-xl bg-white/5 hover:bg-white/10",
     },
+    personality: {
+      emoji: "🎛️",
+      vibe: "The Studio Master",
+      tagline: "Professional production tools at your fingertips",
+      personality: "Technical and creative. Built by producers for producers who want studio-quality control.",
+      bestFor: ["Producers", "Music communities", "Creators & artists"],
+      complexity: "advanced"
+    },
+    permissions: [
+      {
+        name: "Send Messages",
+        description: "Sends production tools and beat information",
+        icon: "💬",
+        category: "utility"
+      },
+      {
+        name: "Connect to Voice",
+        description: "Streams beats and production samples",
+        icon: "🎧",
+        category: "audio"
+      },
+      {
+        name: "Manage Channels",
+        description: "Creates production rooms and collaboration spaces",
+        icon: "🏗️",
+        category: "admin"
+      },
+      {
+        name: "Read Reactions",
+        description: "Controls beat selection via interactive reactions",
+        icon: "⭐",
+        category: "utility"
+      },
+      {
+        name: "Administrator",
+        description: "Full server control for production environments",
+        icon: "👑",
+        category: "admin"
+      }
+    ],
     updates: [
       {
         date: "2025-12-26",
@@ -317,6 +446,46 @@ const bots: BotConfig[] = [
       button: "from-cyan-600 to-blue-500 hover:shadow-cyan-500/40",
       glass: "backdrop-blur-xl bg-white/5 hover:bg-white/10",
     },
+    personality: {
+      emoji: "👑",
+      vibe: "The Enterprise Boss",
+      tagline: "Ultimate power and control",
+      personality: "Professional and comprehensive. Everything you could need, built for scale and reliability.",
+      bestFor: ["Large communities", "Enterprise", "Everything"],
+      complexity: "advanced"
+    },
+    permissions: [
+      {
+        name: "Send Messages",
+        description: "Full messaging capabilities across all channels",
+        icon: "💬",
+        category: "utility"
+      },
+      {
+        name: "Connect to Voice",
+        description: "Enterprise-grade voice connectivity",
+        icon: "🎧",
+        category: "audio"
+      },
+      {
+        name: "Administrator",
+        description: "Full server permissions for complete control",
+        icon: "👑",
+        category: "admin"
+      },
+      {
+        name: "Manage Webhooks",
+        description: "Advanced integration and automation capabilities",
+        icon: "🔗",
+        category: "admin"
+      },
+      {
+        name: "View Audit Log",
+        description: "Access to comprehensive server activity logs",
+        icon: "📊",
+        category: "data"
+      }
+    ],
     updates: [
       {
         date: "2025-12-29",
@@ -352,7 +521,84 @@ const bots: BotConfig[] = [
   },
 ];
 
+// Bot Combos Data
+const botCombos: BotCombo[] = [
+  {
+    id: "music-studio",
+    name: "🎛️ Music Studio Bundle",
+    emoji: "🎛️",
+    description: "Complete music production and playback ecosystem",
+    bots: ["Swelly 2", "Swelly Beats"],
+    combinedFeatures: [
+      "320kbps audio quality",
+      "500+ beat samples",
+      "Advanced equalizer & effects",
+      "Collaboration tools",
+      "Priority support",
+      "Studio-grade reverb processing"
+    ],
+    price: {
+      monthlyUSD: 19.99,
+      yearlyUSD: 199.99
+    },
+    savings: 4,
+    useCase: "Perfect for music communities, producers, and serious audio enthusiasts",
+    setupTime: "5-10 minutes",
+    difficulty: "moderate"
+  },
+  {
+    id: "gaming-server",
+    name: "🎮 Gaming Server Bundle",
+    emoji: "🎮",
+    description: "Music and entertainment for gaming communities",
+    bots: ["Swelly", "Flute"],
+    combinedFeatures: [
+      "Dual music bot redundancy",
+      "Seamless playback switching",
+      "Queue management",
+      "24/7 uptime",
+      "Playlist support",
+      "Low latency (<100ms)"
+    ],
+    price: {
+      monthlyUSD: 0,
+      yearlyUSD: 0
+    },
+    savings: 0,
+    useCase: "Ideal for gaming communities that want reliable music without premium",
+    setupTime: "2-3 minutes",
+    difficulty: "easy"
+  },
+  {
+    id: "everything-bundle",
+    name: "👑 Everything Bundle",
+    emoji: "👑",
+    description: "Ultimate all-in-one solution with every feature unlocked",
+    bots: ["Swelly Prime", "Swelly Beats", "Swelly 2"],
+    combinedFeatures: [
+      "All premium features unlocked",
+      "Priority 24/7 support",
+      "Enterprise API access",
+      "Custom webhooks & integrations",
+      "Advanced analytics",
+      "White-label options",
+      "Music production suite",
+      "Admin dashboard",
+      "Custom feature requests"
+    ],
+    price: {
+      monthlyUSD: 49.99,
+      yearlyUSD: 499.99
+    },
+    savings: 10,
+    useCase: "For large communities, content creators, and enterprises needing complete control",
+    setupTime: "15-20 minutes",
+    difficulty: "advanced"
+  }
+];
+
 export default function InviteBotsPage() {
+  const [openModalBot, setOpenModalBot] = useState<string | null>(null);
   return (
     <div>
       {/* Hero Section */}
@@ -375,13 +621,28 @@ export default function InviteBotsPage() {
             {bots.map((bot, idx) => (
               <ScrollReveal key={bot.botId} delay={idx * 0.1}>
                 <div className="group relative h-full">
-                  {/* Glass Morphism Card */}
-                  <div className={`rounded-2xl overflow-hidden transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl ${bot.colorScheme.glass} ring-2 ${bot.colorScheme.ring}`}>
+                  {/* Glass Morphism Card - Premium has stronger gradient background */}
+                  <div className={`relative rounded-2xl overflow-hidden transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-2xl ${bot.colorScheme.glass} ring-2 ${bot.colorScheme.ring}`}
+                    style={bot.isPremium ? { background: `linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(${bot.colorScheme.gradient.includes('green') ? '34,197,94' : bot.colorScheme.gradient.includes('yellow') ? '217,119,6' : '59,130,246'},0.08) 100%), ${bot.colorScheme.glass}` } : undefined}>
+                    
+                    {/* Premium color gradient accent - top border */}
+                    {bot.isPremium && (
+                      <div className={`absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r ${bot.colorScheme.gradient}`} />
+                    )}
+                    
                     {/* Gradient border effect */}
                     <div className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none bg-gradient-to-br ${bot.colorScheme.gradient}`} />
                     
+                    {/* Premium shimmer effect */}
+                    {bot.isPremium && (
+                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" style={{
+                        backgroundSize: '200% 100%',
+                        animation: 'shimmer 3s infinite'
+                      }} />
+                    )}
+                    
                     <div className="relative p-6 md:p-8 h-full flex flex-col">
-                      {/* Badge */}
+                      {/* Badge - Premium animated */}
                       {bot.badge && (
                         <div className="absolute top-4 right-4 z-20">
                           <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-500/80 to-blue-600/80 text-white ring-1 ring-blue-300/50 backdrop-blur-sm">
@@ -438,6 +699,15 @@ export default function InviteBotsPage() {
                             </button>
                           )}
                         </div>
+
+                        {/* Permissions Button */}
+                        <button
+                          onClick={() => setOpenModalBot(bot.botId)}
+                          className={`w-full text-center rounded-lg py-2.5 font-medium text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border border-white/20 transition-all duration-300 text-sm`}
+                          aria-label={`View ${bot.name} permissions`}
+                        >
+                          Why these permissions?
+                        </button>
 
                         {/* Bot Stats / Features */}
                         <div className={`border-t ${bot.colorScheme.border} pt-5`}>
@@ -505,6 +775,68 @@ export default function InviteBotsPage() {
             </ScrollReveal>
           ))}
         </div>
+      </section>
+
+      {/* Bot Personality Section */}
+      <section className="container py-20">
+        <ScrollReveal>
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Get to Know Each Bot
+              </span>
+            </h2>
+            <p className="text-white/70 text-lg">
+              Each Swelly bot has its own personality and strengths. Choose the one that fits your community&apos;s needs.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {bots.map((bot, idx) => (
+            <BotPersonalityCard
+              key={bot.botId}
+              bot={bot}
+              personality={bot.personality}
+              index={idx}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Bot Combos Section */}
+      <section className="container py-20">
+        <ScrollReveal>
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-emerald-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Pre-Made Bot Bundles
+              </span>
+            </h2>
+            <p className="text-white/70 text-lg">
+              Can&apos;t decide which bots to invite? Choose a pre-made bundle tailored to your server&apos;s needs.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {botCombos.map((combo, idx) => (
+            <BotComboCard
+              key={combo.id}
+              combo={combo}
+              index={idx}
+            />
+          ))}
+        </div>
+
+        {/* Info Box */}
+        <ScrollReveal>
+          <div className="mt-12 p-6 rounded-xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20">
+            <p className="text-white/80 text-center">
+              <span className="font-semibold">📦 Bundle Tip:</span> Mix and match any bots to create your perfect setup. Bundles are just recommendations!
+            </p>
+          </div>
+        </ScrollReveal>
       </section>
 
       {/* CTA Section */}
@@ -631,6 +963,16 @@ export default function InviteBotsPage() {
           </div>
         </ScrollReveal>
       </section>
+
+      {/* Permissions Modal */}
+      {openModalBot && (
+        <PermissionsExplainedModal
+          isOpen={!!openModalBot}
+          botName={bots.find(b => b.botId === openModalBot)?.name || "Bot"}
+          permissions={bots.find(b => b.botId === openModalBot)?.permissions || []}
+          onClose={() => setOpenModalBot(null)}
+        />
+      )}
     </div>
   );
 }
