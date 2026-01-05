@@ -151,9 +151,12 @@ export default function BotComboCard({
                 <>
                   <Link
                     href="/invite"
-                    className="w-full text-center px-4 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 hover:shadow-lg transition-all duration-300 transform group-hover:scale-105 active:scale-95 ring-1 ring-white/20 shadow-lg"
+                    className="relative w-full text-center px-4 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 hover:shadow-lg transition-all duration-300 transform group-hover:scale-105 active:scale-95 ring-1 ring-white/20 shadow-lg overflow-hidden"
                   >
-                    Get Started Free
+                    <span className="absolute top-1.5 right-2 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/20">
+                      FREE ✨
+                    </span>
+                    <span>Get Started Free</span>
                   </Link>
                   <p className="text-center text-xs text-white/60">No credit card required</p>
                 </>
@@ -161,15 +164,21 @@ export default function BotComboCard({
                 <>
                   <Link
                     href="/premium"
-                    className="w-full text-center px-4 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-emerald-600 to-emerald-500 hover:shadow-lg transition-all duration-300 transform group-hover:scale-105 active:scale-95 ring-1 ring-white/20 shadow-lg"
+                    className="relative w-full text-center px-4 py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-emerald-600 to-emerald-500 hover:shadow-lg transition-all duration-300 transform group-hover:scale-105 active:scale-95 ring-1 ring-white/20 shadow-lg overflow-hidden"
                   >
-                    Subscribe Now
+                    <span className="absolute top-1.5 right-2 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/20">
+                      💎 Premium
+                    </span>
+                    <span>Subscribe Now</span>
                   </Link>
                   <Link
                     href="/invite"
-                    className="w-full text-center px-4 py-3 rounded-lg font-semibold text-white/90 bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40"
+                    className="relative w-full text-center px-4 py-3 rounded-lg font-semibold text-white/90 bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40 overflow-hidden"
                   >
-                    View Details
+                    <span className="absolute top-1.5 right-2 px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-300">
+                      ℹ️ Info
+                    </span>
+                    <span>View Details</span>
                   </Link>
                 </>
               )}

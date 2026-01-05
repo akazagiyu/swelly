@@ -623,18 +623,18 @@ export default function InviteBotsPage() {
                 <div className="group relative h-full">
                   {/* Premium highlight glow background */}
                   {bot.isPremium && (
-                    <div className="absolute -inset-0.5 bg-gradient-to-br from-amber-600/30 via-yellow-500/20 to-orange-600/30 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+                    <div className={`absolute -inset-0.5 bg-gradient-to-br ${bot.colorScheme.gradient} rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none`} />
                   )}
                   
                   {/* Glass Morphism Card - Premium has stronger gradient background */}
-                  <div className={`relative rounded-2xl overflow-hidden transition-all duration-300 ${bot.isPremium ? 'group-hover:scale-[1.03] group-hover:shadow-2xl shadow-2xl' : 'group-hover:scale-[1.02] group-hover:shadow-2xl'} ${bot.colorScheme.glass} ring-2 ${bot.isPremium ? `${bot.colorScheme.ring} ring-yellow-400/50` : bot.colorScheme.ring}`}
+                  <div className={`relative rounded-2xl overflow-hidden transition-all duration-300 ${bot.isPremium ? 'group-hover:scale-[1.03] group-hover:shadow-2xl shadow-2xl' : 'group-hover:scale-[1.02] group-hover:shadow-2xl'} ${bot.colorScheme.glass} ring-2 ${bot.colorScheme.ring}`}
                     style={bot.isPremium ? { 
                       background: `linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(${bot.colorScheme.gradient.includes('green') ? '34,197,94' : bot.colorScheme.gradient.includes('yellow') ? '217,119,6' : '59,130,246'},0.12) 100%), linear-gradient(to bottom, rgba(255,200,0,0.08) 0%, rgba(${bot.colorScheme.gradient.includes('green') ? '34,197,94' : bot.colorScheme.gradient.includes('yellow') ? '217,119,6' : '59,130,246'},0.04) 100%)` 
                     } : undefined}>
                     
-                    {/* Premium color gradient accent - top border (premium bots get thicker gold border) */}
+                    {/* Premium color gradient accent - top border (premium bots get thicker border) */}
                     {bot.isPremium && (
-                      <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-yellow-400 via-amber-300 to-orange-400 opacity-80" />
+                      <div className={`absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r ${bot.colorScheme.gradient} opacity-90`} />
                     )}
                     {!bot.isPremium && (
                       <div className={`absolute top-0 inset-x-0 h-0.5 bg-gradient-to-r ${bot.colorScheme.gradient}`} />
@@ -646,7 +646,7 @@ export default function InviteBotsPage() {
                     {/* Premium sparkle effect - only for premium bots */}
                     {bot.isPremium && (
                       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{
-                        background: 'radial-gradient(circle at 20% 50%, rgba(255,200,0,0.3) 0%, transparent 50%)',
+                        background: `radial-gradient(circle at 20% 50%, ${bot.colorScheme.accent.includes('from') ? 'rgba(34,197,94,0.3)' : bot.colorScheme.accent.includes('yellow') ? 'rgba(217,119,6,0.3)' : 'rgba(59,130,246,0.3)'} 0%, transparent 50%)`,
                       }} />
                     )}
                     
@@ -654,7 +654,7 @@ export default function InviteBotsPage() {
                       {/* Premium Crown Badge + Standard Badge */}
                       {bot.isPremium && (
                         <div className="absolute top-4 left-4 z-20">
-                          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-yellow-500 to-amber-500 text-black ring-2 ring-yellow-300 backdrop-blur-sm shadow-lg">
+                          <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r ${bot.colorScheme.accent} text-black ring-2 ring-white/20 backdrop-blur-sm shadow-lg`}>
                             <span className="text-sm">👑</span> Premium Bot
                           </span>
                         </div>
@@ -662,7 +662,7 @@ export default function InviteBotsPage() {
                       
                       {bot.badge && bot.isPremium && (
                         <div className="absolute top-4 right-4 z-20">
-                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-500 to-teal-500 text-white ring-1 ring-emerald-300/50 backdrop-blur-sm shadow-md">
+                          <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${bot.colorScheme.accent} text-black ring-1 ring-white/20 backdrop-blur-sm shadow-md`}>
                             <span>✓</span> Verified
                           </span>
                         </div>
@@ -703,13 +703,18 @@ export default function InviteBotsPage() {
                               href={bot.inviteLink}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className={`block w-full text-center rounded-lg py-3 font-semibold text-white transition-all duration-300 transform ring-1 shadow-lg ${
+                              className={`relative block w-full text-center rounded-lg py-3 font-semibold text-white transition-all duration-300 transform ring-1 shadow-lg overflow-hidden group/btn ${
                                 bot.isPremium
-                                  ? 'bg-gradient-to-r from-yellow-600 to-amber-500 hover:shadow-yellow-500/50 group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-110 active:scale-95 ring-yellow-300/40'
+                                  ? `bg-gradient-to-r ${bot.colorScheme.button} hover:shadow-lg group-hover:shadow-2xl group-hover:-translate-y-1 group-hover:scale-110 active:scale-95 ring-white/20`
                                   : `bg-gradient-to-r ${bot.colorScheme.button} group-hover:shadow-xl group-hover:-translate-y-0.5 group-hover:scale-105 active:scale-95 active:translate-y-0.5 ring-white/20`
                               }`}
                             >
-                              {bot.isPremium ? '👑 Invite Premium' : `Invite ${bot.name}`}
+                              {bot.isPremium && (
+                                <span className={`absolute top-1 right-1 inline-flex items-center gap-0.5 px-3 py-1 rounded-full text-[10px] font-bold bg-gradient-to-r from-amber-300 to-yellow-300 text-black backdrop-blur-sm border border-yellow-200 shadow-lg`}>
+                                  ⭐ Premium
+                                </span>
+                              )}
+                              <span className="block">{bot.isPremium ? '👑 Invite Premium' : `Invite ${bot.name}`}</span>
                             </a>
                           ) : (
                             <button
@@ -721,12 +726,15 @@ export default function InviteBotsPage() {
                           )}
                         </div>
 
-                        {/* Permissions Button */}
+                        {/* Permissions Button with Info Badge */}
                         <button
                           onClick={() => setOpenModalBot(bot.botId)}
-                          className={`w-full text-center rounded-lg py-2.5 font-medium text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border border-white/20 transition-all duration-300 text-sm`}
+                          className={`relative w-full text-center rounded-lg py-2.5 font-medium text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border ${bot.colorScheme.border} transition-all duration-300 text-sm group/perm`}
                           aria-label={`View ${bot.name} permissions`}
                         >
+                          <span className={`absolute top-1 right-1 inline-block px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-gradient-to-r ${bot.colorScheme.accent} text-white border border-white/30`}>
+                            ℹ️ {bot.permissions?.length || 0}
+                          </span>
                           Why these permissions?
                         </button>
 
@@ -786,23 +794,29 @@ export default function InviteBotsPage() {
               n: 1,
               title: "Click Invite",
               description: "Click the invite button on any bot card to authorize it.",
-              icon: "🔗"
+              icon: "🔗",
+              badge: "Step 1"
             },
             {
               n: 2,
               title: "Select Server",
               description: "Choose the Discord server where you have admin permissions.",
-              icon: "🖱️"
+              icon: "🖱️",
+              badge: "Step 2"
             },
             {
               n: 3,
               title: "Enjoy",
               description: "Start using all premium features immediately with /help",
-              icon: "🎵"
+              icon: "🎵",
+              badge: "Step 3"
             },
           ].map((step, i) => (
             <ScrollReveal key={step.n} delay={i * 0.1}>
-              <div className="card p-6">
+              <div className="card p-6 relative overflow-hidden group/step">
+                <div className="absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-blue-500/30 to-purple-500/30 border border-blue-400/50 text-blue-300">
+                  {step.badge}
+                </div>
                 <div className="text-4xl mb-3">{step.icon}</div>
                 <div className="font-semibold text-lg mb-2">{step.title}</div>
                 <p className="text-white/70 text-sm">{step.description}</p>
@@ -940,15 +954,21 @@ export default function InviteBotsPage() {
                     <div className="flex flex-col sm:flex-row gap-3">
                       <Link
                         href="/premium"
-                        className="px-6 py-3 rounded-xl font-semibold text-white bg-indigo-500 hover:bg-indigo-600 transition-all duration-300 transform hover:scale-105 active:scale-95 ring-1 ring-white/20 text-center"
+                        className="relative px-6 py-3 rounded-xl font-semibold text-white bg-indigo-500 hover:bg-indigo-600 transition-all duration-300 transform hover:scale-105 active:scale-95 ring-1 ring-white/20 text-center overflow-hidden group/cta"
                       >
-                        View Plans
+                        <span className="absolute top-2 right-2 px-2 py-0.5 rounded-full text-[11px] font-bold bg-white/20 text-white">
+                          💎 Tiers
+                        </span>
+                        <span>View Plans</span>
                       </Link>
                       <a
                         href="/support"
-                        className="px-6 py-3 rounded-xl font-semibold text-white/90 bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40 text-center"
+                        className="relative px-6 py-3 rounded-xl font-semibold text-white/90 bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/20 hover:border-white/40 text-center overflow-hidden"
                       >
-                        Learn More
+                        <span className="absolute top-2 right-2 px-2 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-300">
+                          ℹ️ Help
+                        </span>
+                        <span>Learn More</span>
                       </a>
                     </div>
                   </div>
