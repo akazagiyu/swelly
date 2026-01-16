@@ -481,7 +481,7 @@
   },
   {
     "name": "seek",
-    "aliases": ["seekto", "jump"],
+    "aliases": ["seekto"],
     "description": "Seek to a specific position in the currently playing song.",
     "category": "Music",
     "cooldown": 5,
@@ -700,23 +700,6 @@
       "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
     }
   },
-  {
-    "name": "spotify",
-    "aliases": ["sp"],
-    "description": "Manage your Spotify integration.",
-    "category": "Spotify",
-    "cooldown": 5,
-    "permissions": {
-      "user": ["SendMessages"],
-      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
-    }
-  }
-  { "name": "pl-removetrack", "description": "Remove a track from a playlist.", "category": "Playlist", "usage": "/pl-removetrack <name> <index>" },
-
-  { "name": "8d", "description": "Enable 8D spatial audio effect.", "category": "Audio Effects" },
-  { "name": "majestic", "description": "Enable majestic audio preset.", "category": "Audio Effects" },
-  { "name": "bassboost", "description": "Enable bass boost effect.", "category": "Audio Effects" },
-  { "name": "channelmix", "description": "Adjust stereo channel mix.", "category": "Audio Effects" },
   {
     "name": "spotify",
     "aliases": ["sp"],
