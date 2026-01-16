@@ -252,10 +252,10 @@ function StatusPageInner() {
   return (
     <div className="min-h-screen">
       {dashboardMetrics && (
-        <div className="bg-gradient-to-br from-slate-900 via-purple-900/50 to-slate-900 py-16 border-b border-white/10">
+        <div className="bg-gradient-to-br from-slate-900 via-blurple/10 to-slate-900 py-16 border-b border-blurple/30 shadow-lg shadow-blurple/10">
           <div className="container space-y-12">
             <div className="text-center">
-              <h1 className="text-4xl md:text-5xl font-extrabold tracking-wider mb-3">Bot Statistics Dashboard</h1>
+              <h1 className="text-4xl md:text-5xl font-extrabold tracking-wider mb-3 text-blurple">Bot Statistics Dashboard</h1>
               <p className="text-white/70 text-lg max-w-2xl mx-auto">Real-time metrics and performance analytics for Swelly</p>
             </div>
             <div>

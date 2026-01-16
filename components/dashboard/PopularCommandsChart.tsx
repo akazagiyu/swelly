@@ -32,20 +32,20 @@ const defaultTopCommands: PopularCommand[] = [
 ];
 
 /**
- * Color gradient for bars (blue to purple)
+ * Color gradient for bars (Discord Blurple themed)
  */
 const getBarColor = (index: number): string => {
   const colors = [
-    "#3b82f6", // blue-500
-    "#2563eb", // blue-600
-    "#1d4ed8", // blue-700
-    "#8b5cf6", // violet-500
-    "#7c3aed", // violet-600
-    "#6d28d9", // violet-700
-    "#a855f7", // fuchsia-500
-    "#d946ef", // fuchsia-500
-    "#ec4899", // pink-500
-    "#f43f5e", // rose-500
+    "#5865F2", // Discord Blurple
+    "#7289DA", // Discord Light Blurple
+    "#4752C4", // Discord Dark Blurple
+    "#40444B", // Discord Dark Gray
+    "#36393F", // Discord Darker Gray
+    "#2C2F33", // Discord Darkest Gray
+    "#5865F2", // Discord Blurple (repeat for cycling)
+    "#7289DA",
+    "#4752C4",
+    "#40444B",
   ];
   return colors[index % colors.length];
 };
@@ -101,14 +101,14 @@ const PopularCommandsChart: React.FC<PopularCommandsChartProps> = ({
 
   if (loading) {
     return (
-      <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+      <div className="bg-blurple/5 backdrop-blur-sm rounded-xl p-6 border border-blurple/20 shadow-lg shadow-blurple/5">
         <div className="h-96 bg-white/10 rounded animate-pulse" />
       </div>
     );
   }
 
   return (
-    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+    <div className="bg-blurple/5 backdrop-blur-sm rounded-xl p-6 border border-blurple/20 shadow-lg shadow-blurple/5">
       {/* Header */}
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-white mb-2">Top 10 Commands</h3>
@@ -145,7 +145,7 @@ const PopularCommandsChart: React.FC<PopularCommandsChartProps> = ({
       </ResponsiveContainer>
 
       {/* Top 3 Spotlight */}
-      <div className="mt-8 pt-6 border-t border-white/10">
+      <div className="mt-8 pt-6 border-t border-blurple/20">
         <p className="text-xs font-semibold text-white/60 mb-3 uppercase">Top Performers</p>
         <div className="space-y-2">
           {data.slice(0, 3).map((cmd) => {
@@ -156,13 +156,13 @@ const PopularCommandsChart: React.FC<PopularCommandsChartProps> = ({
             return (
               <div key={cmd.name} className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <span className="text-lg font-bold text-primary">{cmd.rank}</span>
+                  <span className="text-lg font-bold text-blurple">{cmd.rank}</span>
                   <div>
                     <p className="text-sm font-medium text-white capitalize">{cmd.name}</p>
                     <div className="w-40 h-2 bg-white/10 rounded-full overflow-hidden mt-1">
                       <div
-                        className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-                        style={{ width: `${percentage}%` }}
+                        className="h-full rounded-full"
+                        style={{ background: 'linear-gradient(to right, #5865F2, #7289DA)', width: `${percentage}%` }}
                       />
                     </div>
                   </div>

@@ -94,14 +94,14 @@ const Activity24hChart: React.FC<Activity24hChartProps> = ({ loading = false }) 
 
   if (loading) {
     return (
-      <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+      <div className="bg-blurple/5 backdrop-blur-sm rounded-xl p-6 border border-blurple/20 shadow-lg shadow-blurple/5">
         <div className="h-80 bg-white/10 rounded animate-pulse" />
       </div>
     );
   }
 
   return (
-    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+    <div className="bg-blurple/5 backdrop-blur-sm rounded-xl p-6 border border-blurple/20 shadow-lg shadow-blurple/5">
       {/* Header */}
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-white mb-2">24-Hour Activity</h3>
@@ -113,12 +113,12 @@ const Activity24hChart: React.FC<Activity24hChartProps> = ({ loading = false }) 
         <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="guildsGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+              <stop offset="5%" stopColor="#5865F2" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#5865F2" stopOpacity={0} />
             </linearGradient>
             <linearGradient id="usersGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
+              <stop offset="5%" stopColor="#7289DA" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#7289DA" stopOpacity={0} />
             </linearGradient>
           </defs>
 
@@ -149,7 +149,7 @@ const Activity24hChart: React.FC<Activity24hChartProps> = ({ loading = false }) 
             type="monotone"
             dataKey="guilds"
             name="Active Guilds"
-            stroke="#3b82f6"
+            stroke="#5865F2"
             fill="url(#guildsGradient)"
             strokeWidth={2}
             isAnimationActive={true}
@@ -158,7 +158,7 @@ const Activity24hChart: React.FC<Activity24hChartProps> = ({ loading = false }) 
             type="monotone"
             dataKey="users"
             name="Total Users"
-            stroke="#8b5cf6"
+            stroke="#7289DA"
             fill="url(#usersGradient)"
             strokeWidth={2}
             isAnimationActive={true}
@@ -167,22 +167,22 @@ const Activity24hChart: React.FC<Activity24hChartProps> = ({ loading = false }) 
       </ResponsiveContainer>
 
       {/* Statistics footer */}
-      <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-white/10">
+      <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-blurple/20">
         <div>
           <p className="text-xs text-white/60 mb-1">Peak Guilds</p>
-          <p className="text-lg font-bold text-blue-400">{(stats.peakGuilds / 1000).toFixed(1)}K</p>
+          <p className="text-lg font-bold text-blurple">{(stats.peakGuilds / 1000).toFixed(1)}K</p>
         </div>
         <div>
           <p className="text-xs text-white/60 mb-1">Avg Guilds</p>
-          <p className="text-lg font-bold text-blue-400">{(stats.avgGuilds / 1000).toFixed(1)}K</p>
+          <p className="text-lg font-bold text-blurple">{(stats.avgGuilds / 1000).toFixed(1)}K</p>
         </div>
         <div>
           <p className="text-xs text-white/60 mb-1">Peak Users</p>
-          <p className="text-lg font-bold text-purple-400">{(stats.peakUsers / 1_000_000).toFixed(1)}M</p>
+          <p className="text-lg font-bold" style={{color: '#7289DA'}}>{(stats.peakUsers / 1_000_000).toFixed(1)}M</p>
         </div>
         <div>
           <p className="text-xs text-white/60 mb-1">Peak Commands</p>
-          <p className="text-lg font-bold text-cyan-400">{(stats.peakCommands / 1000).toFixed(0)}K</p>
+          <p className="text-lg font-bold text-blurple">{(stats.peakCommands / 1000).toFixed(0)}K</p>
         </div>
       </div>
     </div>

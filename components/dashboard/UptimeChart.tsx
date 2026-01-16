@@ -67,19 +67,19 @@ const UptimeChart: React.FC<UptimeChartProps> = ({ uptimePercent, loading = fals
 
   if (loading) {
     return (
-      <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+      <div className="bg-blurple/5 backdrop-blur-sm rounded-xl p-6 border border-blurple/20 shadow-lg shadow-blurple/5">
         <div className="h-80 bg-white/10 rounded animate-pulse" />
       </div>
     );
   }
 
   return (
-    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+    <div className="bg-blurple/5 backdrop-blur-sm rounded-xl p-6 border border-blurple/20 shadow-lg shadow-blurple/5">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-baseline justify-between mb-2">
           <h3 className="text-lg font-semibold text-white">30-Day Uptime</h3>
-          <div className="text-3xl font-bold text-green-400">{uptimePercent.toFixed(2)}%</div>
+          <div className="text-3xl font-bold text-blurple">{uptimePercent.toFixed(2)}%</div>
         </div>
         <p className="text-sm text-white/60">
           Industry-leading reliability with redundant infrastructure
@@ -94,8 +94,8 @@ const UptimeChart: React.FC<UptimeChartProps> = ({ uptimePercent, loading = fals
         >
           <defs>
             <linearGradient id="uptimeGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+              <stop offset="5%" stopColor="#5865F2" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#5865F2" stopOpacity={0} />
             </linearGradient>
           </defs>
 
@@ -121,7 +121,7 @@ const UptimeChart: React.FC<UptimeChartProps> = ({ uptimePercent, loading = fals
             type="monotone"
             dataKey="uptime"
             fill="url(#uptimeGradient)"
-            stroke="#10b981"
+            stroke="#5865F2"
             strokeWidth={2}
             isAnimationActive={true}
           />
@@ -136,7 +136,7 @@ const UptimeChart: React.FC<UptimeChartProps> = ({ uptimePercent, loading = fals
       </ResponsiveContainer>
 
       {/* Footer stats */}
-      <div className="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
+      <div className="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-blurple/20">
         <div>
           <p className="text-xs text-white/60 mb-1">Average</p>
           <p className="text-lg font-bold text-white">99.87%</p>
