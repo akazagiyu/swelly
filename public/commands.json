@@ -1,74 +1,731 @@
 [
-  { "name": "botinfo", "description": "Show bot information and stats.", "category": "General" },
-  { "name": "help", "description": "List commands or show help for a command.", "category": "General", "usage": "/help [command]" },
-  { "name": "invite", "description": "Get the invite link to add the bot.", "category": "General" },
-  { "name": "lastfm", "description": "Link or view your Last.fm profile.", "category": "General" },
-  { "name": "ping", "description": "Check bot latency.", "category": "General" },
-  { "name": "premium", "description": "Show premium info and perks.", "category": "General" },
-  { "name": "profile", "description": "Show your profile and linked accounts.", "category": "General" },
-  { "name": "support", "description": "Get a link to the support server.", "category": "General" },
-  { "name": "uptime", "description": "Show bot uptime.", "category": "General" },
-  { "name": "vote", "description": "Get links to vote for the bot.", "category": "General" },
-
-  { "name": "247", "description": "Toggle 24/7 mode to keep the bot in voice.", "category": "Configuration", "usage": "/247 [on|off]" },
-  { "name": "autoplay", "description": "Toggle autoplay when the queue ends.", "category": "Configuration" },
-  { "name": "fix", "description": "Try to fix common audio issues.", "category": "Configuration" },
-  { "name": "prefix", "description": "View or set the server prefix.", "category": "Configuration", "usage": "/prefix [new]" },
-  { "name": "settext", "description": "Set the bot's text channel.", "category": "Configuration", "usage": "/settext [#channel]" },
-  { "name": "settings", "description": "View or change server settings.", "category": "Configuration" },
-
-  { "name": "clear", "description": "Clear the current queue.", "category": "Music" },
-  { "name": "disconnect", "description": "Disconnect the bot from voice.", "category": "Music" },
-  { "name": "forward", "description": "Fast-forward the current track.", "category": "Music", "usage": "/forward <seconds>" },
-  { "name": "join", "description": "Make the bot join your voice channel.", "category": "Music" },
-  { "name": "loop", "description": "Loop the current track or the entire queue.", "category": "Music", "usage": "/loop [track|queue|off]" },
-  { "name": "nowplaying", "description": "Show the currently playing track.", "category": "Music" },
-  { "name": "pause", "description": "Pause the current track.", "category": "Music" },
-  { "name": "play", "description": "Play a song or playlist by URL or query.", "category": "Music", "usage": "/play <query>" },
-  { "name": "previous", "description": "Play the previous track.", "category": "Music" },
-  { "name": "queue", "description": "Show the current queue.", "category": "Music" },
-  { "name": "remove", "description": "Remove a track from the queue.", "category": "Music", "usage": "/remove <position>" },
-  { "name": "removedupes", "description": "Remove duplicate tracks from the queue.", "category": "Music" },
-  { "name": "replay", "description": "Replay the current track from the start.", "category": "Music" },
-  { "name": "resume", "description": "Resume playback.", "category": "Music" },
-  { "name": "rewind", "description": "Rewind the current track.", "category": "Music", "usage": "/rewind <seconds>" },
-  { "name": "search", "description": "Search for tracks without queuing.", "category": "Music", "usage": "/search <query>" },
-  { "name": "seek", "description": "Seek to a timestamp in the track.", "category": "Music", "usage": "/seek <mm:ss>" },
-  { "name": "shuffle", "description": "Shuffle the queue.", "category": "Music" },
-  { "name": "skip", "description": "Skip the current track.", "category": "Music" },
-  { "name": "stop", "description": "Stop playback and clear the queue.", "category": "Music" },
-  { "name": "volume", "description": "Set the player volume.", "category": "Music", "usage": "/volume <0-200>" },
-  { "name": "move", "description": "Move a track to a new position in the queue.", "category": "Music", "usage": "/move <from> <to>" },
-  { "name": "playnext", "description": "Queue a song to play next.", "category": "Music", "usage": "/playnext <query>" },
-  { "name": "playnow", "description": "Play a song immediately, skipping current.", "category": "Music", "usage": "/playnow <query>" },
-
-  { "name": "pl-add", "description": "Add a track to a playlist.", "category": "Playlist", "usage": "/pl-add <name> <query>" },
-  { "name": "pl-create", "description": "Create a new playlist.", "category": "Playlist", "usage": "/pl-create <name>" },
-  { "name": "pl-delete", "description": "Delete a playlist.", "category": "Playlist", "usage": "/pl-delete <name>" },
-  { "name": "pl-info", "description": "Show details for a playlist.", "category": "Playlist", "usage": "/pl-info <name>" },
-  { "name": "pl-list", "description": "List your playlists.", "category": "Playlist" },
-  { "name": "pl-play", "description": "Play a saved playlist.", "category": "Playlist", "usage": "/pl-play <name>" },
+  {
+    "name": "247",
+    "aliases": ["247mode", "toggle247"],
+    "description": "Toggle 24/7 mode for the bot.",
+    "category": "Configuration",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["ManageChannels"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "autoplay",
+    "aliases": ["autoplaymode", "toggleautoplay"],
+    "description": "Toggle autoplay mode for the bot.",
+    "category": "Configuration",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "fix",
+    "aliases": ["vcissue", "fixvoice", "fixvc", "fixvoicechannel"],
+    "description": "Fixes voice crack issues by changing the Discord voice channel region for better quality.",
+    "category": "Configuration",
+    "cooldown": 10,
+    "voteOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ManageChannels", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "settext",
+    "aliases": [],
+    "description": "Sets the text channel for the bot.",
+    "category": "Configuration",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["ManageGuild"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "settings",
+    "aliases": ["setting", "config", "cfg"],
+    "description": "Show all settings of the server.",
+    "category": "Configuration",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["ManageGuild", "SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "djmode",
+    "aliases": ["toggledjmode"],
+    "description": "Toggle DJ mode for the bot.",
+    "category": "Configuration",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["ManageGuild", "SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "prefix",
+    "aliases": ["prefixset", "setprefix"],
+    "description": "Sets the command prefix for the server.",
+    "category": "Configuration",
+    "cooldown": 5,
+    "voteOnly": true,
+    "permissions": {
+      "user": ["ManageGuild"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "8d",
+    "aliases": [],
+    "description": "Applies an 8D audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "bassboost",
+    "aliases": [],
+    "description": "Applies a bass boost audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "karaoke",
+    "aliases": [],
+    "description": "Applies a karaoke audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "lowpass",
+    "aliases": [],
+    "description": "Applies a lowpass audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "nightcore",
+    "aliases": [],
+    "description": "Applies a nightcore audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "pitch",
+    "aliases": [],
+    "description": "Applies a pitch audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "rate",
+    "aliases": [],
+    "description": "Applies a rate audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "reset",
+    "aliases": [],
+    "description": "Resets all audio effects to default.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "speed",
+    "aliases": [],
+    "description": "Applies a speed audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "tremolo",
+    "aliases": [],
+    "description": "Applies a tremolo audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "vibrato",
+    "aliases": [],
+    "description": "Applies a vibrato audio effect to the music.",
+    "category": "Audio Effects",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "help",
+    "aliases": ["commands", "cmds", "h"],
+    "description": "Get help with the bot's commands.",
+    "category": "General",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "invite",
+    "aliases": ["inv"],
+    "description": "Get the bot's invite link to add it to your server.",
+    "category": "General",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "lastfm",
+    "aliases": [],
+    "description": "Manage your Last.fm account.",
+    "category": "General",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "premium",
+    "aliases": ["prm"],
+    "description": "Manage and view premium status for your server.",
+    "category": "General",
+    "cooldown": 5,
+    "permissions": {}
+  },
+  {
+    "name": "support",
+    "aliases": ["supportserver", "ss"],
+    "description": "Get the bot's support server link.",
+    "category": "General",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "profile",
+    "aliases": ["myprofile", "pf", "bio", "achievement", "pr", "badge"],
+    "description": "Check your premium profile.",
+    "category": "General",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "clear",
+    "aliases": ["cq", "clearqueue"],
+    "description": "Clear the music queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "disconnect",
+    "aliases": ["dc", "leave"],
+    "description": "Disconnect the bot from the voice channel.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "forward",
+    "aliases": ["fwd", "ff"],
+    "description": "Forward the music playback by a specified amount of time.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "join",
+    "aliases": ["connect", "j"],
+    "description": "Join the voice channel.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"],
+      "voice": ["Connect", "Speak", "ViewChannel"]
+    }
+  },
+  {
+    "name": "loop",
+    "aliases": ["repeat"],
+    "description": "Set the loop mode for the current track or queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "voteOnly": true,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "move",
+    "aliases": ["mv"],
+    "description": "Move a song in the music queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "voteOnly": true,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "nowplaying",
+    "aliases": ["np", "current"],
+    "description": "Show the currently playing song.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "pause",
+    "aliases": ["hold"],
+    "description": "Pause the current playing song.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "play",
+    "aliases": ["p", "sing"],
+    "description": "Play a song or playlist in your voice channel.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": [],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "previous",
+    "aliases": ["prev", "back"],
+    "description": "Play the previous song in the queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "queue",
+    "aliases": ["q"],
+    "description": "Display the current music queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "remove",
+    "aliases": ["rm"],
+    "description": "Remove a song from the queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "removedupes",
+    "aliases": ["rd"],
+    "description": "Remove duplicate songs from the queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "voteOnly": true,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "replay",
+    "aliases": ["rp"],
+    "description": "Replay the current song.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "resume",
+    "aliases": ["unpause"],
+    "description": "Resume the current playing song.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "rewind",
+    "aliases": ["rw", "rew"],
+    "description": "Rewind the currently playing song.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "search",
+    "aliases": ["searchsong", "findsong"],
+    "description": "Search for a song to play.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "seek",
+    "aliases": ["seekto", "jump"],
+    "description": "Seek to a specific position in the currently playing song.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "shuffle",
+    "aliases": ["shuff"],
+    "description": "Shuffle the music queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "voteOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "skip",
+    "aliases": ["s", "next"],
+    "description": "Skip the currently playing song.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "stop",
+    "aliases": ["end"],
+    "description": "Stop the music and clear the queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "volume",
+    "aliases": ["vol"],
+    "description": "Adjust the music volume.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "forceplay",
+    "aliases": ["fp", "fplay"],
+    "description": "Plays a song instantly, which skips current track and plays next song.",
+    "category": "Music",
+    "cooldown": 5,
+    "djMode": true,
+    "permissions": {
+      "user": [],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "grab",
+    "aliases": [],
+    "description": "Grab the currently playing song.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "jump",
+    "aliases": ["skipto"],
+    "description": "Jump to a specific position in the music queue.",
+    "category": "Music",
+    "cooldown": 5,
+    "voteOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "lyrics",
+    "aliases": ["ly"],
+    "description": "Display the lyrics of the currently playing song.",
+    "category": "Music",
+    "cooldown": 5,
+    "voteOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"],
+      "voice": ["Connect", "Speak", "ViewChannel"]
+    }
+  },
+  {
+    "name": "nextup",
+    "aliases": ["pn", "playn", "play-next"],
+    "description": "Add the song to the top of the queue and play it next.",
+    "category": "Music",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "playlist-add",
+    "aliases": [],
+    "description": "Add the current track or the whole queue to a playlist.",
+    "category": "Playlist",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "playlist-clear",
+    "aliases": [],
+    "description": "Clear all songs from a playlist.",
+    "category": "Playlist",
+    "cooldown": 5,
+    "voteOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "playlist-create",
+    "aliases": [],
+    "description": "Create a new playlist.",
+    "category": "Playlist",
+    "cooldown": 5,
+    "voteOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "playlist-delete",
+    "aliases": [],
+    "description": "Delete a playlist.",
+    "category": "Playlist",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "playlist-list",
+    "aliases": [],
+    "description": "List all your playlists.",
+    "category": "Playlist",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "playlist-play",
+    "aliases": ["plplay", "playlistplay"],
+    "description": "Load a saved playlist into the queue and start playing.",
+    "category": "Playlist",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "playlist-removetrack",
+    "aliases": [],
+    "description": "Remove a track from a playlist by its number.",
+    "category": "Playlist",
+    "cooldown": 5,
+    "voteOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "playlist-rename",
+    "aliases": [],
+    "description": "Rename a playlist.",
+    "category": "Playlist",
+    "cooldown": 5,
+    "premiumOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "playlist-view",
+    "aliases": [],
+    "description": "View a playlist.",
+    "category": "Playlist",
+    "cooldown": 5,
+    "voteOnly": true,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  },
+  {
+    "name": "spotify",
+    "aliases": ["sp"],
+    "description": "Manage your Spotify integration.",
+    "category": "Spotify",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  }
   { "name": "pl-removetrack", "description": "Remove a track from a playlist.", "category": "Playlist", "usage": "/pl-removetrack <name> <index>" },
 
   { "name": "8d", "description": "Enable 8D spatial audio effect.", "category": "Audio Effects" },
   { "name": "majestic", "description": "Enable majestic audio preset.", "category": "Audio Effects" },
   { "name": "bassboost", "description": "Enable bass boost effect.", "category": "Audio Effects" },
   { "name": "channelmix", "description": "Adjust stereo channel mix.", "category": "Audio Effects" },
-  { "name": "chipmunk", "description": "Pitch up audio (chipmunk).", "category": "Audio Effects" },
-  { "name": "demon", "description": "Dark pitched effect.", "category": "Audio Effects" },
-  { "name": "haunted", "description": "Eerie reverb/chorus effect.", "category": "Audio Effects" },
-  { "name": "karaoke", "description": "Reduce vocals (karaoke-style).", "category": "Audio Effects" },
-  { "name": "nightcore", "description": "Nightcore effect.", "category": "Audio Effects" },
-  { "name": "pitch", "description": "Adjust playback pitch.", "category": "Audio Effects", "usage": "/pitch <value>" },
-  { "name": "psycho", "description": "Psychoacoustic preset.", "category": "Audio Effects" },
-  { "name": "speed", "description": "Change playback speed.", "category": "Audio Effects", "usage": "/speed <value>" },
-  { "name": "timestretch", "description": "Time-stretch without changing pitch.", "category": "Audio Effects" },
-  { "name": "tremolo", "description": "Add tremolo modulation.", "category": "Audio Effects" },
-  { "name": "underwater", "description": "Underwater-style filter.", "category": "Audio Effects" },
-  { "name": "vaporwave", "description": "Vaporwave effect.", "category": "Audio Effects" },
-
-  { "name": "spotify-connect", "description": "Link your Spotify account.", "category": "Spotify" },
-  { "name": "spotify-disconnect", "description": "Unlink your Spotify account.", "category": "Spotify" },
-  { "name": "spotify-play", "description": "Play a Spotify track/album/playlist.", "category": "Spotify", "usage": "/spotify-play <url|query>" },
-  { "name": "spotify-playlist", "description": "Import a Spotify playlist.", "category": "Spotify", "usage": "/spotify-playlist <url>" }
+  {
+    "name": "spotify",
+    "aliases": ["sp"],
+    "description": "Manage your Spotify integration.",
+    "category": "Spotify",
+    "cooldown": 5,
+    "permissions": {
+      "user": ["SendMessages"],
+      "bot": ["ViewChannel", "SendMessages", "EmbedLinks"]
+    }
+  }
 ]

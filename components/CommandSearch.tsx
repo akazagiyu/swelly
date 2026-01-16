@@ -7,11 +7,23 @@ import ScrollReveal from "@/components/motion/ScrollReveal";
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import Fuse from "fuse.js";
 
+export interface CommandPermissions {
+  user?: string[];
+  bot?: string[];
+  voice?: string[];
+}
+
 export type Command = {
   name: string;
   description: string;
-  category: string; // dynamic categories (General, Configuration, Music, Playlist, Audio Effects, Spotify, etc.)
+  category: string;
   usage?: string;
+  aliases?: string[];
+  cooldown?: number;
+  premiumOnly?: boolean;
+  voteOnly?: boolean;
+  djMode?: boolean;
+  permissions?: CommandPermissions;
 };
 
 export default function CommandSearch({ commands }: { commands: Command[] }) {
@@ -253,9 +265,50 @@ export default function CommandSearch({ commands }: { commands: Command[] }) {
                 <ScrollCard key={cmd.name} index={i} href={`/commands/${cmd.name}`}>
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="font-semibold">/{renderHighlighted(cmd.name, matchMap.get(cmd.name)?.name)}</h3>
-                    <span className="text-xs text-white/50">{cmd.category}</span>
+                    <div className="flex gap-1 flex-wrap justify-end">
+                      {cmd.premiumOnly && (
+                        <span className="text-[10px] uppercase tracking-wide bg-yellow-500/20 text-yellow-200 px-1.5 py-0.5 rounded">Premium</span>
+                      )}
+                      {cmd.voteOnly && (
+                        <span className="text-[10px] uppercase tracking-wide bg-blue-500/20 text-blue-200 px-1.5 py-0.5 rounded">Vote</span>
+                      )}
+                      {cmd.djMode && (
+                        <span className="text-[10px] uppercase tracking-wide bg-purple-500/20 text-purple-200 px-1.5 py-0.5 rounded">DJ</span>
+                      )}
+                    </div>
                   </div>
                   <p className="text-white/80 text-sm">{renderHighlighted(cmd.description, matchMap.get(cmd.name)?.description)}</p>
+                  
+                  <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                    {cmd.cooldown && (
+                      <span className="px-2 py-1 rounded bg-white/5 text-white/70">
+                        ⏱️ {cmd.cooldown}s cooldown
+                      </span>
+                    )}
+                    {cmd.aliases && cmd.aliases.length > 0 && (
+                      <span className="px-2 py-1 rounded bg-white/5 text-white/70">
+                        📌 {cmd.aliases.join(', ')}
+                      </span>
+                    )}
+                  </div>
+                  
+                  {cmd.permissions && (Object.values(cmd.permissions).some(p => p && p.length > 0)) && (
+                    <div className="mt-3 pt-3 border-t border-white/10">
+                      <p className="text-xs text-white/60 font-semibold mb-1">Required permissions:</p>
+                      <div className="text-xs text-white/50 space-y-0.5">
+                        {cmd.permissions.user && cmd.permissions.user.length > 0 && (
+                          <p>👤 User: {cmd.permissions.user.join(', ')}</p>
+                        )}
+                        {cmd.permissions.bot && cmd.permissions.bot.length > 0 && (
+                          <p>🤖 Bot: {cmd.permissions.bot.join(', ')}</p>
+                        )}
+                        {cmd.permissions.voice && cmd.permissions.voice.length > 0 && (
+                          <p>🎙️ Voice: {cmd.permissions.voice.join(', ')}</p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                  
                   {cmd.usage && (
                     <p className="text-xs text-white/50 mt-2">Usage: {renderHighlighted(cmd.usage, matchMap.get(cmd.name)?.usage)}</p>
                   )}
