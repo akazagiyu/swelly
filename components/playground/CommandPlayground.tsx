@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useMemo } from "react";
-import { FaPlay, FaTerminal, FaCopy, FaRandom, FaChartBar } from "react-icons/fa";
+import { FaPlay, FaTerminal, FaCopy, FaRandom, FaChartBar, FaTimes, FaCheckCircle, FaExclamationCircle, FaGem, FaVoteYea, FaHeadphones, FaShieldAlt } from "react-icons/fa";
 import type { Command } from "@/components/CommandSearch";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -27,6 +27,7 @@ interface ExecutionResult {
  */
 export const CommandPlayground: React.FC<CommandPlaygroundProps> = ({ commands: allCommands }) => {
   const [selectedCommand, setSelectedCommand] = useState<Command | null>(allCommands[0] || null);
+  const [showCommandDetails, setShowCommandDetails] = useState(false);
   const [args, setArgs] = useState<string>("");
   const [executions, setExecutions] = useState<ExecutionResult[]>([]);
   const [isExecuting, setIsExecuting] = useState(false);
@@ -253,22 +254,35 @@ export const CommandPlayground: React.FC<CommandPlaygroundProps> = ({ commands: 
               {/* Command List */}
               <div className="flex-1 overflow-y-auto space-y-2">
                 {filteredCommands.map((cmd) => (
-                  <motion.button
+                  <motion.div
                     key={cmd.name}
-                    onClick={() => {
-                      setSelectedCommand(cmd);
-                      setArgs("");
-                    }}
                     whileHover={{ x: 4 }}
-                    className={`w-full text-left px-4 py-3 rounded-lg transition-all ${
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-all group flex items-center justify-between ${
                       selectedCommand?.name === cmd.name
                         ? "bg-blurple/20 border border-blurple/40"
                         : "bg-white/5 border border-white/10 hover:bg-white/10"
                     }`}
                   >
-                    <div className="font-medium text-white">/{cmd.name}</div>
-                    <div className="text-xs text-white/50 truncate">{cmd.description}</div>
-                  </motion.button>
+                    <button
+                      onClick={() => {
+                        setSelectedCommand(cmd);
+                        setArgs("");
+                      }}
+                      className="flex-1 text-left"
+                    >
+                      <div className="font-medium text-white">/{cmd.name}</div>
+                      <div className="text-xs text-white/50 truncate">{cmd.description}</div>
+                    </button>
+                    <button
+                      onClick={() => {
+                        setSelectedCommand(cmd);
+                        setShowCommandDetails(true);
+                      }}
+                      className="ml-2 px-2 py-1 rounded text-xs bg-blurple/20 text-blurple hover:bg-blurple/40 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+                    >
+                      Info
+                    </button>
+                  </motion.div>
                 ))}
               </div>
 
@@ -440,6 +454,182 @@ export const CommandPlayground: React.FC<CommandPlaygroundProps> = ({ commands: 
             </div>
           </motion.div>
         </div>
+
+        {/* Command Details Modal */}
+        <AnimatePresence>
+          {showCommandDetails && selectedCommand && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+              onClick={() => setShowCommandDetails(false)}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl border border-blurple/30 shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              >
+                {/* Header */}
+                <div className="sticky top-0 bg-gradient-to-r from-blurple/20 to-transparent border-b border-blurple/20 p-6 flex items-start justify-between">
+                  <div>
+                    <h2 className="text-3xl font-bold text-blurple mb-2">/{selectedCommand.name}</h2>
+                    <p className="text-white/70">{selectedCommand.description}</p>
+                  </div>
+                  <button
+                    onClick={() => setShowCommandDetails(false)}
+                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  >
+                    <FaTimes className="text-white text-xl" />
+                  </button>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 space-y-6">
+                  {/* Category & Usage */}
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                      <div className="text-sm text-white/60 mb-1">Category</div>
+                      <div className="text-lg font-semibold text-blurple">{selectedCommand.category}</div>
+                    </div>
+                    {selectedCommand.usage && (
+                      <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                        <div className="text-sm text-white/60 mb-1">Usage</div>
+                        <div className="text-lg font-mono text-white/80">{selectedCommand.usage}</div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Aliases */}
+                  {selectedCommand.aliases && selectedCommand.aliases.length > 0 && (
+                    <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                      <div className="text-sm text-white/60 mb-3">Aliases</div>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedCommand.aliases.map((alias) => (
+                          <span
+                            key={alias}
+                            className="px-3 py-1 bg-blurple/20 border border-blurple/40 rounded-full text-sm text-blurple font-mono"
+                          >
+                            /{alias}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Metadata */}
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {selectedCommand.cooldown && (
+                      <div className="bg-white/5 rounded-lg p-4 border border-white/10 flex items-center gap-3">
+                        <FaExclamationCircle className="text-orange-400 text-xl" />
+                        <div>
+                          <div className="text-sm text-white/60">Cooldown</div>
+                          <div className="font-semibold text-white">{selectedCommand.cooldown}s</div>
+                        </div>
+                      </div>
+                    )}
+
+                    {selectedCommand.premiumOnly && (
+                      <div className="bg-white/5 rounded-lg p-4 border border-white/10 flex items-center gap-3">
+                        <FaGem className="text-yellow-400 text-xl" />
+                        <div>
+                          <div className="text-sm text-white/60">Premium Only</div>
+                          <div className="font-semibold text-white">Exclusive Feature</div>
+                        </div>
+                      </div>
+                    )}
+
+                    {selectedCommand.voteOnly && (
+                      <div className="bg-white/5 rounded-lg p-4 border border-white/10 flex items-center gap-3">
+                        <FaVoteYea className="text-purple-400 text-xl" />
+                        <div>
+                          <div className="text-sm text-white/60">Vote Required</div>
+                          <div className="font-semibold text-white">Top.gg Vote</div>
+                        </div>
+                      </div>
+                    )}
+
+                    {selectedCommand.djMode && (
+                      <div className="bg-white/5 rounded-lg p-4 border border-white/10 flex items-center gap-3">
+                        <FaHeadphones className="text-blue-400 text-xl" />
+                        <div>
+                          <div className="text-sm text-white/60">DJ Mode</div>
+                          <div className="font-semibold text-white">DJ Only</div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Permissions */}
+                  {selectedCommand.permissions && (
+                    <div className="space-y-4">
+                      {selectedCommand.permissions.user && selectedCommand.permissions.user.length > 0 && (
+                        <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                          <div className="text-sm text-white/60 mb-3 flex items-center gap-2">
+                            <FaCheckCircle className="text-green-400" />
+                            User Permissions
+                          </div>
+                          <div className="space-y-1">
+                            {selectedCommand.permissions.user.map((perm) => (
+                              <div key={perm} className="text-white/80 flex items-center gap-2">
+                                <span className="text-blurple">•</span>
+                                <code className="bg-black/30 px-2 py-1 rounded text-xs">{perm}</code>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {selectedCommand.permissions.bot && selectedCommand.permissions.bot.length > 0 && (
+                        <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                          <div className="text-sm text-white/60 mb-3 flex items-center gap-2">
+                            <FaShieldAlt className="text-blue-400" />
+                            Bot Permissions
+                          </div>
+                          <div className="space-y-1">
+                            {selectedCommand.permissions.bot.map((perm) => (
+                              <div key={perm} className="text-white/80 flex items-center gap-2">
+                                <span className="text-blurple">•</span>
+                                <code className="bg-black/30 px-2 py-1 rounded text-xs">{perm}</code>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {selectedCommand.permissions.voice && selectedCommand.permissions.voice.length > 0 && (
+                        <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                          <div className="text-sm text-white/60 mb-3 flex items-center gap-2">
+                            <FaHeadphones className="text-purple-400" />
+                            Voice Requirements
+                          </div>
+                          <div className="space-y-1">
+                            {selectedCommand.permissions.voice.map((req) => (
+                              <div key={req} className="text-white/80 flex items-center gap-2">
+                                <span className="text-blurple">•</span>
+                                <code className="bg-black/30 px-2 py-1 rounded text-xs">{req}</code>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Call to Action */}
+                  <button
+                    onClick={() => setShowCommandDetails(false)}
+                    className="w-full px-6 py-3 rounded-lg bg-blurple hover:bg-blurple/90 text-white font-semibold transition-all"
+                  >
+                    Close
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
