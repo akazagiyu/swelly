@@ -282,12 +282,12 @@ export default function CommandSearch({ commands }: { commands: Command[] }) {
                   <div className="mt-3 flex flex-wrap gap-2 text-xs">
                     {cmd.cooldown && (
                       <span className="px-2 py-1 rounded bg-white/5 text-white/70">
-                        ⏱️ {cmd.cooldown}s cooldown
+                        {cmd.cooldown}s cooldown
                       </span>
                     )}
                     {cmd.aliases && cmd.aliases.length > 0 && (
                       <span className="px-2 py-1 rounded bg-white/5 text-white/70">
-                        📌 {cmd.aliases.join(', ')}
+                        {cmd.aliases.join(', ')}
                       </span>
                     )}
                   </div>
@@ -297,13 +297,13 @@ export default function CommandSearch({ commands }: { commands: Command[] }) {
                       <p className="text-xs text-white/60 font-semibold mb-1">Required permissions:</p>
                       <div className="text-xs text-white/50 space-y-0.5">
                         {cmd.permissions.user && cmd.permissions.user.length > 0 && (
-                          <p>👤 User: {cmd.permissions.user.join(', ')}</p>
+                          <p>User: {cmd.permissions.user.join(', ')}</p>
                         )}
                         {cmd.permissions.bot && cmd.permissions.bot.length > 0 && (
-                          <p>🤖 Bot: {cmd.permissions.bot.join(', ')}</p>
+                          <p>Bot: {cmd.permissions.bot.join(', ')}</p>
                         )}
                         {cmd.permissions.voice && cmd.permissions.voice.length > 0 && (
-                          <p>🎙️ Voice: {cmd.permissions.voice.join(', ')}</p>
+                          <p>Voice: {cmd.permissions.voice.join(', ')}</p>
                         )}
                       </div>
                     </div>

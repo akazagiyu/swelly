@@ -98,14 +98,13 @@ export default function CommandDetailPage({ params }: Props) {
                 <div className="space-y-4">
                   {cmd.permissions.user && cmd.permissions.user.length > 0 && (
                     <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-green-400">👤</span>
-                        <p className="font-semibold text-sm">User Permissions</p>
+                      <div className="mb-2">
+                        <p className="font-semibold text-sm text-green-400">User Permissions</p>
                       </div>
                       <ul className="space-y-1 ml-6">
                         {cmd.permissions.user.map((perm) => (
                           <li key={perm} className="text-sm text-white/70">
-                            <span className="text-green-400">✓</span> {perm}
+                            <span className="text-green-400">•</span> {perm}
                           </li>
                         ))}
                       </ul>
@@ -113,14 +112,13 @@ export default function CommandDetailPage({ params }: Props) {
                   )}
                   {cmd.permissions.bot && cmd.permissions.bot.length > 0 && (
                     <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-blue-400">🤖</span>
-                        <p className="font-semibold text-sm">Bot Permissions</p>
+                      <div className="mb-2">
+                        <p className="font-semibold text-sm text-blue-400">Bot Permissions</p>
                       </div>
                       <ul className="space-y-1 ml-6">
                         {cmd.permissions.bot.map((perm) => (
                           <li key={perm} className="text-sm text-white/70">
-                            <span className="text-blue-400">✓</span> {perm}
+                            <span className="text-blue-400">•</span> {perm}
                           </li>
                         ))}
                       </ul>
@@ -128,14 +126,13 @@ export default function CommandDetailPage({ params }: Props) {
                   )}
                   {cmd.permissions.voice && cmd.permissions.voice.length > 0 && (
                     <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-purple-400">🎙️</span>
-                        <p className="font-semibold text-sm">Voice Requirements</p>
+                      <div className="mb-2">
+                        <p className="font-semibold text-sm text-purple-400">Voice Requirements</p>
                       </div>
                       <ul className="space-y-1 ml-6">
                         {cmd.permissions.voice.map((req) => (
                           <li key={req} className="text-sm text-white/70">
-                            <span className="text-purple-400">✓</span> {req}
+                            <span className="text-purple-400">•</span> {req}
                           </li>
                         ))}
                       </ul>
@@ -150,12 +147,10 @@ export default function CommandDetailPage({ params }: Props) {
               <h2 className="text-xl font-semibold mb-3">Examples</h2>
               <ul className="text-sm text-white/80 space-y-2">
                 <li className="flex items-start gap-2">
-                  <span className="text-blurple flex-shrink-0">→</span>
                   <code className="bg-white/5 px-2 py-1 rounded border border-white/10 text-white">{cmd.usage ?? `/${cmd.name}`}</code>
                 </li>
                 {cmd.usage && (
                   <li className="flex items-start gap-2">
-                    <span className="text-blurple flex-shrink-0">→</span>
                     <code className="bg-white/5 px-2 py-1 rounded border border-white/10 text-white">{cmd.usage}</code>
                   </li>
                 )}
@@ -192,22 +187,22 @@ export default function CommandDetailPage({ params }: Props) {
               <div className="flex flex-col gap-2">
                 {cmd.premiumOnly && (
                   <span className="text-xs uppercase tracking-wide bg-yellow-500/20 text-yellow-200 px-2 py-1 rounded text-center font-semibold">
-                    💎 Premium Only
+                    Premium Only
                   </span>
                 )}
                 {cmd.voteOnly && (
                   <span className="text-xs uppercase tracking-wide bg-purple-500/20 text-purple-200 px-2 py-1 rounded text-center font-semibold">
-                    🗳️ Vote Required
+                    Vote Required
                   </span>
                 )}
                 {cmd.djMode && (
                   <span className="text-xs uppercase tracking-wide bg-purple-600/20 text-purple-300 px-2 py-1 rounded text-center font-semibold">
-                    🎧 DJ Mode
+                    DJ Mode
                   </span>
                 )}
                 {!cmd.premiumOnly && !cmd.voteOnly && !cmd.djMode && (
                   <span className="text-xs uppercase tracking-wide bg-green-500/20 text-green-200 px-2 py-1 rounded text-center font-semibold">
-                    ✓ Free Command
+                    Free Command
                   </span>
                 )}
               </div>
