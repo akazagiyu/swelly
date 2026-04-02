@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useLocalStorage } from "@/lib/useLocalStorage";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import BotStatsCards from "@/components/dashboard/BotStatsCards";
 import UptimeChart from "@/components/dashboard/UptimeChart";
@@ -28,8 +29,33 @@ type Status = {
   };
 };
 
+function StatusDummyLoading() {
+  return (
+    <div className="container py-12">
+      <div className="card">
+        <div className="mx-auto flex max-w-xl flex-col items-center text-center py-8">
+          <Image
+            src="/loading.png"
+            alt="Loading status data"
+            width={120}
+            height={120}
+            className="h-20 w-20 object-contain animate-spin"
+            priority
+          />
+          <h3 className="mt-5 text-xl font-semibold">Loading live status data...</h3>
+          <p className="mt-2 text-sm text-white/60">Preparing shard health, uptime, and latency metrics.</p>
+          <div className="mt-5 h-1.5 w-full max-w-xs overflow-hidden rounded-full bg-white/10">
+            <div className="h-full w-2/3 animate-pulse bg-gradient-to-r from-primary to-white/60" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function StatusPageInner() {
   const [data, setData] = useState<Status | null>(null);
+  const [showDummyLoading, setShowDummyLoading] = useState(true);
   const [autoRefresh, setAutoRefresh] = useLocalStorage<boolean>("status:autoRefresh", true);
   const [filter, setFilter] = useLocalStorage<"all" | "issues">("status:filter", "all");
   const [sortBy, setSortBy] = useLocalStorage<"id" | "status">("status:sort", "id");
@@ -45,6 +71,11 @@ function StatusPageInner() {
   
   const [lastUpdated, setLastUpdated] = useState<number | null>(null);
   const [, setClock] = useState(0);
+
+  useEffect(() => {
+    const timerId = window.setTimeout(() => setShowDummyLoading(false), 1400);
+    return () => clearTimeout(timerId);
+  }, []);
   
   useEffect(() => { 
     const i = window.setInterval(() => setClock(c => (c + 1) % 1_000_000), 1000); 
@@ -249,6 +280,10 @@ function StatusPageInner() {
     uptimePercent: data.dashboard.uptimePercent,
   } : null;
 
+  if (showDummyLoading) {
+    return <StatusDummyLoading />;
+  }
+
   return (
     <div className="min-h-screen">
       {dashboardMetrics && (
@@ -432,7 +467,7 @@ function StatusPageInner() {
 
 export default function StatusPage() {
   return (
-    <Suspense fallback={<div className="container py-12"><div className="card"><div className="flex justify-center"><LoadingSpinner /></div></div></div>}>
+    <Suspense fallback={<StatusDummyLoading />}>
       <StatusPageInner />
     </Suspense>
   );

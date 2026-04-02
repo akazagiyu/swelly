@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/motion/ScrollReveal";
 import {
   FaBolt,
@@ -80,8 +81,21 @@ export default function EnderCloudPartnerPage() {
               </div>
 
               <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">
-                Swelly x <span className="text-gradient">EnderCloud</span>
+                <span className="text-red-500">Swelly</span> x <span className="text-[#2f6dff]">EnderCloud</span>
               </h1>
+
+              <div className="mt-6 flex justify-center">
+                <div className="rounded-2xl border border-white/12 bg-black/25 px-5 py-4 backdrop-blur-sm">
+                  <Image
+                    src="/endercloud.png"
+                    alt="EnderCloud logo"
+                    width={260}
+                    height={80}
+                    className="h-12 w-auto object-contain"
+                    priority
+                  />
+                </div>
+              </div>
 
               <p className="mx-auto mt-5 max-w-3xl text-lg text-white/75 md:text-xl">
                 EnderCloud is a featured partner for builders who want dependable hosting for Discord bots and related projects.
