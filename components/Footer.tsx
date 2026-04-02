@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaDiscord, FaGithub, FaHeart } from "react-icons/fa";
-import MobileCtaRestore from './MobileCtaRestore';
 import NewsletterForm from './NewsletterForm';
 
 export default function Footer() {
@@ -119,11 +118,14 @@ export default function Footer() {
           <div className="text-sm text-white/60">Made with <FaHeart className="inline text-rose-400 mx-1" /> for music lovers</div>
           <div className="text-sm text-white/60 flex items-center gap-3">
             <span>Built by Swelly • <span className="ml-2 font-medium">© {year}</span></span>
-            <div className="sm:hidden">
-              {/* client-side restore button */}
-              {/* importing dynamically to keep Footer server component safe */}
-              <MobileCtaRestore />
-            </div>
+            <a
+              href="https://endercloud.in/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              Partner: EnderCloud
+            </a>
           </div>
         </div>
       </div>

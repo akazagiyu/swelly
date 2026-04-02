@@ -7,7 +7,6 @@ import Providers from "@/components/providers/Providers";
 import dynamic from "next/dynamic";
 const CookieConsent = dynamic(() => import("@/components/CookieConsent"), { ssr: false });
 const FloatingSupportButton = dynamic(() => import("@/components/FloatingSupportButton"), { ssr: false });
-import MobileCta from "@/components/MobileCta";
 import type { ReactNode } from "react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -66,7 +65,6 @@ export default async function RootLayout({
             <main id="main-content" className="min-h-[calc(100vh-160px)]" role="main">
               {children}
             </main>
-            <MobileCta />
             <Footer />
             <CookieConsent />
             <FloatingSupportButton />
