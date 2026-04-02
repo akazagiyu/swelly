@@ -118,14 +118,9 @@ export default function Footer() {
           <div className="text-sm text-white/60">Made with <FaHeart className="inline text-rose-400 mx-1" /> for music lovers</div>
           <div className="text-sm text-white/60 flex items-center gap-3">
             <span>Built by Swelly • <span className="ml-2 font-medium">© {year}</span></span>
-            <a
-              href="https://endercloud.in/"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-white transition-colors"
-            >
+            <Link href="/partners/endercloud" className="hover:text-white transition-colors">
               Partner: EnderCloud
-            </a>
+            </Link>
           </div>
         </div>
       </div>
