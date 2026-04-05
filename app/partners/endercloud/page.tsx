@@ -100,7 +100,7 @@ export default function EndercloudPartnerPage() {
                 
                 <div className="flex h-24 sm:h-28 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 py-4 sm:px-8 sm:py-6 backdrop-blur-md hover:shadow-glow transition-shadow">
                   <Image
-                    src="/Endercloud.png"
+                    src="/endercloud.png"
                     alt="Endercloud logo"
                     width={180}
                     height={60}
