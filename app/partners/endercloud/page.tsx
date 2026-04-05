@@ -2,37 +2,40 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import ScrollReveal from "@/components/motion/ScrollReveal";
+import PageHeader from "@/components/layout/PageHeader";
+import CopyButton from "@/components/CopyButton";
 import {
   FaBolt,
   FaCheckCircle,
   FaCloud,
   FaExternalLinkAlt,
+  FaGift,
   FaHeadset,
   FaShieldAlt,
 } from "react-icons/fa";
 
 export const metadata: Metadata = {
-  title: "EnderCloud Partner",
+  title: "Endercloud Partner",
   description:
-    "Swelly partner page for EnderCloud. Learn why we recommend EnderCloud for hosting Discord music bots and related community projects.",
+    "Swelly partner page for Endercloud. Learn why we recommend Endercloud for hosting Discord music bots and related community projects.",
   openGraph: {
-    title: "Swelly x EnderCloud Partner Page",
+    title: "Swelly x Endercloud Partner Page",
     description:
-      "Discover our EnderCloud partnership and why it is a strong fit for performance-focused Discord bot hosting.",
+      "Discover our Endercloud partnership and why it is a strong fit for performance-focused Discord bot hosting.",
     images: [
       {
         url: "/mascot.png",
         width: 1200,
         height: 630,
-        alt: "Swelly x EnderCloud",
+        alt: "Swelly x Endercloud",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Swelly x EnderCloud Partner Page",
+    title: "Swelly x Endercloud Partner Page",
     description:
-      "Discover our EnderCloud partnership and why it is a strong fit for performance-focused Discord bot hosting.",
+      "Discover our Endercloud partnership and why it is a strong fit for performance-focused Discord bot hosting.",
     images: ["/mascot.png"],
   },
 };
@@ -41,7 +44,7 @@ const pillars = [
   {
     title: "Performance Mindset",
     description:
-      "Music bots need low-latency responses and consistent resource behavior. EnderCloud aligns with that performance-first approach.",
+      "Music bots need low-latency responses and consistent resource behavior. Endercloud aligns with that performance-first approach.",
     icon: <FaBolt className="h-6 w-6" />,
   },
   {
@@ -53,7 +56,7 @@ const pillars = [
   {
     title: "Support That Matters",
     description:
-      "When your community grows, clear communication and practical support become essential. EnderCloud is a good fit for that journey.",
+      "When your community grows, clear communication and practical support become essential. Endercloud is a good fit for that journey.",
     icon: <FaHeadset className="h-6 w-6" />,
   },
 ];
@@ -65,51 +68,56 @@ const useCases = [
   "Keeping operations simple while maintaining quality",
 ];
 
-export default function EnderCloudPartnerPage() {
+export default function EndercloudPartnerPage() {
   return (
     <div>
-      <section className="relative overflow-hidden py-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-accent-violet/15" />
-        <div className="absolute inset-0 bg-grid opacity-[0.12]" />
+      <PageHeader 
+        title="Swelly x Endercloud" 
+        subtitle="Endercloud is a featured partner for builders who want dependable hosting for Discord bots and related projects. This page explains why we recommend checking them out." 
+      />
+
+      <section className="relative overflow-hidden pt-12 pb-14">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent-violet/10" />
 
         <div className="container relative z-10">
           <ScrollReveal>
             <div className="mx-auto max-w-4xl text-center">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/6 px-4 py-2 text-sm text-white/85 backdrop-blur-sm">
-                <FaCheckCircle className="h-4 w-4 text-primary" />
-                Official Partner Spotlight
-              </div>
-
-              <h1 className="text-4xl font-extrabold tracking-tight md:text-6xl">
-                <span className="text-red-500">Swelly</span> x <span className="text-[#2f6dff]">EnderCloud</span>
-              </h1>
-
-              <div className="mt-6 flex justify-center">
-                <div className="rounded-2xl border border-white/12 bg-black/25 px-5 py-4 backdrop-blur-sm">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
+                <div className="flex h-24 w-24 sm:h-28 sm:w-28 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5 backdrop-blur-md hover:shadow-glow transition-shadow">
                   <Image
-                    src="/endercloud.png"
-                    alt="EnderCloud logo"
-                    width={260}
+                    src="/mascot.png"
+                    alt="Swelly mascot"
+                    width={80}
                     height={80}
-                    className="h-12 w-auto object-contain"
+                    className="object-contain drop-shadow-[0_0_15px_rgba(239,68,68,0.3)]"
+                    priority
+                  />
+                </div>
+                
+                <div className="text-white/30 text-2xl font-bold">
+                  ✕
+                </div>
+                
+                <div className="flex h-24 sm:h-28 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-6 py-4 sm:px-8 sm:py-6 backdrop-blur-md hover:shadow-glow transition-shadow">
+                  <Image
+                    src="/Endercloud.png"
+                    alt="Endercloud logo"
+                    width={180}
+                    height={60}
+                    className="h-8 sm:h-10 w-auto object-contain"
                     priority
                   />
                 </div>
               </div>
 
-              <p className="mx-auto mt-5 max-w-3xl text-lg text-white/75 md:text-xl">
-                EnderCloud is a featured partner for builders who want dependable hosting for Discord bots and related projects.
-                This page explains why we recommend checking them out.
-              </p>
-
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <a
-                  href="https://endercloud.in/"
+                  href="https://Endercloud.in/"
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-primary inline-flex w-full items-center justify-center gap-2 sm:w-auto"
                 >
-                  Visit EnderCloud
+                  Visit Endercloud
                   <FaExternalLinkAlt className="h-3.5 w-3.5" />
                 </a>
                 <Link href="/support" className="btn btn-outline w-full sm:w-auto">
@@ -117,8 +125,31 @@ export default function EnderCloudPartnerPage() {
                 </Link>
               </div>
 
-              <div className="mt-4 text-sm text-white/55">
-                For latest plans, locations, and pricing, refer to EnderCloud directly.
+              <div className="mt-6 text-sm text-white/55">
+                For latest plans, locations, and pricing, refer to Endercloud directly.
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <div className="mx-auto mt-14 max-w-4xl">
+              <div className="card flex flex-col sm:flex-row items-center justify-between gap-6 p-6 sm:p-8 rounded-2xl">
+                <div className="text-center sm:text-left flex-1">
+                  <div className="inline-flex items-center gap-2 mb-3 text-primary">
+                    <FaGift className="w-4 h-4" />
+                    <span className="font-semibold tracking-wide uppercase text-sm">Exclusive Offer</span>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2">Save on your deployment</h3>
+                  <p className="text-white/70 text-sm md:text-base mb-0">
+                    Use our partner promo code at checkout for a special discount on your first Endercloud invoice.
+                  </p>
+                </div>
+                
+                <div className="flex flex-col items-center gap-3 p-5 rounded-xl border border-white/10 bg-black/40 min-w-[220px] shrink-0">
+                  <span className="text-xs text-white/50 uppercase tracking-widest font-medium">Promo Code</span>
+                  <span className="font-mono text-3xl font-bold tracking-wider text-white">SWELLY12</span>
+                  <CopyButton text="SWELLY12" className="btn btn-primary w-full mt-1" />
+                </div>
               </div>
             </div>
           </ScrollReveal>
@@ -132,7 +163,7 @@ export default function EnderCloudPartnerPage() {
               <h2 className="text-3xl font-bold">Why This Partnership Works</h2>
               <p className="mt-3 text-white/70">
                 We focus on quality music experiences, and that depends on dependable infrastructure. These are the core reasons
-                EnderCloud is highlighted as a partner.
+                Endercloud is highlighted as a partner.
               </p>
             </div>
           </ScrollReveal>
@@ -177,12 +208,12 @@ export default function EnderCloudPartnerPage() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="https://endercloud.in/"
+                  href="https://Endercloud.in/"
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-primary inline-flex w-full items-center justify-center gap-2 sm:w-auto"
                 >
-                  Explore EnderCloud
+                  Explore Endercloud
                   <FaExternalLinkAlt className="h-3.5 w-3.5" />
                 </a>
                 <Link href="/invite" className="btn btn-outline w-full sm:w-auto">

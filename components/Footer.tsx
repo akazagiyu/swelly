@@ -119,7 +119,7 @@ export default function Footer() {
           <div className="text-sm text-white/60 flex items-center gap-3">
             <span>Built by Swelly • <span className="ml-2 font-medium">© {year}</span></span>
             <Link href="/partners/endercloud" className="hover:text-white transition-colors">
-              Partner: EnderCloud
+              Partner: Endercloud
             </Link>
           </div>
         </div>

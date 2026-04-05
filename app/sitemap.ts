@@ -18,7 +18,7 @@ export default function sitemap() {
     "/top-songs",
     "/support",
     "/blog",
-    "/partners/endercloud",
+    "/partners/Endercloud",
   ].map((p) => ({ url: `${site}${p}`, lastModified: new Date() }));
 
   const commandRoutes = getAllCommands().map((c) => ({
